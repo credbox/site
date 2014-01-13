@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A377667A-5C9A-463A-9D7F-6BCD0A5CB176}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Web.CredBox.Domain</RootNamespace>
+    <AssemblyName>Web.CredBox.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\References\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessEvent\LogEvent.cs" />
+    <Compile Include="BusinessEvent\LogEventArgs.cs" />
+    <Compile Include="BusinessLog\LogAdoNetAppender.cs" />
+    <Compile Include="Business\AssuntoBusiness.cs" />
+    <Compile Include="Business\BaseBusiness.cs" />
+    <Compile Include="Business\CategoriaBusiness.cs" />
+    <Compile Include="Business\CidadeBusiness.cs" />
+    <Compile Include="Business\EstadoBusiness.cs" />
+    <Compile Include="Business\FaleConoscoBusiness.cs" />
+    <Compile Include="Business\ImobiliariaBusiness.cs" />
+    <Compile Include="Business\ImovelBusiness.cs" />
+    <Compile Include="Business\LogTesteBusiness.cs" />
+    <Compile Include="Business\TipoBusiness.cs" />
+    <Compile Include="Business\UsuarioBusiness.cs" />
+    <Compile Include="DomainEntry.cs" />
+    <Compile Include="ProjectDomain.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtension.cs" />
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BusinessLog\LogConfiguration.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Web.CredBox.Data\Web.CredBox.Data.csproj">
+      <Project>{fc45f3d0-ed56-4f4a-8545-d2b5ae7ef667}</Project>
+      <Name>Web.CredBox.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web.CredBox.Model\Web.CredBox.Model.csproj">
+      <Project>{0e3e7e87-072d-4f4b-bfd4-9ce4b3eb876c}</Project>
+      <Name>Web.CredBox.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

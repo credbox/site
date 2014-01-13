@@ -10,6 +10,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CC9429
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.CredBox.Model", "Web.CredBox.Model\Web.CredBox.Model.csproj", "{0E3E7E87-072D-4F4B-BFD4-9CE4B3EB876C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.CredBox.Data", "Web.CredBox.Data\Web.CredBox.Data.csproj", "{FC45F3D0-ED56-4F4A-8545-D2B5AE7EF667}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{93F615E0-4FC5-467F-9DBD-40A31472BE7B}"
+	ProjectSection(SolutionItems) = preProject
+		References\log4net.dll = References\log4net.dll
+		References\MySql.Data.dll = References\MySql.Data.dll
+		References\MySql.Data.Entity.dll = References\MySql.Data.Entity.dll
+		References\MySql.Web.dll = References\MySql.Web.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.CredBox.Domain", "Web.CredBox.Domain\Web.CredBox.Domain.csproj", "{A377667A-5C9A-463A-9D7F-6BCD0A5CB176}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +34,18 @@ Global
 		{D10E06CA-2E2B-4971-953E-8193D44266AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D10E06CA-2E2B-4971-953E-8193D44266AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D10E06CA-2E2B-4971-953E-8193D44266AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E3E7E87-072D-4F4B-BFD4-9CE4B3EB876C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E3E7E87-072D-4F4B-BFD4-9CE4B3EB876C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E3E7E87-072D-4F4B-BFD4-9CE4B3EB876C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E3E7E87-072D-4F4B-BFD4-9CE4B3EB876C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC45F3D0-ED56-4F4A-8545-D2B5AE7EF667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC45F3D0-ED56-4F4A-8545-D2B5AE7EF667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC45F3D0-ED56-4F4A-8545-D2B5AE7EF667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC45F3D0-ED56-4F4A-8545-D2B5AE7EF667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A377667A-5C9A-463A-9D7F-6BCD0A5CB176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A377667A-5C9A-463A-9D7F-6BCD0A5CB176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A377667A-5C9A-463A-9D7F-6BCD0A5CB176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A377667A-5C9A-463A-9D7F-6BCD0A5CB176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

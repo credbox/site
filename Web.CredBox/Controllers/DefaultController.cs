@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Web.CredBox.Controllers
 {
-    public class DefaultController : Controller
+    public class DefaultController : BaseController
     {
         //
         // GET: /Default/

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Web.CredBox.Controllers
 {
-    public class SeuImovelController : Controller
+    public class SeuImovelController : BaseController
     {
         //
         // GET: /SeuImovel/
