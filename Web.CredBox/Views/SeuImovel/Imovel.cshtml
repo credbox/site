@@ -100,7 +100,7 @@
         </div>
     </div>
     <div class="clear"></div>
-
+    <div class="modal-interessei2"></div>
     <div class="modal-interessei">
         <div class="amount-modal">
             <div class="title-modal">
@@ -121,11 +121,11 @@
 <script>
     jQuery(document).ready(function () {
         $(".interesse").click(function () {
-            $(".modal-interessei").show();
+            $(".modal-interessei, .modal-interessei2").show();
         });
 
-        $(".modal-interessei").click(function () {
-            $(".modal-interessei").hide();
+        $(".modal-interessei2").click(function () {
+            $(".modal-interessei, .modal-interessei2").hide();
         });
     });
 </script>

@@ -813,10 +813,17 @@ div.line-bottom span.metragrem
     margin-top:-100px;
     left:50%;
     margin-left:-140px;
-    box-shadow:0px 0px 20px 5px rgba(0,0,0,0.8)
+    box-shadow:0px 0px 20px 5px rgba(0,0,0,0.8);
+    z-index:1000;
 }
 
 .modal-interessei
+{
+    display:none;
+    z-index:1001;
+}
+
+.modal-interessei2
 {
     position:absolute;
     height:100%;
@@ -824,7 +831,7 @@ div.line-bottom span.metragrem
     background-color:rgba(0,0,0,0.5);
     top:0;
     left:0;
-    z-index:1000;
+    z-index:800;
     display:none;
 }
 
