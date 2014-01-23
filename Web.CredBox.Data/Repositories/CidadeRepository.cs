@@ -24,7 +24,7 @@ namespace Web.CredBox.Data.Repositories
                     command.Connection.Open();
 
                     command.Parameters.Clear();
-                    command.Parameters.Add(new MySqlParameter("p_id", id));
+                    command.Parameters.Add(new MySqlParameter("p_idestado", id));
 
                     try
                     {

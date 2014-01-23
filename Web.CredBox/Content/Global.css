@@ -633,10 +633,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 
 
-.imovel h2
+.imovel h2 {
+  line-height: 43px;
+  margin-top: 60px;
+  font-size: 1.7em;
+}
+
+
+.imovel h3
 {
     margin-top:60px;
 }
+
+.imovel h3 strong
+{
+    color:#CCC;
+    font-weight:normal;
+}
+
+.imovel h3 small
+{
+    color:#e91d24;
+    float:right;
+    font-size:1em;
+}
+
 
 .imovel-bigcard
 {
@@ -674,4 +695,177 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
     {
         padding: 0 3px;
         color:#666;
+    }
+
+    
+.dev7-caroufredsel-pag img {
+  border: medium none;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.5), 0 7px 6px -2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 12px;
+  margin-right: 3px;
+  padding: 0;
+  border-radius:5px;
+  width: 78px;
+}
+.dev7-caroufredsel-pag {
+    margin-top: 6px;
+    margin-left:6px;
+}
+
+
+.dev7-caroufredsel-image > img {
+  border-radius: 5px 5px 0 0;
+  width: 428px;
+}
+
+.imovel-infos.float-r {
+  width: 532px;
+  font-size:1.2em;
+}
+
+#dev7-caroufredsel-wrapper-24 > strong
+{
+    font-weight:normal;
+    color:#666;
+    padding-left:3px;
+}
+
+.btn, .title-modal, .content-modal button{
+background: rgb(164,30,33); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2E0MWUyMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlOTFkMjQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(164,30,33,1) 0%, rgba(233,29,36,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(164,30,33,1)), color-stop(100%,rgba(233,29,36,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(164,30,33,1) 0%,rgba(233,29,36,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(164,30,33,1) 0%,rgba(233,29,36,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(164,30,33,1) 0%,rgba(233,29,36,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(164,30,33,1) 0%,rgba(233,29,36,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a41e21', endColorstr='#e91d24',GradientType=0 ); /* IE6-8 */
+    margin:12px 9px;
+    padding:6px;
+    font-weight:700;
+    border-radius:5px;
+    box-shadow: 0 0 5px -2px #000;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,0.5);
+    color:#FFF;
+}
+
+a.btn.interesse
+{
+    float:right;
+    margin-top:65px;
+    text-transform:uppercase;
+    line-height:12px;
+    padding:6px 24px ;
+}
+
+
+div.imovel-infos div.line-bottom span.float-l strong, div.imovel-infos div.line-right strong
+{
+    color:#e91d24;
+    font-weight:normal;
+    font-size:1.4em;
+}
+
+.line-bottom {
+  border-bottom: 1px solid #DFDFDF;
+  height: 55px;
+  width: 533px;
+  margin-bottom:6px;
+}
+
+div.line-bottom span.metragrem
+{
+    line-height:55px;
+    color:#e91d24;
+    font-size:1.6em;
+}
+
+.line-right
+{
+    float:left;
+    padding-right:26px;
+    border-right: 1px solid #DFDFDF;
+    padding-left:6px;
+    color:#666;
+}
+
+.line-none
+{
+    float:right;
+    color:#666;
+    text-align:right;
+}
+
+.title-modal
+{
+    font-size:1.3em;
+}
+
+.amount-modal
+{
+    width:290px;
+    position:absolute;
+    height:200px;
+    top:50%;
+    margin-top:-100px;
+    left:50%;
+    margin-left:-140px;
+    box-shadow:0px 0px 20px 5px rgba(0,0,0,0.8);
+    z-index:1000;
+}
+
+.modal-interessei
+{
+    display:none;
+    z-index:1001;
+}
+
+.modal-interessei2
+{
+    position:absolute;
+    height:100%;
+    width:100%;
+    background-color:rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+    z-index:800;
+    display:none;
+}
+
+.amount-modal label
+{
+    display:block;
+    margin-bottom:15px;
+
+}
+
+div.modal-interessei div.amount-modal div.title-modal
+{
+    margin:0;
+    cursor:default;
+    border-radius:5px 5px 0 0;
+}
+
+.content-modal
+{
+    background-color:#FFF;
+    padding:12px;
+    border-radius: 0 0 5px 5px;
+}
+
+    .content-modal input
+    {
+        border:1px solid #CCC;
+        padding:6px;
+        border-radius:3px;
+        width:250px;
+    }
+
+    .content-modal button
+    {
+        margin:0 auto;
+        display:block;
     }

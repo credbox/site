@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#btnEdit').click(function () {
+            var idTipo = $('#btnEdit').attr("tipo");
+            Edit(idTipo);
+        });
+        $('#alertMessage').hide('show');
+
+    });
+
+
+    function Edit(idTipo) {
+        $.ajax({
+            type: "GET",
+            data: GetValue(idTipo),
+            url: '@Url.Action("Update", "Tipo")',
+            error: function (data) {
+                $('#alertMessage').show('show');
+                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+            },
+            success: function (data) {
+                $('#alertMessage').show('show');
+                $('#message').text(data);
+            }
+        });
+    }
+
+    function GetValue(idTipo) {
+        var nome = $('#txtNome').val();
+        return { idTipo: idTipo, nome: nome };
+    }
+</script>
+
+<h2>Edit</h2>
+
+<fieldset>
+    <div class="control-group">
+        <label class="control-label" for="name">Nome</label>
+        <div class="controls">
+            <input type="text" id="txtNome" value="@ViewBag.Tipo.nome" /> />
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" id="btnEdit" tipo="@ViewBag.Tipo.id" cl class="btn btn-primary btn-large">Editar</button>
+        <a href="@Url.Action("List","Tipo")" ty type="button" class="btn">Cancelar</a>
+    </div>
+
+    <div class="alert alert-success" id="alertMessage">
+        <h4>Atenção</h4>
+        <ul><li id="message"></li> </ul>
+    </div>
+</fieldset>
+

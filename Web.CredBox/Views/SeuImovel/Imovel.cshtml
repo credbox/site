@@ -2,12 +2,130 @@
     ViewBag.Title = "Imovel";
 }
 <div class="max-width imovel">
-    <h2>Panamby - São Paulo - SP</h2><div class="clear"></div>
+    <h2 class="float-l">Panamby - São Paulo - SP </h2>
+    <a href="#" class="btn interesse">Me interesei <br />por este imóvel</a>
+    <h3 class="float-r">
+        <strong>Código de Referencia</strong><br />
+        
+        <small>R54984</small>
+        
+    </h3>
+    <div class="clear"></div>
     <div class="imovel-bigcard float-l">
-        <img src="@Url.Content("~/content/images/grande-imovel.jpg")" />
-        <strong>Outras fotos</strong>
-        <ul>
-            <li><img src="@Url.Content("~/content/images/thumb-imovel.jpg")" /></li>
-        </ul>
-    </div><div class="clear"></div>
+        <div id="dev7-caroufredsel-wrapper-24" class="dev7-caroufredsel-wrapper">
+            <div id="caroufredsel-24" class="dev7-caroufredsel-carousel">
+                <div class="dev7-caroufredsel-image">
+                    <img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/من-ضبى-الى-تبوك.jpg" /></div>
+                <div class="dev7-caroufredsel-image">
+                    <img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/Lauterbrunnen.jpg" /></div>
+                <div class="dev7-caroufredsel-image">
+                    <img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/0S1A0504.jpg" /></div>
+                <div class="dev7-caroufredsel-image">
+                    <img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/Jump.jpg" /></div>
+                <div class="dev7-caroufredsel-image">
+                    <img src="@Url.Content("~/content/images/grande-imovel.jpg")" /></div>
+                
+            </div>
+            <div class="dev7-clearfix"></div>
+            <strong style="margin-left:3px;">Outras fotos</strong>
+            <div class="dev7-caroufredsel-pag">
+            <a class="dev7-caroufredsel-thumb" href="#"><img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/من-ضبى-الى-تبوك-150x150.jpg" /></a>
+            <a class="dev7-caroufredsel-thumb" href="#"><img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/Lauterbrunnen-150x150.jpg" /></a>
+            <a class="dev7-caroufredsel-thumb" href="#"><img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/0S1A0504-150x150.jpg" /></a>
+            <a class="dev7-caroufredsel-thumb" href="#"><img src="http://demo.dev7studios.com/caroufredsel/files/2013/02/Jump-150x150.jpg" /></a>
+            <a class="dev7-caroufredsel-thumb" href="#"><img src="@Url.Content("~/content/images/thumb-imovel.jpg")" /></a></div>
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                function runCarousel() {
+                    /*
+            Layout Name: Slider with Thumbnails
+            Layout URI: http://caroufredsel.dev7studios.com
+            Description: A slider with thumbnail pagination.
+            Version: 1.0
+            Author: Iain Poulson
+            Author URI: http://dev7studios.com
+            Supports Pagination: thumbs
+            Supports Prev/Next Buttons: false
+            Supports Captions: true
+            */
+
+                    $("#caroufredsel-24").carouFredSel({
+                        responsive: true,
+                        items: 1,
+                        scroll: {
+                            fx: "crossfade"
+                        },
+                        pagination: {
+                            container: ".dev7-caroufredsel-pag",
+                            anchorBuilder: false
+                        },
+                    });
+
+
+
+                }
+                $("#caroufredsel-24").imagesLoaded(runCarousel);
+            });
+</script>
+    </div>
+    <div class="imovel-infos float-r">
+        <div class="line-bottom">
+            <span class="float-l">
+                <small>Tipo</small><br />
+                <strong>Residencial / Sobrado</strong>
+            </span>
+            <span class="metragrem float-r">
+                <strong>260m²</strong>
+            </span>
+        </div>
+        <div class="line-right">
+            <small>Quartos / Salas</small><br />
+            <strong>06</strong>
+        </div>
+        <div class="line-right">
+            <small>vagas</small><br />
+            <strong>05</strong>
+        </div>
+        <div class="line-right">
+            <small>Banheiros</small><br />
+            <strong>03</strong>
+        </div>
+        <div class="line-none">
+            <small>Adicionado em</small><br />
+            <strong>14/01/2014</strong>
+        </div>
+        <div class="maps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14625.928879202236!2d-46.65696854631495!3d-23.587032764975884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xcb936109af9ce541!2sParque+do+Ibirapuera!5e0!3m2!1spt-BR!2sbr!4v1389730916570" width="531" height="300" frameborder="0" style="border:0"></iframe>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="modal-interessei2"></div>
+    <div class="modal-interessei">
+        <div class="amount-modal">
+            <div class="title-modal">
+                Por favor, preencha os campos abaixo
+            </div>
+            <div class="content-modal">
+                <form>
+                    <label>E-mail<br /><input type="text" /></label>
+                    <label>Telefone<br /><input type="text" /></label>
+                    <button>Enviar Interesse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<script>
+    jQuery(document).ready(function () {
+        $(".interesse").click(function () {
+            $(".modal-interessei, .modal-interessei2").show();
+        });
+
+        $(".modal-interessei2").click(function () {
+            $(".modal-interessei, .modal-interessei2").hide();
+        });
+    });
+</script>

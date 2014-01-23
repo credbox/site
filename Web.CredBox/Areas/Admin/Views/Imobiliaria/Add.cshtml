@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#btnAdd').click(function () {
+            Add();
+        });
+        $('#alertMessage').hide('show');
+        $('#ddlEstado').append('<option value="0">Selecione</option>');
+        $('#ddlCidade').append('<option value="">Selecione</option>');
+        LoadEstado();
+
+        $('#ddlEstado').change(function () {
+            var idEstado = $('#ddlEstado').val();
+            alert(idEstado);
+            ZerarCidade();
+            LoadCidade(idEstado);
+        });
+
+    });
+
+    function LoadEstado() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetEstados", "Imobiliaria")',
+            error: function (data) {
+                $('#alertMessage').show('show');
+                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+            },
+            success: function (data) {
+                ZerarEstado();
+                $('#ddlEstado').append('<option value="0">Selecione</option>');
+                $.each(data, function (i, estado) {
+                    $('#ddlEstado').append('<option value="' + estado.id + '">' + estado.sigla + '</option>');
+                });
+            }
+        });
+    }
+
+    function LoadCidade(idEstado) {
+        $.ajax({
+            type: "GET",
+            data: GetValueEstado(),
+            url: '@Url.Action("GetCidades", "Imobiliaria")',
+            error: function (data) {
+                $('#alertMessage').show('show');
+                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+            },
+            success: function (data) {
+                ZerarCidade();
+                $('#ddlCidade').append('<option value="">Selecione</option>');
+                $.each(data, function (i, cidade) {
+                    $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                });
+            }
+        });
+    }
+
+
+    function Add() {
+        $.ajax({
+            type: "GET",
+            data: GetValue(),
+            url: '@Url.Action("Save", "Imobiliaria")',
+            error: function (data) {
+                $('#alertMessage').show('show');
+                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+            },
+            success: function (data) {
+                $('#alertMessage').show('show');
+                $('#message').text(data);
+            }
+        });
+    }
+
+    function ZerarEstado() {
+        $("#ddlEstado").empty();
+    }
+
+    function ZerarCidade() {
+        $("#ddlCidade").empty();
+    }
+
+    function GetValueEstado() {
+        var idEstado = $('#ddlEstado').val();
+        return { idEstado: idEstado };
+    }
+
+    function GetValue() {
+        var idEstado = $('#ddlEstado').val();
+        var idCidade = $('#ddlCidade').val();
+        var nome = $('#txtNome').val();
+        var endereco = $('#txtEndereco').val();
+        var cep = $('#txtCep').val();
+        var numero = $('#txtNumero').val();
+        var bairro = $('#txtBairro').val();
+        var contato = $('#txtContato').val();
+        var telefoneContato = $('#txtContatoTelefone').val();
+        var celularContato = $('#txtContatoCelular').val();
+        var emailContato = $('#txtContatoEmail').val();
+        var complemento = $('#txtComplemento').val();
+        return { idEstado: idEstado, idCidade: idCidade, nome: nome, endereco: endereco, cep: cep, numero: numero, bairro: bairro, contato: contato, telefoneContato: telefoneContato, celularContato: celularContato, emailContato: emailContato, emailContato: emailContato };
+    }
+
+
+</script>
+
+
+<h2>Add</h2>
+
+
+<fieldset>
+
+
+    <div class="control-group">
+        <label class="control-label" for="ddlEstado">Estado</label>
+        <div class="controls">
+            <select id="ddlEstado" name="ddlEstado"></select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="ddlCidade">Cidade</label>
+        <div class="controls">
+            <select id="ddlCidade" name="ddlCidade"></select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtNome">nome</label>
+        <div class="controls">
+            <input type="text" id="txtNome" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtEndereco">Endereco</label>
+        <div class="controls">
+            <input type="text" id="txtEndereco" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtCep">Cep</label>
+        <div class="controls">
+            <input type="text" id="txtCep" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtNumero">Número</label>
+        <div class="controls">
+            <input type="text" id="txtNumero" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtBairro">Bairro</label>
+        <div class="controls">
+            <input type="text" id="txtBairro" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtComplemento">Complemento</label>
+        <div class="controls">
+            <input type="text" id="txtComplemento" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtContato">Contato</label>
+        <div class="controls">
+            <input type="text" id="txtContato" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtContatoTelefone">Telefone</label>
+        <div class="controls">
+            <input type="text" id="txtContatoTelefone" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtContatoCelular">Celular</label>
+        <div class="controls">
+            <input type="text" id="txtContatoCelular" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="txtContatoEmail">E-mail</label>
+        <div class="controls">
+            <input type="text" id="txtContatoEmail" />
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <button type="button" id="btnAdd" class="btn btn-primary btn-large">Adicionar</button>
+        <a href="@Url.Action("List","Imobiliaria")" class="btn">Cancelar</a>
+    </div>
+
+    <div class="alert alert-success" id="alertMessage">
+        <h4>Atenção</h4>
+        <ul><li id="message"></li> </ul>
+    </div>
+</fieldset>

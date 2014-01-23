@@ -27,8 +27,8 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_idUsuarioInclusao", categoria.UsuarioInclusao.id));
                     try
                     {
-                        var value = bool.Parse(command.ExecuteNonQuery().ToString());
-                        if (value)
+                        var value = command.ExecuteNonQuery();
+                        if (value > 0)
                             return true;
                         else
                             return false;
@@ -59,9 +59,9 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var value = bool.Parse(command.ExecuteNonQuery().ToString());
+                        var value = command.ExecuteNonQuery();
 
-                        if (value)
+                        if (value > 0)
                             return true;
                         else
                             return false;

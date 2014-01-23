@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+<h2>List</h2>
+
+<fieldset>
+    <div class="control-group">
+        @if (ViewBag.Assuntos != null)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>
+                            Nome
+                        </td>
+                        <td>
+                            Data Inclusão
+                        </td>
+                        <td>
+                            Usuário Inclusão
+                        </td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewBag.Assuntos)
+                    {
+                        <tr>
+                            <td>
+                                @item.nome
+                            </td>
+                            <td>
+                                @item.dataInclusao.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.UsuarioInclusao.nome
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Assunto", new { id = @item.id })" class="btn btn-small">Editar</a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-success">
+                <h4>Atenção</h4>
+                <ul>
+                    @ViewBag.Message
+                </ul>
+            </div>
+
+
+        }
+    </div>
+</fieldset>

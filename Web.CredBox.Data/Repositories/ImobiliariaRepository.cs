@@ -19,7 +19,7 @@ namespace Web.CredBox.Data.Repositories
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "JP_ASSUNTOADD";
+                    command.CommandText = "JP_IMOBILIARIAADD";
                     command.Connection.Open();
 
                     command.Parameters.Clear();
@@ -39,8 +39,8 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var value = bool.Parse(command.ExecuteNonQuery().ToString());
-                        if (value)
+                        var value = command.ExecuteNonQuery();
+                        if (value > 0)
                             return true;
                         else
                             return false;
@@ -84,9 +84,9 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var value = bool.Parse(command.ExecuteNonQuery().ToString());
+                        var value = command.ExecuteNonQuery();
 
-                        if (value)
+                        if (value > 0)
                             return true;
                         else
                             return false;
