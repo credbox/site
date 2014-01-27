@@ -143,7 +143,10 @@
     <Compile Include="Areas\Admin\Controllers\TipoController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsuarioController.cs" />
     <Compile Include="BaseController.cs" />
+    <Compile Include="Controllers\CredboxController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DivulgarController.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\SeuImovelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -173,12 +176,14 @@
     <Content Include="Content\Images\btn-painelcontrole.png" />
     <Content Include="Content\Images\fundo-header-generic.png" />
     <Content Include="Content\Images\fundo-header-home.png" />
+    <Content Include="Content\Images\grande-imovel.jpg" />
     <Content Include="Content\Images\hotspot-credbox.jpg" />
     <Content Include="Content\Images\hotspot-divulgue.jpg" />
     <Content Include="Content\Images\hotspot-faleconosco.jpg" />
     <Content Include="Content\Images\logo-credbox.png" />
     <Content Include="Content\Images\logo-footer.png" />
     <Content Include="Content\Images\next.png" />
+    <Content Include="Content\Images\page-credbox.jpg" />
     <Content Include="Content\Images\prev.png" />
     <Content Include="Content\Images\search-icon.png" />
     <Content Include="Content\Images\thumb-imovel.jpg" />
@@ -300,6 +305,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Imovel\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Credbox\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Divulgar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contato\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -869,3 +869,114 @@ div.modal-interessei div.amount-modal div.title-modal
         margin:0 auto;
         display:block;
     }
+
+.institucional
+{
+    background-image:url(Images/fundo-header-generic.png);
+    background-repeat:no-repeat;
+    padding-top:45px;
+    padding-bottom:25px;
+}
+
+.institucional h1 {
+  margin: 10px 0 0;
+}
+
+.institucional h2 {
+  margin: 0;
+}
+
+.content-inst img {
+  border: medium none;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 7px 6px -2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 12px;
+  margin-left: 12px;
+  padding: 0;
+  border-radius:5px;
+}
+
+a
+{
+    color:#e91d24;
+    font-size:1.1em;
+}
+
+.form-contato
+{
+    display:block;
+    width:500px;
+    margin-top:15px;
+    float:left;
+}
+    .form-contato label
+    {
+        display:block;
+        cursor:pointer;
+    }
+
+    .form-contato input, .form-contato select
+    {
+        border: 1px solid #CCC;
+        border-radius:6px;
+        padding:6px;
+        font-family: "Pt Sans", Verdana, Helvetica, Sans-Serif;
+        color:#666;
+        width:487px;
+        margin:0 12px 12px 0px;
+    }
+
+    .form-contato label.middle
+    {
+        width:242px;
+        float:left;
+        margin-right:6px;
+    }
+
+    .form-contato select
+    {
+        width:501px;
+    }
+
+        .form-contato label.middle.float-r
+        {
+            float:right;
+            margin-right:0;
+        }
+
+
+        .form-contato label.middle input
+        {
+            width:229px;
+        }
+
+    .form-contato label textarea
+    {
+        border: 1px solid #CCC;
+        border-radius:6px;
+        padding:6px;
+        font-family: "Pt Sans", Verdana, Helvetica, Sans-Serif;
+        color:#666;
+        width:488px;
+        margin:0 12px 12px 0px;
+        height:180px;
+        resize:vertical;
+    }
+
+    .form-contato option
+    {
+        border: 1px solid #CCC;
+        border-bottom:1px solid #666;
+        border-radius:0;
+        font-family: "Pt Sans", Verdana, Helvetica, Sans-Serif;
+        color:#666;
+    }
+
+.content-inst.float-r
+{
+    width:450px;
+}
+
+.red
+{
+    color:#e91d24;
+}
