@@ -15,8 +15,10 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult List()
         {
+            ViewData["Estados"] = this.Estados();
             return View();
         }
+
 
         public ActionResult Edit(int id)
         {
@@ -96,6 +98,25 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult GetAll(int idEstado, int idCidade, string nome, bool status)
+        {
+            try
+            {
+                var imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(idEstado, idCidade, nome, status);
+
+                if (imobiliarias.Count() > 0)
+                    return View(imobiliarias);
+                else
+                    return View(imobiliarias = null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public ActionResult GetEstados()
         {
             try
@@ -107,6 +128,20 @@ namespace Web.CredBox.Areas.Admin.Controllers
             {
                 throw ex;
             }
+        }
+
+        private List<SelectListItem> Estados()
+        {
+            var list = ProjectDomain.EstadoBusiness.GetAll();
+            var estados = new List<SelectListItem>();
+
+            estados.Add(new SelectListItem { Text = "Selecione", Value = "0", Selected = true });
+            foreach (var estado in list)
+            {
+                var item = new SelectListItem { Text = estado.nome, Value = estado.id.ToString() };
+                estados.Add(item);
+            }
+            return estados;
         }
 
         public ActionResult GetCidades(int idEstado)

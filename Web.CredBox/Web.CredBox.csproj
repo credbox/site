@@ -137,8 +137,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AssuntoController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FaleConoscoController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImobiliariaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImovelController.cs" />
     <Compile Include="Areas\Admin\Controllers\TipoController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsuarioController.cs" />
     <Compile Include="BaseController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\SeuImovelController.cs" />
@@ -146,6 +149,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\StringExtension.cs" />
+    <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\custom-theme\images\animated-overlay.gif" />
@@ -185,11 +190,14 @@
     <Content Include="Scripts\jquery.carouFredSel-6.2.1-packed.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="static\css\areas\admin\bootstrap-responsive.css" />
     <Content Include="static\css\areas\admin\bootstrap-responsive.min.css" />
+    <Content Include="static\css\areas\admin\bootstrap.css" />
     <Content Include="static\css\areas\admin\bootstrap.min.css" />
-    <Content Include="static\css\areas\admin\style.css" />
-    <Content Include="static\images\areas\admin\error.png" />
-    <Content Include="static\images\areas\admin\valid.png" />
+    <Content Include="static\images\areas\admin\glyphicons-halflings-white.png" />
+    <Content Include="static\images\areas\admin\glyphicons-halflings.png" />
+    <Content Include="static\script\areas\admin\bootstrap.js" />
+    <Content Include="static\script\areas\admin\bootstrap.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -268,6 +276,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Imobiliaria\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Usuario\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Usuario\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Usuario\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Imobiliaria\GetAll.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Usuario\GetAll.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Imovel\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Imovel\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Imovel\List.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

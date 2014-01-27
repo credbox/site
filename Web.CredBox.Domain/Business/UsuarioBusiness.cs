@@ -9,13 +9,13 @@ using Web.CredBox.Model.Entity;
 
 namespace Web.CredBox.Domain.Business
 {
-    public class UsuarioBusiness:BaseBusiness
+    public class UsuarioBusiness : BaseBusiness
     {
-         /// <summary>
+        /// <summary>
         /// Evento de log
         /// </summary>
         public override event LogEventHandler Logging;
-        private readonly IUsuario _repository; 
+        private readonly IUsuario _repository;
 
         /// <summary>
         /// Construtor da classe
@@ -71,11 +71,11 @@ namespace Web.CredBox.Domain.Business
         }
 
 
-        public IList<UsuarioEntity> GetAllByStatus(bool ativo)
+        public IList<UsuarioEntity> GetAllByStatus(string nome, string email, string login, int idimobiliaria, bool ativo)
         {
             try
             {
-                return _repository.GetAllByStatus(ativo);
+                return _repository.GetAllByStatus(nome, email, login, idimobiliaria, ativo);
             }
             catch (Exception ex)
             {
