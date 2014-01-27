@@ -71,11 +71,11 @@ namespace Web.CredBox.Domain.Business
         }
 
 
-        public IList<ImobiliariaEntity> GetAllByStatus(bool ativo)
+        public IList<ImobiliariaEntity> GetAllByStatus(int idEstado, int idCidade, string nome, bool status)
         {
             try
             {
-                return _repository.GetAllByStatus(ativo);
+                return _repository.GetAllByStatus(idEstado, idCidade, nome, status);
             }
             catch (Exception ex)
             {

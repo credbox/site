@@ -98,7 +98,7 @@ namespace Web.CredBox.Data.Repositories
                                 id = GetAsInt(reader, "id"),
                                 nome = reader["nome"].ToString(),
                                 dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
+                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
                             });
                         }
 

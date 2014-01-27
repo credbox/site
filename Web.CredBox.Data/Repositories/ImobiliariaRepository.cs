@@ -53,7 +53,6 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-
         public bool Edit(ImobiliariaEntity imobiliaria)
         {
             using (var connection = base.GetConnection())
@@ -98,8 +97,7 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-
-        public IList<ImobiliariaEntity> GetAllByStatus(bool ativo)
+        public IList<ImobiliariaEntity> GetAllByStatus(int idEstado, int idCidade, string nome, bool status)
         {
             var imobiliarias = new List<ImobiliariaEntity>();
             using (var connection = base.GetConnection())
@@ -112,7 +110,22 @@ namespace Web.CredBox.Data.Repositories
                     command.Connection.Open();
 
                     command.Parameters.Clear();
-                    command.Parameters.Add(new MySqlParameter("p_ativo", ativo));
+                    if (idEstado > 0)
+                        command.Parameters.Add(new MySqlParameter("p_idestado", idEstado));
+                    else
+                        command.Parameters.Add(new MySqlParameter("p_idestado", DBNull.Value));
+
+                    if (idCidade > 0)
+                        command.Parameters.Add(new MySqlParameter("p_idcidade", idCidade));
+                    else
+                        command.Parameters.Add(new MySqlParameter("p_idcidade", DBNull.Value));
+
+                    if (!string.IsNullOrEmpty(nome))
+                        command.Parameters.Add(new MySqlParameter("p_nome", nome));
+                    else
+                        command.Parameters.Add(new MySqlParameter("p_nome", DBNull.Value));
+
+                    command.Parameters.Add(new MySqlParameter("p_ativo", status));
 
                     try
                     {
@@ -122,8 +135,8 @@ namespace Web.CredBox.Data.Repositories
                             imobiliarias.Add(new ImobiliariaEntity
                             {
                                 id = GetAsInt(reader, "id"),
-                                Estado = new EstadoEntity { id = GetAsInt(reader, "idEstado") },
-                                Cidade = new CidadeEntity { id = GetAsInt(reader, "idCidade") },
+                                Estado = new EstadoEntity { sigla = reader["sigla"].ToString() },
+                                Cidade = new CidadeEntity { nome = reader["nomeCidade"].ToString() },
                                 nome = reader["nome"].ToString(),
                                 endereco = reader["endereco"].ToString(),
                                 numero = GetAsInt(reader, "numero"),
@@ -136,7 +149,7 @@ namespace Web.CredBox.Data.Repositories
                                 emailContato = reader["emailContato"].ToString(),
                                 ativo = GetAsBoolean(reader, "ativo"),
                                 dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
+                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
                             });
                         }
 
@@ -150,7 +163,6 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-
         public ImobiliariaEntity GetById(int id)
         {
             ImobiliariaEntity imobiliaria = null;
