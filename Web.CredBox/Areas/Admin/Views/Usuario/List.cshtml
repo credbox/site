@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $('#alertMessage').hide('show');
+        $('#ddlCidade').append('<option value="">Selecione</option>');
+
+        $('#btnNovo').click(function () {
+            document.location.href = '@Url.Action("Add","Usuario")';
+        });
+
+        $('#btnBuscar').click(function () {
+            loadSearchUsuario();
+        });
+
+    });
+
+    function loadSearchUsuario() {
+        $('#pleaseWaitDialog').show();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetAll", "Usuario")',
+            data: GetValueSearch(),
+            error: function () {
+                $('#alertMessage').show('show');
+                $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                $('#pleaseWaitDialog').hide();
+            },
+            success: function (data) {
+                if (data == null) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Este serviço está temporariamente indisponível. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').hide();
+                }
+                else {
+                    $("#divResult").html(data);
+                    $('#pleaseWaitDialog').hide();
+                }
+            }
+        });
+
+    }
+
+    function GetValueSearch() {
+
+        var nome = $('#txtNome').val();
+        var email = $('#txtEmail').val();
+        var login = $('#txtLogin').val();
+        var idimobiliaria = 0;
+        var idimobiliaria = 0;
+        if ($('#ddlImobiliaria').val() != '')
+            idimobiliaria = $('#ddlImobiliaria').val();
+        var ativo = $('#chkAtivo').is(':checked');
+        return { nome: nome, email: email, login: login, idimobiliaria: idimobiliaria, ativo: ativo };
+    }
+</script>
+
+<h2>List</h2>
+
+<fieldset>
+
+    <div class="control-group">
+        <div class="controls-row">
+            <label for="txtNome">nome</label>
+
+            <input type="text" placeholder="Nome" id="txtNome" />
+        </div>
+        <div class="controls-row">
+            <label for="txtEmail">E-mail</label>
+
+            <input type="text" placeholder="E-mail" id="txtEmail" />
+        </div>
+
+        <div class="controls-row">
+            <label for="txtLogin">Login</label>
+
+            <input type="text" placeholder="Login" id="txtLogin" />
+        </div>
+
+        <div class="controls-row">
+            <label for="ddlEstado">Estado</label>
+            @Html.DropDownList("ddlImobiliaria", new SelectList((System.Collections.IEnumerable)ViewData["Imobiliarias"], "Value", "Text"))
+        </div>
+
+        <div class="controls-row">
+            <label for="chkAtivo">Ativo</label>
+
+            <input type="checkbox" class="checkbox" id="chkAtivo" />
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <button type="button" id="btnBuscar" class="btn-primary">Buscar</button>
+        <button type="button" id="btnNovo" class="btn-primary">Novo</button>
+    </div>
+    <div class="celarfix"></div>
+
+    <hr />
+
+
+    <div class="control-group" id="divResult">
+
+
+    </div>
+
+    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h1>Processando...</h1>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class=" bar " style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-success" id="alertMessage">
+        <h4>Atenção</h4>
+        <ul id="message"></ul>
+    </div>
+</fieldset>

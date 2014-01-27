@@ -1,0 +1,107 @@
+﻿@model IList<Web.CredBox.Model.Entity.ImobiliariaEntity>
+@{
+    Layout = null;
+    string idEstado = string.Empty;
+    string idCidade = string.Empty;
+    string nome = string.Empty;
+    string status = string.Empty;
+
+    if (!string.IsNullOrEmpty(Request.Form["nome"]))
+    {
+        nome = Request.Form["nome"].ToString();
+    }
+
+    if (Request.Form["idEstado"] != "0")
+    {
+        idEstado = Request.Form["idEstado"].ToString();
+    }
+
+    if (Request.Form["idCidade"] != "0")
+    {
+        idCidade = Request.Form["idCidade"].ToString();
+    }
+
+    status = Request.Form["status"].ToString();
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    Contato
+                </th>
+
+                <th>
+                    Ativo
+                </th>
+                <th>
+                    Inclusão
+                </th>
+                <th>
+                    Usuário Inclusão
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.nome
+                    </td>
+                    <td>
+                        @item.Estado.sigla
+                    </td>
+                    <td>
+                        @item.Cidade.nome
+                    </td>
+
+                    <td>
+                        @item.contato
+                    </td>
+                    <td>
+                        item.ativo
+                    </td>
+                    <td>
+                        @item.dataInclusao.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.UsuarioInclusao.nome
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Imobiliaria", new { id = @item.id })" class="btn btn-small">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').hide();
+        });
+    </script>
+}
+else
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Nenhuma imobiliária encontrada.</li>');
+        });
+    </script>
+
+}

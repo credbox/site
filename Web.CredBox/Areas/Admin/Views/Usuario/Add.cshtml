@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#btnAdd').click(function () {
+            Add();
+        });
+
+        $('#btnVoltar').click(function () {
+            window.location.href = '@Url.Action("List","Usuario")';
+        });
+
+        $('#alertMessage').hide('show');
+        $('#divImobiliaria').hide('show');
+
+        $('#chkImobiliaria').click(function () {
+
+            if ($(this).is(':checked'))
+                $("#divImobiliaria").show('hide');
+            else
+                $("#divImobiliaria").hide('show');
+
+        });
+    });
+
+
+    function Add() {
+        $('#pleaseWaitDialog').show();
+        var erroMessage = GetValidation();
+        if (erroMessage == "") {
+            $.ajax({
+                type: "GET",
+                data: GetValue(),
+                url: '@Url.Action("Save", "Usuario")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').text('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').hide();
+
+                },
+                success: function (data) {
+                    ClearControls();
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>' + data + '</li>');
+                    $('#pleaseWaitDialog').hide();
+                }
+            });
+        }
+        else {
+            $('#pleaseWaitDialog').hide();
+            $('#alertMessage').show();
+            $('#message').html(erroMessage);
+            return;
+        }
+    }
+
+    function GetValidation() {
+        var erroMessage = '';
+        if ($('#txtNome').val() == "") {
+            erroMessage = '<li>O nome do usuário é obrigatório</li>';
+        }
+
+        if ($('#txtEmail').val() == "") {
+            if (erroMessage != "") {
+                erroMessage = erroMessage + '<li>O e-mail do usuário é obrigatório.</li>';
+            }
+            else {
+                erroMessage = '<li>O e-mail do usuário é obrigatório.</li>';
+            }
+        }
+
+        if ($('#txtLogin').val() == "") {
+            if (erroMessage != "") {
+                erroMessage = erroMessage + '<li>O login do usuário é obrigatório.</li>';
+            }
+            else {
+                erroMessage = '<li>O login do usuário é obrigatório.</li>';
+            }
+        }
+
+        if ($('#txtSenha').val() == "") {
+            if (erroMessage != "") {
+                erroMessage = erroMessage + '<li>A senha do usuário é obrigatório.</li>';
+            }
+            else {
+                erroMessage = '<li>A senha do usuário é obrigatório.</li>';
+            }
+        }
+
+        var imobiliaria = $('#chkImobiliaria').is(':checked');
+        if (imobiliaria == true) {
+            if ($('#ddlImobiliaria').val() == "0") {
+                if (erroMessage != "") {
+                    erroMessage = erroMessage + '<li>Selecione a imobiliária do usuário é obrigatório.</li>';
+                }
+                else {
+                    erroMessage = '<li>Selecione a imobiliária do usuário é obrigatório.</li>';
+                }
+            }
+        }
+
+        return erroMessage;
+    }
+
+    function GetValue() {
+        var idImobiliaria = $('#ddlImobiliaria').val();
+        var nome = $('#txtNome').val();
+        var email = $('#txtEmail').val();
+        var login = $('#txtLogin').val();
+        var senha = $('#txtSenha').val();
+        var imobiliaria = $('#chkImobiliaria').is(':checked');
+        var ativo = $('#chkAtivo').is(':checked');
+        var emailNotificacao = $('#chkNotificacao').is(':checked');
+        return { idImobiliaria: idImobiliaria, nome: nome, email: email, login: login, senha: senha, imobiliaria: imobiliaria, ativo: ativo, emailNotificacao: emailNotificacao };
+    }
+
+    function ClearControls() {
+        $('#ddlImobiliaria').val('0');
+        $('#txtNome').val('');
+        $('#txtEmail').val('');
+        $('#txtLogin').val('');
+        $('#txtSenha').val('');
+        $('#chkImobiliaria').attr('checked', false);
+        $('#chkAtivo').attr('checked', false);
+        $('#chkNotificacao').attr('checked', false);
+    }
+
+</script>
+
+<h2>Novo</h2>
+<fieldset>
+    <div class="control-group">
+        <label class="control-label" for="name">É Imobiliario?</label>
+        <div class="controls">
+            <input type="checkbox" id="chkImobiliaria" />
+        </div>
+    </div>
+    <div class="control-group" id="divImobiliaria">
+        <label class="control-label" for="ddlImobiliaria">Imobiliária</label>
+        <div class="controls">
+            @Html.DropDownList("ddlImobiliaria", new SelectList((System.Collections.IEnumerable)ViewData["Imobiliarias"], "Value", "Text"))
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="txtNome">Nome</label>
+        <div class="controls">
+            <input type="text" id="txtNome" placeholder="Nome" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="txtEmail">E-mail</label>
+        <div class="controls">
+            <input type="text" id="txtEmail" placeholder="E-mail" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="txtLogin">Login</label>
+        <div class="controls">
+            <input type="text" id="txtLogin" placeholder="Login" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="txtSenha">Senha</label>
+        <div class="controls">
+            <input type="password" id="txtSenha" placeholder="Senha" />
+            <div id="messagesPassword"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="chkNotificacao">Recebe Notificação?</label>
+        <div class="controls">
+            <input type="checkbox" id="chkNotificacao" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="chkAtivo">Ativo?</label>
+        <div class="controls">
+            <input type="checkbox" id="chkAtivo" />
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="button" id="btnAdd" class="btn-primary btn-small">Salvar</button>
+        <button type="button" id="btnVoltar" class="btn-primary btn-small">Voltar</button>
+    </div>
+    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h1>Processando...</h1>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class=" bar " style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success" id="alertMessage">
+        <h4>Atenção</h4>
+        <ul id="message"></ul>
+    </div>
+</fieldset>

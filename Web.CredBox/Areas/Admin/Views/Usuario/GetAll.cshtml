@@ -1,0 +1,81 @@
+﻿@model IList<Web.CredBox.Model.Entity.UsuarioEntity>
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Imobiliária
+                </th>
+
+                <th>
+                    Login
+                </th>
+                <th>
+                    Ativo
+                </th>
+                <th>
+                    Inclusão
+                </th>
+                <th>
+                    Usuário Inclusão
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.nome
+                    </td>
+                    <td>
+                        @item.Imobiliaria.nome
+                    </td>
+
+                    <td>
+                        @item.login
+                    </td>
+
+                    <td>
+                        item.ativo
+                    </td>
+
+                    <td>
+                        @item.dataInclusao.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.UsuarioInclusao.nome
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Imobiliaria", new { id = @item.id })" class="btn btn-small">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function () {
+            $('#alertMessage').hide();
+        });
+    </script>
+}
+else
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Nenhum usuário encontrada.</li>');
+        });
+    </script>
+
+}
