@@ -7,11 +7,11 @@ using Web.CredBox.Model.Entity;
 
 namespace Web.CredBox.Data.Provider
 {
-    public interface IImobiliaria : IRepository<ImobiliariaEntity>
+    public interface IImobiliaria:IRepository<ImobiliariaEntity>
     {
         bool Add(ImobiliariaEntity imobiliaria);
         bool Edit(ImobiliariaEntity imobiliaria);
-        IList<ImobiliariaEntity> GetAllByStatus(int idEstado, int idCidade, string nome, bool status);
+        IList<ImobiliariaEntity> GetAllByStatus(bool ativo);
         ImobiliariaEntity GetById(int id);
     }
 }

@@ -11,7 +11,7 @@ namespace Web.CredBox.Data.Provider
     {
         bool Add(UsuarioEntity usuario);
         bool Edit(UsuarioEntity usuario);
-        IList<UsuarioEntity> GetAllByStatus(string nome, string email, string login, int idimobiliaria, bool ativo);
+        IList<UsuarioEntity> GetAllByStatus(bool ativo);
         UsuarioEntity GetById(int id);
     }
 }

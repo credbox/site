@@ -19,7 +19,7 @@ namespace Web.CredBox.Data.Repositories
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "JP_USUARIOADD";
+                    command.CommandText = "JP_ASSUNTOADD";
                     command.Connection.Open();
 
                     command.Parameters.Clear();
@@ -48,11 +48,12 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var value = command.ExecuteNonQuery();
-                        if (value > 0)
+                        var value = bool.Parse(command.ExecuteNonQuery().ToString());
+                        if (value)
                             return true;
                         else
                             return false;
+
                     }
                     catch (Exception ex)
                     {
@@ -61,6 +62,7 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
+
         public bool Edit(UsuarioEntity usuario)
         {
             using (var connection = base.GetConnection())
@@ -98,9 +100,9 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var value = command.ExecuteNonQuery();
+                        var value = bool.Parse(command.ExecuteNonQuery().ToString());
 
-                        if (value > 0)
+                        if (value)
                             return true;
                         else
                             return false;
@@ -112,7 +114,8 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-        public IList<UsuarioEntity> GetAllByStatus(string nome, string email, string login, int idimobiliaria, bool ativo)
+
+        public IList<UsuarioEntity> GetAllByStatus(bool ativo)
         {
             var usuarios = new List<UsuarioEntity>();
             using (var connection = base.GetConnection())
@@ -125,10 +128,6 @@ namespace Web.CredBox.Data.Repositories
                     command.Connection.Open();
 
                     command.Parameters.Clear();
-                    command.Parameters.Add(new MySqlParameter("p_nome", nome));
-                    command.Parameters.Add(new MySqlParameter("p_email", email));
-                    command.Parameters.Add(new MySqlParameter("p_login", login));
-                    command.Parameters.Add(new MySqlParameter("p_idimobiliaria", idimobiliaria));
                     command.Parameters.Add(new MySqlParameter("p_ativo", ativo));
 
                     try
@@ -140,16 +139,19 @@ namespace Web.CredBox.Data.Repositories
                             {
                                 id = GetAsInt(reader, "id"),
                                 Imobiliaria = new ImobiliariaEntity { nome = reader["nomeImobiliaria"].ToString() },
-                                nome = reader["nomeUsuario"].ToString(),
+                                nome = reader["nome"].ToString(),
                                 email = reader["email"].ToString(),
                                 login = reader["login"].ToString(),
+                                senha = reader["senha"].ToString(),
                                 imobiliaria = GetAsBoolean(reader, "imobiliaria"),
                                 emailNotificacao = GetAsBoolean(reader, "emailnotificacao"),
                                 ativo = GetAsBoolean(reader, "ativo"),
                                 dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeInclusao"].ToString() },
+                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
                             });
                         }
+
+
                         return usuarios;
                     }
                     catch (Exception ex)
