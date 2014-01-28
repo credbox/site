@@ -14,9 +14,16 @@ namespace Web.CredBox.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            if (!string.IsNullOrEmpty(id))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("List", "Imovel");
+            }
         }
 
         public ActionResult List()

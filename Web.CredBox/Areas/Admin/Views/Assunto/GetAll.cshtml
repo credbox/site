@@ -1,0 +1,62 @@
+﻿@model IList<Web.CredBox.Model.Entity.AssuntoEntity>
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+
+    <table class="table table-condensed ">
+        <thead>
+            <tr>
+                <td class="col-sm-4">
+                    Nome
+                </td>
+                <td class="col-sm-4">
+                    Data Inclusão
+                </td>
+                <td class="col-sm-4">
+                    Usuário Inclusão
+                </td>
+                <td class="col-sm-4"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="col-sm-3">
+                        @item.nome
+                    </td>
+                    <td class="col-sm-3">
+                        @item.dataInclusao.ToString("dd/MM/yyyy")
+                    </td>
+                    <td class="col-sm-3">
+                        @item.UsuarioInclusao.nome
+                    </td>
+                    <td class="col-sm-3">
+                        <a href="@Url.Action("Edit", "Assunto", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })" class="btn btn-primary btn-xs">Editar</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').hide();
+        });
+    </script>
+}
+else
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Nenhum assunto encontrada.</li>');
+        });
+    </script>
+
+}

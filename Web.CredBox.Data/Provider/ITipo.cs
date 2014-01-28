@@ -11,7 +11,7 @@ namespace Web.CredBox.Data.Provider
     {
         bool Add(TipoEntity tipo);
         bool Edit(TipoEntity tipo);
-        IList<TipoEntity> GetAll();
+        IList<TipoEntity> GetAll(string nome);
         TipoEntity GetById(int id); 
     }
 }

@@ -15,23 +15,35 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            ViewData["Estados"] = this.Estados();
+            ViewData["Estados"] = this.Estados(0);
             return View();
         }
 
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            if (!string.IsNullOrEmpty(id))
+            {
+                var idImobiliaria = int.Parse(id.Decrypt());
+                var imobiliaria = ProjectDomain.ImobiliariaBusiness.GetById(idImobiliaria);
+                ViewBag.Estados = this.Estados(imobiliaria.Estado.id);
+                ViewBag.Cidades = ProjectDomain.CidadeBusiness.GetByIdEstado(imobiliaria.Estado.id);
+                return View(imobiliaria);
+            }
+            else
+            {
+                return RedirectToAction("List", "Imobiliaria");
+            }
         }
 
         public ActionResult Add()
         {
+            ViewData["Estados"] = this.Estados(0);
             return View();
         }
 
         public JsonResult Save(int idEstado, int idCidade, string nome, string endereco, string cep, int numero, string bairro, string contato, string telefoneContato, string celularContato,
-            string emailContato, string complemento)
+            string emailContato, string complemento, bool ativo)
         {
             try
             {
@@ -49,6 +61,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     celularContato = celularContato,
                     emailContato = emailContato,
                     complemento = complemento,
+                    ativo = ativo,
                     UsuarioInclusao = new UsuarioEntity { id = 1 }
                 };
                 var retorno = ProjectDomain.ImobiliariaBusiness.Add(imobiliaria);
@@ -65,12 +78,13 @@ namespace Web.CredBox.Areas.Admin.Controllers
         }
 
         public JsonResult Update(int idImobiliaria, int idEstado, int idCidade, string nome, string endereco, string cep, int numero, string bairro, string contato, string telefoneContato, string celularContato,
-            string emailContato, string complemento)
+            string emailContato, string complemento, bool ativo)
         {
             try
             {
                 var imobiliaria = new ImobiliariaEntity
                 {
+                    id = idImobiliaria,
                     Estado = new EstadoEntity { id = idEstado },
                     Cidade = new CidadeEntity { id = idCidade },
                     nome = nome,
@@ -83,6 +97,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     celularContato = celularContato,
                     emailContato = emailContato,
                     complemento = complemento,
+                    ativo = ativo,
                     UsuarioInclusao = new UsuarioEntity { id = 1 }
                 };
                 var retorno = ProjectDomain.ImobiliariaBusiness.Edit(imobiliaria);
@@ -117,33 +132,29 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         }
 
-        public ActionResult GetEstados()
-        {
-            try
-            {
-                var estados = ProjectDomain.EstadoBusiness.GetAll();
-                return Json(estados, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private List<SelectListItem> Estados()
+        private IList<SelectListItem> Estados(int id)
         {
             var list = ProjectDomain.EstadoBusiness.GetAll();
             var estados = new List<SelectListItem>();
-
-            estados.Add(new SelectListItem { Text = "Selecione", Value = "0", Selected = true });
-            foreach (var estado in list)
+            estados.Add(new SelectListItem { Value = "0", Text = "Selecione" });
+            foreach (var item in list)
             {
-                var item = new SelectListItem { Text = estado.nome, Value = estado.id.ToString() };
-                estados.Add(item);
+                estados.Add(new SelectListItem { Text = item.sigla, Value = item.id.ToString() });
             }
             return estados;
         }
 
+        private IList<SelectListItem> Cidades(int idEstado, int id)
+        {
+            var list = ProjectDomain.CidadeBusiness.GetByIdEstado(idEstado);
+            var cidades = new List<SelectListItem>();
+            cidades.Add(new SelectListItem { Value = "0", Text = "Selecione" });
+            foreach (var item in list)
+            {
+                cidades.Add(new SelectListItem { Text = item.nome, Value = item.id.ToString() });
+            }
+            return cidades;
+        }
         public ActionResult GetCidades(int idEstado)
         {
             try

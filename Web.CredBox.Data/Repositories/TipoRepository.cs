@@ -74,7 +74,7 @@ namespace Web.CredBox.Data.Repositories
             }
         }
 
-        public IList<TipoEntity> GetAll()
+        public IList<TipoEntity> GetAll(string nome)
         {
             var tipos = new List<TipoEntity>();
             using (var connection = base.GetConnection())
@@ -87,6 +87,7 @@ namespace Web.CredBox.Data.Repositories
                     command.Connection.Open();
 
                     command.Parameters.Clear();
+                    command.Parameters.Add(new MySqlParameter("p_nome", nome));
 
                     try
                     {

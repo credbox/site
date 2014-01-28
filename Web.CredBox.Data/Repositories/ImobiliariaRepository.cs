@@ -79,7 +79,6 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_emailcontato", imobiliaria.emailContato));
                     command.Parameters.Add(new MySqlParameter("p_complemento", imobiliaria.complemento));
                     command.Parameters.Add(new MySqlParameter("p_ativo", imobiliaria.ativo));
-                    command.Parameters.Add(new MySqlParameter("p_idUsuarioInclusao", imobiliaria.UsuarioInclusao.id));
 
                     try
                     {
@@ -172,7 +171,7 @@ namespace Web.CredBox.Data.Repositories
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "JP_ASSUNTOGETBYID";
+                    command.CommandText = "JP_IMOBILIARIAGETBYID";
                     command.Connection.Open();
 
                     command.Parameters.Clear();
@@ -185,8 +184,8 @@ namespace Web.CredBox.Data.Repositories
                             imobiliaria = new ImobiliariaEntity
                             {
                                 id = GetAsInt(reader, "id"),
-                                Estado = new EstadoEntity { id = GetAsInt(reader, "idEstado") },
-                                Cidade = new CidadeEntity { id = GetAsInt(reader, "idCidade") },
+                                Estado = new EstadoEntity { id = GetAsInt(reader, "idestado") },
+                                Cidade = new CidadeEntity { id = GetAsInt(reader, "idcidade") },
                                 nome = reader["nome"].ToString(),
                                 endereco = reader["endereco"].ToString(),
                                 numero = GetAsInt(reader, "numero"),

@@ -2,62 +2,106 @@
     ViewBag.Title = "List";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
-<h2>List</h2>
+
+<script>
+    $(document).ready(function () {
+        $('#btnNovo').click(function () {
+            window.location.href = '@Url.Action("Add","Assunto")';
+        });
+
+        $('#btnBuscar').click(function () {
+            loadSearchAssunto();
+        });
+        $('#alertMessage').hide();
+    });
+
+    function loadSearchAssunto() {
+        $('#pleaseWaitDialog').show();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetAll", "Assunto")',
+            data: GetValue(),
+            error: function () {
+                $('#alertMessage').show('show');
+                $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                $('#pleaseWaitDialog').hide();
+            },
+            success: function (data) {
+                if (data == null) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Este serviço está temporariamente indisponível. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').hide();
+                }
+                else {
+                    $("#divResult").html(data);
+                    $('#pleaseWaitDialog').hide();
+                }
+            }
+        });
+
+    }
+
+    function GetValue() {
+        var nome = $('#txtNome').val();
+
+        return { nome: nome };
+    }
+</script>
+
+
 
 <fieldset>
-    <div class="control-group">
-        @if (ViewBag.Assuntos != null)
-        {
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>
-                            Nome
-                        </td>
-                        <td>
-                            Data Inclusão
-                        </td>
-                        <td>
-                            Usuário Inclusão
-                        </td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    @foreach (var item in ViewBag.Assuntos)
-                    {
-                        <tr>
-                            <td>
-                                @item.nome
-                            </td>
-                            <td>
-                                @item.dataInclusao.ToString("dd/MM/yyyy")
-                            </td>
-                            <td>
-                                @item.UsuarioInclusao.nome
-                            </td>
-                            <td>
-                                <a href="@Url.Action("Edit", "Assunto", new { id = @item.id })" class="btn btn-small">Editar</a>
-                            </td>
-                        </tr>
-                    }
+    <div class="panel panel-default">
+        <div class="panel-body">
+            Busca
+        </div>
 
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-6">
+                    <input type="text" id="txtNome" class="form-control input-small" placeholder="Nome">
+                </div>
+            </div>
 
-                </tbody>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-actions">
+                        <button type="button" id="btnBuscar" class="btn btn-primary btn-xs">Buscar</button>
+                        <button type="button" id="btnNovo" class="btn btn-primary btn-xs">Novo</button>
 
-            </table>
-        }
-        else
-        {
-            <div class="alert alert-success">
-                <h4>Atenção</h4>
-                <ul>
-                    @ViewBag.Message
-                </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12" id="divResult">
+
+                </div>
             </div>
 
 
-        }
+
+
+
+            <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+                <div class="modal-header">
+                    <h1>Processando...</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="progress progress-striped active">
+                        <div class="bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-success" id="alertMessage">
+                <h4>Atenção</h4>
+                <ul id="message"></ul>
+            </div>
+        </div>
     </div>
+
+
 </fieldset>

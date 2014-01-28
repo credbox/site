@@ -15,9 +15,20 @@ namespace Web.CredBox.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            if (!string.IsNullOrEmpty(id))
+            {
+                var idusuario = int.Parse(id.Decrypt());
+                var usuario = ProjectDomain.UsuarioBusiness.GetById(idusuario);
+                ViewBag.Imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(0, 0, string.Empty, true);
+
+                return View(usuario);
+            }
+            else
+            {
+                return RedirectToAction("List", "Imobiliaria");
+            }
         }
 
         public ActionResult List()
@@ -28,38 +39,34 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public JsonResult Save(int idImobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao)
         {
-            if (ModelState.IsValid)
+            var usuario = new UsuarioEntity { nome = nome, email = email, login = login, senha = senha.Encrypt(), imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao };
+            if (idImobiliaria > 0)
+                usuario.Imobiliaria = new ImobiliariaEntity { id = idImobiliaria };
+            usuario.UsuarioInclusao = new UsuarioEntity { id = 1 };
+
+            try
             {
-
-                var usuario = new UsuarioEntity { nome = nome, email = email, login = login, senha = senha.Encrypt(), imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao };
-                if (idImobiliaria > 0)
-                    usuario.Imobiliaria = new ImobiliariaEntity { id = idImobiliaria };
-                usuario.UsuarioInclusao = new UsuarioEntity { id = 1 };
-
-                try
-                {
-                    var retorno = ProjectDomain.UsuarioBusiness.Add(usuario);
-                    if (retorno)
-                        return Json("Salvo com sucesso.", JsonRequestBehavior.AllowGet);
-                    else
-                        return Json("Erro ao tentar inserir o usuário.", JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                var retorno = ProjectDomain.UsuarioBusiness.Add(usuario);
+                if (retorno)
+                    return Json("Salvo com sucesso.", JsonRequestBehavior.AllowGet);
+                else
+                    return Json("Erro ao tentar inserir o usuário.", JsonRequestBehavior.AllowGet);
             }
-            else
+            catch (Exception ex)
             {
-                return Json("Preencha os campos obrigatórios do usuário.", JsonRequestBehavior.AllowGet);
+                throw ex;
             }
         }
 
-        public JsonResult Update(int id, int Imobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao)
+        public JsonResult Update(int idusuario, int idImobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao)
         {
-            var usuario = new UsuarioEntity { id = id, nome = nome, email = email, login = login, senha = senha.Encrypt(), imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao };
-            if (Imobiliaria > 0)
-                usuario.Imobiliaria = new ImobiliariaEntity { id = Imobiliaria };
+            var usuario = new UsuarioEntity { id = idusuario, nome = nome, email = email, login = login, imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao };
+
+            if (!string.IsNullOrEmpty(senha))
+                usuario.senha = senha.Encrypt();
+
+            if (idImobiliaria > 0)
+                usuario.Imobiliaria = new ImobiliariaEntity { id = idImobiliaria };
             try
             {
                 var retorno = ProjectDomain.UsuarioBusiness.Edit(usuario);

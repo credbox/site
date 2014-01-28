@@ -11,7 +11,7 @@ namespace Web.CredBox.Data.Provider
     {
         bool Add(CategoriaEntity categoria);
         bool Edit(CategoriaEntity categoria);
-        IList<CategoriaEntity> GetAll();
+        IList<CategoriaEntity> GetAll(string nome);
         CategoriaEntity GetById(int id);
     }
 }

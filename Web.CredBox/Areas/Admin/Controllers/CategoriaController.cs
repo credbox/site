@@ -14,14 +14,6 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            var categorias = ProjectDomain.CategoriaBusiness.GetAll();
-            if (categorias.Count() > 0)
-                ViewBag.Categorias = categorias;
-            else
-            {
-                ViewBag.Categorias = null;
-                ViewBag.Message = "Nenhuma categoria foi encontrado";
-            }
             return View();
         }
 
@@ -30,12 +22,20 @@ namespace Web.CredBox.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            var categoria = ProjectDomain.CategoriaBusiness.GetById(id);
+            if (!string.IsNullOrEmpty(id))
+            {
+                var idCategoria = int.Parse(id.Decrypt());
+                var categoria = ProjectDomain.CategoriaBusiness.GetById(idCategoria);
 
-            ViewBag.Categoria = categoria;
-            return View();
+                ViewBag.Categoria = categoria;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("List", "Categoria");
+            }
         }
 
         public JsonResult Save(string nome)
@@ -45,9 +45,9 @@ namespace Web.CredBox.Areas.Admin.Controllers
                 var categoria = new CategoriaEntity { nome = nome, UsuarioInclusao = new UsuarioEntity { id = 1 } };
                 var retorno = ProjectDomain.CategoriaBusiness.Add(categoria);
                 if (retorno)
-                    return ViewBag.Message = "Salvo com sucesso.";
+                    return Json("Salvo com sucesso.", JsonRequestBehavior.AllowGet);
                 else
-                    return ViewBag.Message = "Erro ao tentar inserir a categoria.";
+                    return Json("Erro ao tentar inserir a categoria.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -72,6 +72,23 @@ namespace Web.CredBox.Areas.Admin.Controllers
                 throw ex;
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult GetAll(string nome)
+        {
+            try
+            {
+                var categorias = ProjectDomain.CategoriaBusiness.GetAll(nome);
+                if (categorias.Count() > 0)
+                    return View(categorias);
+                else
+                    return View(categorias = null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

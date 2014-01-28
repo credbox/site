@@ -71,11 +71,11 @@ namespace Web.CredBox.Domain.Business
         }
 
 
-        public IList<CategoriaEntity> GetAll()
+        public IList<CategoriaEntity> GetAll(string nome)
         {
             try
             {
-                return _repository.GetAll();
+                return _repository.GetAll(nome);
             }
             catch (Exception ex)
             {

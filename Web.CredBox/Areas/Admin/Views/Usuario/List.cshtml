@@ -18,30 +18,57 @@
     });
 
     function loadSearchUsuario() {
-        $('#pleaseWaitDialog').show();
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("GetAll", "Usuario")',
-            data: GetValueSearch(),
-            error: function () {
-                $('#alertMessage').show('show');
-                $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                $('#pleaseWaitDialog').hide();
-            },
-            success: function (data) {
-                if (data == null) {
+        $('#pleaseWaitDialog').show();
+        var erroMessage = GetValidation();
+        if (erroMessage == '') {
+
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetAll", "Usuario")',
+                data: GetValueSearch(),
+                error: function () {
                     $('#alertMessage').show('show');
-                    $('#message').html('<li>Este serviço está temporariamente indisponível. Tente novamente mais tarde.</li>');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
                     $('#pleaseWaitDialog').hide();
+                },
+                success: function (data) {
+                    if (data == null) {
+                        $('#alertMessage').show('show');
+                        $('#message').html('<li>Este serviço está temporariamente indisponível. Tente novamente mais tarde.</li>');
+                        $('#pleaseWaitDialog').hide();
+                    }
+                    else {
+                        $("#divResult").html(data);
+                        $('#pleaseWaitDialog').hide();
+                    }
+                }
+            });
+        }
+        else {
+            $('#alertMessage').show('show');
+            $('#message').html(erroMessage);
+            $('#pleaseWaitDialog').hide();
+        }
+
+    }
+
+    function GetValidation() {
+        var erroMessage = '';
+        var email = $("#txtEmail").val();
+        if (email != "") {
+            var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            if (!filtro.test(email)) {
+                if (erroMessage != "") {
+                    erroMessage = erroMessage + '<li>Este endereço de email não é válido.</li>';
                 }
                 else {
-                    $("#divResult").html(data);
-                    $('#pleaseWaitDialog').hide();
+                    erroMessage = '<li>Este endereço de email não é válido.</li>';
                 }
             }
-        });
-
+        }
+        return erroMessage;
     }
 
     function GetValueSearch() {
@@ -64,7 +91,7 @@
 
     <div class="control-group">
         <div class="controls-row">
-            <label for="txtNome">nome</label>
+            <label for="txtNome">Nome</label>
 
             <input type="text" placeholder="Nome" id="txtNome" />
         </div>
@@ -81,7 +108,7 @@
         </div>
 
         <div class="controls-row">
-            <label for="ddlEstado">Estado</label>
+            <label for="ddlEstado">Imobiliária</label>
             @Html.DropDownList("ddlImobiliaria", new SelectList((System.Collections.IEnumerable)ViewData["Imobiliarias"], "Value", "Text"))
         </div>
 

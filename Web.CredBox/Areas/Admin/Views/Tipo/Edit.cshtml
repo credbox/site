@@ -2,58 +2,90 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
-
 <script>
     $(document).ready(function () {
         $('#btnEdit').click(function () {
             var idTipo = $('#btnEdit').attr("tipo");
             Edit(idTipo);
         });
+
+        $('#btnVoltar').click(function () {
+            window.location.href = '@Url.Action("List","Tipo")';
+        });
+
         $('#alertMessage').hide('show');
 
     });
 
 
     function Edit(idTipo) {
-        $.ajax({
-            type: "GET",
-            data: GetValue(idTipo),
-            url: '@Url.Action("Update", "Tipo")',
-            error: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
-            },
-            success: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').text(data);
-            }
-        });
+        $('#pleaseWaitDialog').show();
+        var erroMessage = GetValidation();
+        if (erroMessage == '') {
+            $.ajax({
+                type: "GET",
+                data: GetValue(idTipo),
+                url: '@Url.Action("Update", "Tipo")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+                    $('#pleaseWaitDialog').hide();
+                },
+                success: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>' + data + '</li>');
+                    $('#pleaseWaitDialog').hide();
+                }
+            });
+        }
+        else {
+            $('#alertMessage').show('show');
+            $('#message').html(erroMessage);
+        }
     }
 
     function GetValue(idTipo) {
         var nome = $('#txtNome').val();
         return { idTipo: idTipo, nome: nome };
     }
+
+    function GetValidation() {
+        var erroMessage = '';
+        if ($('#txtNome').val() == '') {
+            erroMessage = '<li>O nome é obrigatório</li>';
+        }
+
+        return erroMessage;
+
+    }
+
+
 </script>
-
 <h2>Edit</h2>
-
 <fieldset>
     <div class="control-group">
         <label class="control-label" for="name">Nome</label>
         <div class="controls">
-            <input type="text" id="txtNome" value="@ViewBag.Tipo.nome" /> />
+            <input type="text" id="txtNome" value="@ViewBag.Tipo.nome" />
         </div>
     </div>
-
     <div class="form-actions">
-        <button type="button" id="btnEdit" tipo="@ViewBag.Tipo.id" cl class="btn btn-primary btn-large">Editar</button>
-        <a href="@Url.Action("List","Tipo")" ty type="button" class="btn">Cancelar</a>
-    </div>
+        <button type="button" id="btnEdit" tipo="@ViewBag.Tipo.id" class="btn-primary btn-small">Salvar</button>
+        <button type="button" id="btnVoltar" class="btn-primary btn-small">Voltar</button>
 
+    </div>
+    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h1>Processando...</h1>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class=" bar " style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
     <div class="alert alert-success" id="alertMessage">
         <h4>Atenção</h4>
-        <ul><li id="message"></li> </ul>
+        <ul id="message"></ul>
     </div>
 </fieldset>
-

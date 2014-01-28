@@ -25,7 +25,6 @@ namespace Web.CredBox.Domain.Business
         {
             _repository = repository;
         }
-
         public bool Add(AssuntoEntity assunto)
         {
             try
@@ -70,12 +69,11 @@ namespace Web.CredBox.Domain.Business
             }
         }
 
-
-        public IList<AssuntoEntity> GetAll()
+        public IList<AssuntoEntity> GetAll(string nome)
         {
             try
             {
-                return _repository.GetAll();
+                return _repository.GetAll(nome);
             }
             catch (Exception ex)
             {

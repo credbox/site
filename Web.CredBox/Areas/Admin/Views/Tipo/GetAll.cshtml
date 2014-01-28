@@ -1,0 +1,61 @@
+﻿@model IList<Web.CredBox.Model.Entity.TipoEntity>
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    Nome
+                </td>
+                <td>
+                    Data Inclusão
+                </td>
+                <td>
+                    Usuário Inclusão
+                </td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.nome
+                    </td>
+                    <td>
+                        @item.dataInclusao.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.UsuarioInclusao.nome
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Tipo", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })" class="btn-primary btn-small">Editar</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').hide();
+        });
+    </script>
+}
+else
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Nenhum tipo encontrado.</li>');
+        });
+    </script>
+
+}

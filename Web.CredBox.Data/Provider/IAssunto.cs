@@ -7,11 +7,11 @@ using Web.CredBox.Model.Entity;
 
 namespace Web.CredBox.Data.Provider
 {
-    public interface IAssunto:IRepository<AssuntoEntity>
+    public interface IAssunto : IRepository<AssuntoEntity>
     {
         bool Add(AssuntoEntity assunto);
         bool Edit(AssuntoEntity assunto);
-        IList<AssuntoEntity> GetAll();
+        IList<AssuntoEntity> GetAll(string nome);
         AssuntoEntity GetById(int id);
     }
 }

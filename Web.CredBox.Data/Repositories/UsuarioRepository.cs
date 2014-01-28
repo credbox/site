@@ -90,11 +90,14 @@ namespace Web.CredBox.Data.Repositories
 
                     command.Parameters.Add(new MySqlParameter("p_email", usuario.email));
                     command.Parameters.Add(new MySqlParameter("p_login", usuario.login));
-                    command.Parameters.Add(new MySqlParameter("p_senha", usuario.senha));
+                    if (!string.IsNullOrEmpty(usuario.senha))
+                        command.Parameters.Add(new MySqlParameter("p_senha", usuario.senha));
+                    else
+                        command.Parameters.Add(new MySqlParameter("p_senha", DBNull.Value));
+
                     command.Parameters.Add(new MySqlParameter("p_emailnotificacao", usuario.emailNotificacao));
                     command.Parameters.Add(new MySqlParameter("p_imobiliaria", usuario.imobiliaria));
                     command.Parameters.Add(new MySqlParameter("p_ativo", usuario.ativo));
-                    command.Parameters.Add(new MySqlParameter("p_idUsuarioInclusao", usuario.UsuarioInclusao.id));
 
                     try
                     {
@@ -169,7 +172,7 @@ namespace Web.CredBox.Data.Repositories
                 {
                     command.Connection = connection;
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.CommandText = "JP_ASSUNTOGETBYID";
+                    command.CommandText = "JP_USUARIOGETBYID";
                     command.Connection.Open();
 
                     command.Parameters.Clear();
@@ -182,7 +185,7 @@ namespace Web.CredBox.Data.Repositories
                             usuario = new UsuarioEntity
                             {
                                 id = GetAsInt(reader, "id"),
-                                Imobiliaria = new ImobiliariaEntity { id = GetAsInt(reader, "nomeImobiliaria") },
+                                Imobiliaria = new ImobiliariaEntity { id = GetAsInt(reader, "idimobiliaria") },
                                 nome = reader["nome"].ToString(),
                                 email = reader["email"].ToString(),
                                 login = reader["login"].ToString(),

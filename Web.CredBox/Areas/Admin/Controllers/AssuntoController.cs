@@ -14,23 +14,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            try
-            {
-                var list = ProjectDomain.AssuntoBusiness.GetAll();
-                if (list.Count() > 0)
-                    ViewBag.Assuntos = list;
-                else
-                {
-                    ViewBag.Assuntos = null;
-                    ViewBag.Message = "Nenhum assunto foi encontrado";
-                }
-
-                return View();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return View();
         }
 
         public ActionResult Add()
@@ -38,11 +22,19 @@ namespace Web.CredBox.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            var assunto = ProjectDomain.AssuntoBusiness.GetById(id);
-            ViewBag.Assunto = assunto;
-            return View();
+            if (!string.IsNullOrEmpty(id))
+            {
+                var idAssunto = int.Parse(id.Decrypt());
+                var assunto = ProjectDomain.AssuntoBusiness.GetById(idAssunto);
+                ViewBag.Assunto = assunto;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("List", "Assunto");
+            }
         }
 
         public JsonResult Save(string nome)
@@ -73,6 +65,24 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     return Json("Salvo com sucesso.", JsonRequestBehavior.AllowGet);
                 else
                     return Json("Erro ao tentar atualizar o assunto", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult GetAll(string nome)
+        {
+            try
+            {
+                var assuntos = ProjectDomain.AssuntoBusiness.GetAll(nome);
+                if (assuntos.Count() > 0)
+                    return View(assuntos);
+                else
+                    return View(assuntos = null);
             }
             catch (Exception ex)
             {

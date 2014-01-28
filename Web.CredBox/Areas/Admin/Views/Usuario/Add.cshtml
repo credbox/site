@@ -18,6 +18,25 @@
         $('#alertMessage').hide('show');
         $('#divImobiliaria').hide('show');
 
+        $('#txtEmail').blur(function () {
+            var email = $("#txtEmail").val();
+            if (email != "") {
+                var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                if (filtro.test(email)) {
+                    return true;
+                } else {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Este endereço de email não é válido.</li>');
+                    return false;
+                }
+            } else {
+                $('#alertMessage').show('show');
+                $('#message').html('<li>Digite um email.</li>');
+                return false;
+            }
+        });
+
+
         $('#chkImobiliaria').click(function () {
 
             if ($(this).is(':checked'))
@@ -39,7 +58,7 @@
                 url: '@Url.Action("Save", "Usuario")',
                 error: function (data) {
                     $('#alertMessage').show('show');
-                    $('#message').text('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
                     $('#pleaseWaitDialog').hide();
 
                 },
@@ -72,6 +91,20 @@
             else {
                 erroMessage = '<li>O e-mail do usuário é obrigatório.</li>';
             }
+
+
+            var email = $("#txtEmail").val();
+            if (email != "") {
+                var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                if (!filtro.test(email)) {
+                    if (erroMessage != "") {
+                        erroMessage = erroMessage + '<li>Este endereço de email não é válido.</li>';
+                    }
+                    else {
+                        erroMessage = '<li>Este endereço de email não é válido.</li>';
+                    }
+                }
+            }
         }
 
         if ($('#txtLogin').val() == "") {
@@ -103,7 +136,6 @@
                 }
             }
         }
-
         return erroMessage;
     }
 

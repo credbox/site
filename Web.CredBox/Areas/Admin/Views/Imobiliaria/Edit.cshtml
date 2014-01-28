@@ -1,83 +1,127 @@
-﻿@{
+﻿@model Web.CredBox.Model.Entity.ImobiliariaEntity
+@{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 
 <script>
     $(document).ready(function () {
-        $('#btnAdd').click(function () {
-            Add();
+        $('#btnEdit').click(function () {
+            var idimobiliaria = $('#btnEdit').attr("imobiliaria");
+            Edit(idimobiliaria);
         });
+
+        $('#btnVoltar').click(function () {
+            window.location.href = '@Url.Action("List","Imobiliaria")';
+        });
+
+        $("#txtContatoTelefone").mask("(99) 9999-9999?9");
+        $("#txtContatoCelular").mask("(99) 9999-9999?9");
+        $('#txtCep').mask("99999-999");
+
+        $('#txtContatoEmail').blur(function () {
+            var email = $("#txtContatoEmail").val();
+            if (email != "") {
+                var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+                if (filtro.test(email) == false)
+                {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Este endereço de email não é válido.</li>');
+                }
+            }
+        });
+
+
+        $("#txtNumero").keydown(function (event) {
+            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
+                    (event.keyCode == 65 && event.ctrlKey === true) ||
+                    (event.keyCode == 67 && event.ctrlKey === true) ||
+                    (event.keyCode == 88 && event.ctrlKey === true) ||
+                    (event.keyCode == 86 && event.ctrlKey === true) ||
+                    (event.keyCode == 65 && event.metaKey === true) ||
+                    (event.keyCode == 67 && event.metaKey === true) ||
+                    (event.keyCode == 88 && event.metaKey === true) ||
+                    (event.keyCode == 86 && event.metaKey === true) ||
+                    (event.keyCode >= 35 && event.keyCode <= 39)) {
+                return;
+            }
+            else {
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+
         $('#alertMessage').hide('show');
         $('#ddlEstado').append('<option value="0">Selecione</option>');
-        $('#ddlCidade').append('<option value="">Selecione</option>');
-        LoadEstado();
+        $('#ddlCidade').append('<option value="0">Selecione</option>');
 
         $('#ddlEstado').change(function () {
             var idEstado = $('#ddlEstado').val();
-            alert(idEstado);
             ZerarCidade();
             LoadCidade(idEstado);
         });
 
     });
 
-    function LoadEstado() {
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("GetEstados", "Imobiliaria")',
-            error: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
-            },
-            success: function (data) {
-                ZerarEstado();
-                $('#ddlEstado').append('<option value="0">Selecione</option>');
-                $.each(data, function (i, estado) {
-                    $('#ddlEstado').append('<option value="' + estado.id + '">' + estado.sigla + '</option>');
-                });
-            }
-        });
-    }
+
 
     function LoadCidade(idEstado) {
-        $.ajax({
-            type: "GET",
-            data: GetValueEstado(),
-            url: '@Url.Action("GetCidades", "Imobiliaria")',
-            error: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
-            },
-            success: function (data) {
-                ZerarCidade();
-                $('#ddlCidade').append('<option value="">Selecione</option>');
-                $.each(data, function (i, cidade) {
-                    $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
-                });
-            }
-        });
+        $('#pleaseWaitDialog').show();
+        if (idEstado > 0) {
+            $.ajax({
+                type: "GET",
+                data: GetValueEstado(),
+                url: '@Url.Action("GetCidades", "Imobiliaria")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+                },
+                success: function (data) {
+                    ZerarCidade();
+                    $('#ddlCidade').append('<option value="">Selecione</option>');
+                    $.each(data, function (i, cidade) {
+                        $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                    });
+                    $('#pleaseWaitDialog').hide();
+                }
+            });
+        }
+        else {
+            $('#ddlCidade').append('<option value="0">Selecione</option>');
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Escolha uma opção diferente de Selecione.</li>');
+            $('#pleaseWaitDialog').hide();
+        }
     }
 
-
-    function Add() {
-        $.ajax({
-            type: "GET",
-            data: GetValue(),
-            url: '@Url.Action("Save", "Imobiliaria")',
-            error: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').text('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
-            },
-            success: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').text(data);
-            }
-        });
-    }
-
-    function ZerarEstado() {
-        $("#ddlEstado").empty();
+    function Edit(idimobiliaria) {
+        $('#pleaseWaitDialog').show();
+        var erroMessage = GetValidation();
+        if (erroMessage == '') {
+            $.ajax({
+                type: "GET",
+                data: GetValue(idimobiliaria),
+                url: '@Url.Action("Update", "Imobiliaria")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').hide();
+                },
+                success: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>' + data + '</li>');
+                    clearControl();
+                    $('#pleaseWaitDialog').hide();
+                }
+            });
+        }
+        else {
+            $('#alertMessage').show('show');
+            $('#message').html(erroMessage);
+            $('#pleaseWaitDialog').hide();
+        }
     }
 
     function ZerarCidade() {
@@ -89,7 +133,48 @@
         return { idEstado: idEstado };
     }
 
-    function GetValue() {
+    function GetValidation() {
+        var erroMessage = '';
+        if ($('#ddlEstado').val() == '0') {
+            erroMessage = '<li>O campo estado é obrigatório.</li>';
+        }
+
+        if ($('#ddlCidade').val() == '0') {
+            if (erroMessage != "") {
+                erroMessage = erroMessage + '<li>O campo cidade é obrigatório.</li>';
+            }
+            else {
+                erroMessage = '<li>O campo cidade é obrigatório.</li>';
+            }
+        }
+
+        if ($('#txtNome').val() == '') {
+            if (erroMessage != "") {
+                erroMessage = erroMessage + '<li>O campo nome é obrigatório.</li>';
+            }
+            else {
+                erroMessage = '<li>O campo nome é obrigatório.</li>';
+            }
+        }
+
+
+        var email = $("#txtContatoEmail").val();
+        if (email != "") {
+            var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            if (filtro.test(email) == false) {
+                if (erroMessage != "") {
+                    erroMessage = erroMessage + '<li>Este endereço de email não é válido.</li>';
+                }
+                else {
+                    erroMessage = '<li>Este endereço de email não é válido.</li>';
+                }
+            }
+        }
+        return erroMessage;
+    }
+
+    function GetValue(idImobiliaria) {
+        var idImobiliaria = idImobiliaria;
         var idEstado = $('#ddlEstado').val();
         var idCidade = $('#ddlCidade').val();
         var nome = $('#txtNome').val();
@@ -102,7 +187,23 @@
         var celularContato = $('#txtContatoCelular').val();
         var emailContato = $('#txtContatoEmail').val();
         var complemento = $('#txtComplemento').val();
-        return { idEstado: idEstado, idCidade: idCidade, nome: nome, endereco: endereco, cep: cep, numero: numero, bairro: bairro, contato: contato, telefoneContato: telefoneContato, celularContato: celularContato, emailContato: emailContato, emailContato: emailContato };
+        var ativo = $('#chkAtivo').is(':checked');
+        return { idImobiliaria: idImobiliaria, idEstado: idEstado, idCidade: idCidade, nome: nome, endereco: endereco, cep: cep, numero: numero, bairro: bairro, contato: contato, telefoneContato: telefoneContato, celularContato: celularContato, emailContato: emailContato, emailContato: emailContato, ativo: ativo };
+    }
+
+    function clearControl() {
+        $('#ddlEstado').val('0');
+        $('#ddlCidade').val('0');
+        $('#txtNome').val('');
+        $('#txtEndereco').val('');
+        $('#txtCep').val('');
+        $('#txtNumero').val('');
+        $('#txtBairro').val('');
+        $('#txtContato').val('');
+        $('#txtContatoTelefone').val('');
+        $('#txtContatoCelular').val('');
+        $('#txtContatoEmail').val('');
+        $('#txtComplemento').val('');
     }
 
 
@@ -114,82 +215,111 @@
     <div class="control-group">
         <label class="control-label" for="ddlEstado">Estado</label>
         <div class="controls">
-            <select id="ddlEstado" name="ddlEstado"></select>
+            @Html.DropDownListFor(m => m.Estado.id, new SelectList((System.Collections.IEnumerable)ViewData["Estados"], "Value", "Text"), new { id = "ddlEstado" })
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="ddlCidade">Cidade</label>
         <div class="controls">
-            <select id="ddlCidade" name="ddlCidade"></select>
+            <select id="ddlCidade">
+                @foreach (var item in @ViewBag.Cidades)
+                {
+                    if (@Model.Cidade.id == @item.id)
+                    {
+                        <option selected="selected" value="@item.id">@item.nome</option>
+                    }
+                    else
+                    {
+                        <option value="@item.id">@item.nome</option>
+                    }
+                }
+            </select>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtNome">nome</label>
         <div class="controls">
-            <input type="text" id="txtNome" />
+            <input type="text" id="txtNome" value="@Model.nome" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtEndereco">Endereco</label>
         <div class="controls">
-            <input type="text" id="txtEndereco" />
+            <input type="text" id="txtEndereco" value="@Model.endereco" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtCep">Cep</label>
         <div class="controls">
-            <input type="text" id="txtCep" />
+            <input type="text" id="txtCep" value="@Model.cep" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtNumero">Número</label>
         <div class="controls">
-            <input type="text" id="txtNumero" />
+            <input type="text" id="txtNumero" value="@Model.numero" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtBairro">Bairro</label>
         <div class="controls">
-            <input type="text" id="txtBairro" />
+            <input type="text" id="txtBairro" value="@Model.bairro" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtComplemento">Complemento</label>
         <div class="controls">
-            <input type="text" id="txtComplemento" />
+            <input type="text" id="txtComplemento" value="@Model.complemento" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtContato">Contato</label>
         <div class="controls">
-            <input type="text" id="txtContato" />
+            <input type="text" id="txtContato" value="@Model.contato" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtContatoTelefone">Telefone</label>
         <div class="controls">
-            <input type="text" id="txtContatoTelefone" />
+            <input type="text" id="txtContatoTelefone" value="@Model.telefoneContato" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtContatoCelular">Celular</label>
         <div class="controls">
-            <input type="text" id="txtContatoCelular" />
+            <input type="text" id="txtContatoCelular" value="@Model.celularContato" />
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="txtContatoEmail">E-mail</label>
         <div class="controls">
-            <input type="text" id="txtContatoEmail" />
+            <input type="text" id="txtContatoEmail" value="@Model.emailContato" />
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="chkAtivo">Ativo</label>
+        <div class="controls">
+            <input type="checkbox" id="chkAtivo" checked="@Model.ativo" />
         </div>
     </div>
 
     <div class="form-actions">
-        <button type="button" id="btnAdd" class="btn btn-primary btn-large">Adicionar</button>
-        <a href="@Url.Action("List","Imobiliaria")" class="btn">Cancelar</a>
+        <button type="button" id="btnEdit" imobiliaria="@Model.id" class=" btn-primary btn-small">Salvar</button>
+        <button type="button" id="btnVoltar" class=" btn-primary btn-small">Voltar</button>
+    </div>
+    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-header">
+            <h1>Processando...</h1>
+        </div>
+        <div class="modal-body">
+            <div class="progress progress-striped active">
+                <div class=" bar " style="width: 100%;"></div>
+            </div>
+        </div>
     </div>
     <div class="alert alert-success" id="alertMessage">
         <h4>Atenção</h4>
-        <ul><li id="message"></li> </ul>
+        <ul id="message"> </ul>
     </div>
 </fieldset>
