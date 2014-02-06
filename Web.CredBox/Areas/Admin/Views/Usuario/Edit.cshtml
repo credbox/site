@@ -8,6 +8,7 @@
 
     $(document).ready(function () {
 
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Usuario")">Usuário</a></li><li><span class="divider">/</span> Editar</li>');
         $('#btnAdd').click(function () {
             var idusuario = $('#btnAdd').attr("usuario");
             Update(idusuario);

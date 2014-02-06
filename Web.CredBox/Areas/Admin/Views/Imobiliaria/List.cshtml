@@ -10,6 +10,8 @@
         $('#ddlEstado').append('<option selected="selected" value="0">Selecione</option>');
         $('#ddlCidade').append('<option value="0">Selecione</option>');
 
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Imobiliaria")">Imobiliária</a></li><li><span class="divider">/</span> Buscar</li>');
+
         $('#ddlEstado').change(function () {
             var idEstado = $('#ddlEstado').val();
             ZerarCidade();

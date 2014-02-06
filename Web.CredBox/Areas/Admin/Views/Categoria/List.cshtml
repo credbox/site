@@ -12,6 +12,7 @@
         $('#btnBuscar').click(function () {
             loadSearchCategoria();
         });
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Categoria")">Categoria</a></li><li><span class="divider">/</span> Busca</li>');
         $('#alertMessage').hide();
         $('#divBusca').hide('show');
     });

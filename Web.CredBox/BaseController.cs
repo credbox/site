@@ -19,9 +19,9 @@ namespace Web.CredBox
 
         public static MvcHtmlString BreadcrumbPath()
         {
-            string li = "<li style=text-transform:capitalize><span class='breadcrumbspan'>{0}</span>{1}</li>";
+            string li = "<li style=text-transform:capitalize><span class='divider'>{0}</span>{1}</li>";
             string path = string.Format(li, string.Empty, "Home");
-            string img = Credbox.Url.Conteudo("~/static/img/geral/breadcrumb-arrow.png");
+            string img = Credbox.Url.Conteudo("~/static/img/breadcrumb-arrow.png");
 
             var urlatual = System.Web.HttpContext.Current.Request.Url.PathAndQuery.TrimEnd('/').ToLower();
             string root = urlatual.Split('/')[1];
@@ -52,7 +52,7 @@ namespace Web.CredBox
                 }
             }
 
-            return MvcHtmlString.Create("<ul>" + path.ToLower() + "</ul>");
+            return MvcHtmlString.Create("<ul class='breadcrumb'>" + path.ToLower() + "</ul>");
         }
 
     }

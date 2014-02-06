@@ -11,6 +11,8 @@
         $('#ddlCidade').append('<option value="0">Selecione</option>');
         $('#alertMessage').hide('show');
 
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Imovel")">Imóvel</a></li><li><span class="divider">/</span> Busca</li>');
+
         $('#ddlEstado').change(function () {
             var idEstado = $('#ddlEstado').val();
             ZerarCidade();

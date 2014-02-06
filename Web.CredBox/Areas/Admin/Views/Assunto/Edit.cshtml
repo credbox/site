@@ -13,6 +13,8 @@
             window.location.href = '@Url.Action("List","Assunto")';
         });
 
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("Edit","Assunto")">Assunto</a></li><li><span class="divider">/</span> Editar</li>');
+
         $('#alertMessage').hide('show');
 
     });

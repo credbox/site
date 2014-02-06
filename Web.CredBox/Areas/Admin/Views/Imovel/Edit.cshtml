@@ -4,7 +4,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 
-<h2>Edit</h2>
+<script>
+    $(document).ready(function () {
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Imovel")">Imóvel</a></li><li><span class="divider">/</span> Editar</li>');
+    });
+</script>
+
 
 <h2>Imóvel</h2>
 

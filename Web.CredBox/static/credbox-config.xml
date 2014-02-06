@@ -1,28 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sitemap>
   <url nome="Home" src="/home" role="todos">
-    <url nome="Como Funciona" src="/como-funciona" role="todos">
-      <url nome="Mecanica do Programa" src="/como-funciona/mecanica" role="todos" />
-      <url nome="Como se Cadastrar" src="/como-funciona/comosecadastrar" role="todos" />
-      <url nome="Posto Premmiado" src="/como-funciona/postopremmiado" role="todos" />
-      <url nome="Postos Participantes" src="/como-funciona/postosparticipantes" role="todos" />
-      <url nome="Regulamento" src="/como-funciona/regulamento" role="todos" />
-      <url nome="Simulador" src="/como-funciona/simulador" role="todos" />
+    <url nome="Assunto" src="/admin/assunto/list" role="todos">
+      <url nome="Assunto" src="/admin/assunto/add" role="todos" />
+      <url nome="Assunto" src="/admin/assunto/edit" role="todos" />
     </url>
-    <url nome="Resgate seus Pontos" src="/resgate-seus-pontos" role="todos">
-      <url nome="Como Resgatar" src="/resgate-seus-pontos/comoresgatar" role="todos" />
-      <url nome="Loja Premmia" src="/resgate-seus-pontos/lojapremmia" role="todos" />
-      <url nome="Registrar Pontos" src="/resgate-seus-pontos/registrarpontos/" role="todos" />
-      <url nome="Premmia Viagens" src="/premmia-viagens" role="todos" />
+    <url nome="Home" src="/home" role="todos">
+      <url nome="Categoria" src="/admin/categoria/list" role="todos">
+        <url nome="Categoria" src="/admin/categoria/add" role="todos" />
+        <url nome="Categoria" src="/admin/categoria/edit" role="todos" />
+      </url>
     </url>
-    <url nome="Minha Conta" src="/minha-conta" role="todos">
-      <url nome="Entrar" src="/minha-conta/entrar" role="todos" />
-      <url nome="Cadastro" src="/cadastro" role="todos" />
-      <url nome="Cadastro - Etapa 1" src="/minha-conta/cadastro/passo-1" role="todos" />
-      <url nome="Cadastro - Etapa 2" src="/minha-conta/cadastro/passo-2" role="todos" />
-      <url nome="Cadastro - Etapa 3" src="/minha-conta/cadastro/passo-3" role="todos" />
-      <url nome="Alterar Cadastro" src="/minha-conta/" role="logado" />
-      <url nome="Registrar Pontos" src="/minha-conta/extrato" role="logado" />
+    <url nome="Tipo" src="/admin/tipo/list" role="todos">
+      <url nome="Tipo" src="/admin/categoria/add" role="todos" />
+      <url nome="Tipo" src="/admin/categoria/edit" role="todos" />
     </url>
     <url nome="Dúvidas" src="/duvidas" role="todos" />
     <url nome="Fale Conosco" src="/fale-conosco" role="todos" />

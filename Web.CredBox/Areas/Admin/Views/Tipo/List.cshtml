@@ -8,6 +8,8 @@
             window.location.href = '@Url.Action("Add","Tipo")';
         });
 
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Tipo")">Tipo</a></li><li><span class="divider">/</span> Buscar</li>');
+
         $('#btnBuscar').click(function () {
             loadSearchTipo();
         });

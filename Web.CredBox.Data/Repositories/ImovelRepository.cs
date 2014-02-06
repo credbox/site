@@ -57,7 +57,6 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-
         public bool AddImages(ImovelEntity imovel)
         {
 
@@ -183,7 +182,6 @@ namespace Web.CredBox.Data.Repositories
             }
 
         }
-
         public bool Edit(ImovelEntity imovel)
         {
             using (var connection = base.GetConnection())
@@ -243,7 +241,6 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-
         public IList<ImovelEntity> GetAll(int idimobiliaria, bool publicar, bool vendido, string nome, string codigoimobiliaria, int idCategoria, int idTipo, int idEstado, int idCidade)
         {
             var imoveis = new List<ImovelEntity>();
@@ -362,7 +359,6 @@ namespace Web.CredBox.Data.Repositories
                 }
             }
         }
-
         public ImovelEntity GetById(int id)
         {
             ImovelEntity imovel = null;
@@ -388,11 +384,11 @@ namespace Web.CredBox.Data.Repositories
 
                                     id = GetAsInt(reader, "id"),
                                     Imobiliaria = new ImobiliariaEntity { id = GetAsInt(reader, "idimobiliaria") },
-                                    nome = reader["nome"].ToString(),
                                     Categoria = new CategoriaEntity { id = GetAsInt(reader, "idcategoria") },
                                     Tipo = new TipoEntity { id = GetAsInt(reader, "idtipo") },
                                     Estado = new EstadoEntity { id = GetAsInt(reader, "idestado") },
                                     Cidade = new CidadeEntity { id = GetAsInt(reader, "idcidade") },
+                                    nome = reader["nome"].ToString(),
                                     bairro = reader["bairro"].ToString(),
                                     endereco = reader["endereco"].ToString(),
                                     numero = GetAsInt(reader, "numero"),
@@ -409,18 +405,28 @@ namespace Web.CredBox.Data.Repositories
                                     publicar = GetAsBoolean(reader, "publicar"),
                                     vendido = GetAsBoolean(reader, "vendido"),
                                     destaque = GetAsBoolean(reader, "destaque"),
-                                    //caminhoFotoDestaque = reader["caminhofotodestaque"].ToString(),
-                                    //nomeFotoDestaque = reader["nomefotodestaque"].ToString(),
-                                    //extensaoFotoDestaque = reader["extensaofotodestaque"].ToString(),
-                                    //caminhoFotoPrincipal = reader["caminhofotoprincipal"].ToString(),
-                                    //nomeFotoPrinciapl = reader["nomefotoprincipal"].ToString(),
-                                    //extensaoFotoPrincipal = reader["extensaofotoprincipal"].ToString(),
+                                    caminhofoto1 = reader["caminhofoto1"].ToString(),
+                                    nomefoto1 = reader["nomefoto1"].ToString(),
+                                    extensaofoto1 = reader["extensaofoto1"].ToString(),
+                                    caminhofoto2 = reader["caminhofoto2"].ToString(),
+                                    nomefoto2 = reader["nomefoto2"].ToString(),
+                                    extensaofoto2 = reader["extensaofoto2"].ToString(),
+                                    caminhofoto3 = reader["caminhofoto3"].ToString(),
+                                    nomefoto3 = reader["nomefoto3"].ToString(),
+                                    extensaofoto3 = reader["extensaofoto3"].ToString(),
+                                    caminhofoto4 = reader["caminhofoto4"].ToString(),
+                                    nomefoto4 = reader["nomefoto4"].ToString(),
+                                    extensaofoto4 = reader["extensaofoto4"].ToString(),
+                                    caminhofoto5 = reader["caminhofoto5"].ToString(),
+                                    nomefoto5 = reader["nomefoto5"].ToString(),
+                                    extensaofoto5 = reader["extensaofoto5"].ToString(),
                                     descricao = reader["descricao"].ToString(),
-                                    UsuarioPublicacao = new UsuarioEntity { id = GetAsInt(reader, "idusuarioinclusao") },
-                                    UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idusuariopublicacao") },
+                                    UsuarioPublicacao = new UsuarioEntity { id = GetAsInt(reader, "idusuariopublicacao") },
+                                    UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idusuarioinclusao") },
                                     UsuarioAtualizacao = new UsuarioEntity { id = GetAsInt(reader, "idusuarioatualizacao") },
                                     dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                    dataAtualizacao = GetAsDateTime(reader, "dataatualizacao")
+                                    dataAtualizacao = GetAsDateTime(reader, "dataatualizacao"),
+                                    datapublicacao = GetAsDateTime(reader, "datapublicacao")
 
                                 };
                             }
