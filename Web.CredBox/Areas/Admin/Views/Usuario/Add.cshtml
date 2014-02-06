@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Credbox";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 
@@ -49,7 +49,7 @@
 
 
     function Add() {
-        $('#pleaseWaitDialog').show();
+        $('#pleaseWaitDialog').modal('show');
         var erroMessage = GetValidation();
         if (erroMessage == "") {
             $.ajax({
@@ -59,22 +59,21 @@
                 error: function (data) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
 
                 },
                 success: function (data) {
                     ClearControls();
                     $('#alertMessage').show('show');
                     $('#message').html('<li>' + data + '</li>');
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
             });
         }
         else {
-            $('#pleaseWaitDialog').hide();
             $('#alertMessage').show();
             $('#message').html(erroMessage);
-            return;
+            $('#pleaseWaitDialog').modal('hide');
         }
     }
 
@@ -148,7 +147,8 @@
         var imobiliaria = $('#chkImobiliaria').is(':checked');
         var ativo = $('#chkAtivo').is(':checked');
         var emailNotificacao = $('#chkNotificacao').is(':checked');
-        return { idImobiliaria: idImobiliaria, nome: nome, email: email, login: login, senha: senha, imobiliaria: imobiliaria, ativo: ativo, emailNotificacao: emailNotificacao };
+        var administrar = $('#chkAdministrar').is(':checked');
+        return { idImobiliaria: idImobiliaria, nome: nome, email: email, login: login, senha: senha, imobiliaria: imobiliaria, ativo: ativo, emailNotificacao: emailNotificacao, administrar: administrar };
     }
 
     function ClearControls() {
@@ -160,77 +160,118 @@
         $('#chkImobiliaria').attr('checked', false);
         $('#chkAtivo').attr('checked', false);
         $('#chkNotificacao').attr('checked', false);
+        $('#chkAdministrar').attr('checked', false);
     }
 
 </script>
 
-<h2>Novo</h2>
-<fieldset>
-    <div class="control-group">
-        <label class="control-label" for="name">É Imobiliario?</label>
-        <div class="controls">
-            <input type="checkbox" id="chkImobiliaria" />
+
+<h2>Usuário</h2>
+
+<div class="box span10">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="icon-edit"></i> Novo</h2>
+        <div class="box-icon">
+            @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+            @*<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>*@
+            @*<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>*@
         </div>
     </div>
-    <div class="control-group" id="divImobiliaria">
-        <label class="control-label" for="ddlImobiliaria">Imobiliária</label>
-        <div class="controls">
-            @Html.DropDownList("ddlImobiliaria", new SelectList((System.Collections.IEnumerable)ViewData["Imobiliarias"], "Value", "Text"))
-        </div>
+    <div class="box-content">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="chkImobiliaria">É Imobiliária?</label>
+                    <div class="controls">
+                        <input type="checkbox" id="chkImobiliaria" />
+                    </div>
+                </div>
+
+                <div class="control-group" id="divImobiliaria">
+                    <label class="control-label" for="ddlImobiliaria">Imobiliária</label>
+                    <div class="controls">
+                        @Html.DropDownList("ddlImobiliaria", new SelectList((System.Collections.IEnumerable)ViewData["Imobiliarias"], "Value", "Text"))
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtNome">Nome</label>
+                    <div class="controls">
+                        <input type="text" id="txtNome" placeholder="Nome" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtEmail">E-mail</label>
+                    <div class="controls">
+                        <input type="text" id="txtEmail" placeholder="E-mail" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtLogin">Login</label>
+                    <div class="controls">
+                        <input type="text" id="txtLogin" placeholder="Login" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtSenha">Senha</label>
+                    <div class="controls">
+                        <input type="password" id="txtSenha" placeholder="Senha" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="chkNotificacao">Recebe Notificação?</label>
+                    <div class="controls">
+                        <input type="checkbox" id="chkNotificacao" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="chkAdministrar">Pode Administrar?</label>
+                    <div class="controls">
+                        <input type="checkbox" id="chkAdministrar" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="chkAtivo">Ativo?</label>
+                    <div class="controls">
+                        <input type="checkbox" id="chkAtivo" />
+                    </div>
+                </div>
+
+                <div class="form-actions">
+
+                    <button type="button" class="btn btn-primary" id="btnAdd"><i class="icon icon-white icon-save"></i> Salvar</button>
+                    <button type="button" class="btn" id="btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+                </div>
+
+                <div class="modal fade" id="pleaseWaitDialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Processando...</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="alert alert-error" id="alertMessage">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Atenção</h4>
+                    <ul id="message"></ul>
+                </div>
+            </fieldset>
+        </form>
+
     </div>
-    <div class="control-group">
-        <label class="control-label" for="txtNome">Nome</label>
-        <div class="controls">
-            <input type="text" id="txtNome" placeholder="Nome" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtEmail">E-mail</label>
-        <div class="controls">
-            <input type="text" id="txtEmail" placeholder="E-mail" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtLogin">Login</label>
-        <div class="controls">
-            <input type="text" id="txtLogin" placeholder="Login" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtSenha">Senha</label>
-        <div class="controls">
-            <input type="password" id="txtSenha" placeholder="Senha" />
-            <div id="messagesPassword"></div>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="chkNotificacao">Recebe Notificação?</label>
-        <div class="controls">
-            <input type="checkbox" id="chkNotificacao" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="chkAtivo">Ativo?</label>
-        <div class="controls">
-            <input type="checkbox" id="chkAtivo" />
-        </div>
-    </div>
-    <div class="form-actions">
-        <button type="button" id="btnAdd" class="btn-primary btn-small">Salvar</button>
-        <button type="button" id="btnVoltar" class="btn-primary btn-small">Voltar</button>
-    </div>
-    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-header">
-            <h1>Processando...</h1>
-        </div>
-        <div class="modal-body">
-            <div class="progress progress-striped active">
-                <div class=" bar " style="width: 100%;"></div>
-            </div>
-        </div>
-    </div>
-    <div class="alert alert-success" id="alertMessage">
-        <h4>Atenção</h4>
-        <ul id="message"></ul>
-    </div>
-</fieldset>
+</div>

@@ -5,46 +5,43 @@
 
 @if (Model != null)
 {
-
-    <table class="table table-condensed ">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <td class="col-sm-4">
+                <th>
                     Nome
-                </td>
-                <td class="col-sm-4">
+                </th>
+                <th>
                     Data Inclusão
-                </td>
-                <td class="col-sm-4">
+                </th>
+                <th>
                     Usuário Inclusão
-                </td>
-                <td class="col-sm-4"></td>
+                </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="col-sm-3">
-                        @item.nome
-                    </td>
-                    <td class="col-sm-3">
-                        @item.dataInclusao.ToString("dd/MM/yyyy")
-                    </td>
-                    <td class="col-sm-3">
-                        @item.UsuarioInclusao.nome
-                    </td>
-                    <td class="col-sm-3">
-                        <a href="@Url.Action("Edit", "Assunto", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })" class="btn btn-primary btn-xs">Editar</a>
+                    <td>@item.nome</td>
+                    <td class="center">@item.dataInclusao.ToString("dd/MM/yyyy")</td>
+                    <td class="center">@item.UsuarioInclusao.nome</td>
+                    <td class="center">
+                        <a class="btn btn-success" href="@Url.Action("Edit", "Assunto", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
+                            <i class="icon-edit icon-white"></i>
+                            Editar
+                        </a>
                     </td>
                 </tr>
             }
-
         </tbody>
     </table>
+
     <script>
 
         $(document).ready(function () {
+            $('#divBusca').show();
             $('#alertMessage').hide();
         });
     </script>
@@ -54,6 +51,7 @@ else
     <script>
 
         $(document).ready(function () {
+            $('#divBusca').hide();
             $('#alertMessage').show('show');
             $('#message').html('<li>Nenhum assunto encontrada.</li>');
         });

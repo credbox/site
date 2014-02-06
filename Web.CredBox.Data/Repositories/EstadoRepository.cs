@@ -27,19 +27,19 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            estados.Add(new EstadoEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                nome = reader["nome"].ToString(),
-                                sigla = reader["sigla"].ToString()
+                                estados.Add(new EstadoEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    nome = reader["nome"].ToString(),
+                                    sigla = reader["sigla"].ToString()
 
-                            });
+                                });
+                            }
                         }
-
-
                         return estados;
                     }
                     catch (Exception ex)

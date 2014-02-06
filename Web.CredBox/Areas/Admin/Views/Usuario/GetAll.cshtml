@@ -22,6 +22,9 @@
                     Ativo
                 </th>
                 <th>
+                    Administrador
+                </th>
+                <th>
                     Inclusão
                 </th>
                 <th>
@@ -34,36 +37,44 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @item.nome
-                    </td>
-                    <td>
-                        @item.Imobiliaria.nome
-                    </td>
+                    <td>@item.nome</td>
+                    <td class="center">@item.Imobiliaria.nome</td>
+                    <td class="center">@item.login</td>
+                    @if (@item.ativo)
+                    {
 
-                    <td>
-                        @item.login
-                    </td>
+                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.ativo)</span> </td>
+                    }
+                    else
+                    {
+                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.ativo)</span> </td>
+                    }
 
-                    <td>
-                        @Web.CredBox.Util.ConvertValue.BoolToString(@item.ativo)
-                    </td>
 
-                    <td>
-                        @item.dataInclusao.ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
-                        @item.UsuarioInclusao.nome
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Edit", "Usuario", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })" class="btn-primary btn-small">Editar</a>
+                    @if (@item.Administrar)
+                    {
+                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.Administrar)</span></td>
+                    }
+                    else
+                    {
+                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.Administrar)</span></td>
+                    }
+                    <td class="center">@item.dataInclusao.ToString("dd/MM/yyyy")</td>
+                    <td class="center">@item.UsuarioInclusao.nome</td>
+                    <td class="center">
+                        <a class="btn btn-success" href="@Url.Action("Edit", "Usuario", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
+                            <i class="icon-edit icon-white"></i>
+                            Editar
+                        </a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
     <script>
         $(document).ready(function () {
+            $('#divBusca').show();
             $('#alertMessage').hide();
         });
     </script>
@@ -73,7 +84,8 @@ else
     <script>
 
         $(document).ready(function () {
-            $('#alertMessage').show('show');
+            $('#divBusca').hide();
+            $('#alertMessage').show();
             $('#message').html('<li>Nenhum usuário encontrada.</li>');
         });
     </script>

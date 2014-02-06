@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Credbox";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 <script>
@@ -16,7 +16,7 @@
 
 
     function Add() {
-        $('#pleaseWaitDialog').show();
+        $('#pleaseWaitDialog').modal('show');
         var erroMessagem = GetValidation();
         if (erroMessagem == '') {
             $.ajax({
@@ -25,28 +25,27 @@
                 url: '@Url.Action("Save", "Assunto")',
                 error: function (data) {
                     $('#alertMessage').show('show');
-                    $('#message').html('<li class="small">Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                    $('#pleaseWaitDialog').hide();
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').modal('hide');
                 },
                 success: function (data) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>' + data + '</li>');
-                    ClearControl();
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
             });
         }
         else {
             $('#alertMessage').show('show');
             $('#message').html(erroMessagem);
-            $('#pleaseWaitDialog').hide();
+            $('#pleaseWaitDialog').modal('hide');
         }
     }
 
     function GetValidation() {
         var erroMessage = '';
         if ($('#txtNome').val() == '') {
-            erroMessage = '<li class="small">O campo nome é obrigatório.</li>';
+            erroMessage = 'O campo nome é obrigatório.';
         }
         return erroMessage;
     }
@@ -56,50 +55,58 @@
         return { nome: nome };
     }
 
-    function ClearControl() {
-        $('#txtNome').val('');
-    }
-
 
 </script>
-<fieldset>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            Novo
+<h2>Assunto</h2>
+
+<div class="box span10">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="icon-edit"></i> Novo</h2>
+        <div class="box-icon">
+            @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+            @*<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>*@
+            @*<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>*@
         </div>
-
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-xs-6">
-                    <input type="text" id="txtNome" class="form-control input-small" placeholder="Nome">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="form-actions">
-                        <button type="button" id="btnAdd" class="btn btn-primary btn-xs">Salvar</button>
-                        <button type="button" id="btnVoltar" class="btn btn-primary btn-xs">Voltar</button>
-
+    </div>
+    <div class="box-content">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="txtNome">Nome</label>
+                    <div class="controls">
+                        <input class="input-xlarge focused" id="txtNome" placeholder="Nome" type="text">
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
+                <div class="form-actions">
 
-    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-header">
-            <h1>Processando...</h1>
-        </div>
-        <div class="modal-body">
-            <div class="progress progress-striped active">
-                <div class=" bar " style="width: 100%;"></div>
-            </div>
-        </div>
+                    <button type="button" class="btn btn-primary" id="btnAdd"><i class="icon icon-white icon-save"></i> Salvar</button>
+                    <button type="button" class="btn" id="btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+                </div>
+
+                <div class="modal fade" id="pleaseWaitDialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Processando...</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="alert alert-error" id="alertMessage">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Atenção</h4>
+                    <ul id="message"></ul>
+                </div>
+            </fieldset>
+        </form>
+
     </div>
-    <div class="alert alert-info" id="alertMessage">
-        <h4>Atenção</h4>
-        <ul id="message"></ul>
-    </div>
-</fieldset>
+</div>

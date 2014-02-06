@@ -11,6 +11,8 @@ namespace Web.CredBox.Model.Entity
     {
         public int id { get; set; }
         [Required]
+        public string nome { get; set; }
+
         public ImobiliariaEntity Imobiliaria { get; set; }
         [Required]
         public CategoriaEntity Categoria { get; set; }
@@ -37,31 +39,38 @@ namespace Web.CredBox.Model.Entity
         [Required]
         public int quantidadeQuarto { get; set; }
         [Required]
-        public int areaTerreno { get; set; }
+        public decimal areaTerreno { get; set; }
         [Required]
-        public int areaConstruida { get; set; }
+        public decimal areaConstruida { get; set; }
         [Required]
         public bool aceitaFinanciamento { get; set; }
 
-        [Required]
-        [DataType(DataType.Currency)]
         public decimal valor { get; set; }
         public bool publicar { get; set; }
         public bool vendido { get; set; }
         [Required]
         public bool destaque { get; set; }
-        public string caminhoFotoDestaque { get; set; }
-        public string nomeFotoDestaque { get; set; }
-        public string extensaoFotoDestaque { get; set; }
-        [Required]
-        public string caminhoFotoPrincipal { get; set; }
-        [Required]
-        public string nomeFotoPrinciapl { get; set; }
-        [Required]
-        public string extensaoFotoPrincipal { get; set; }
-        [Required]
-        public string descricao { get; set; }
+
+        public string caminhofoto1 { get; set; }
+        public string nomefoto1 { get; set; }
+        public string extensaofoto1 { get; set; }
+        public string caminhofoto2 { get; set; }
+        public string nomefoto2 { get; set; }
+        public string extensaofoto2 { get; set; }
+        public string caminhofoto3 { get; set; }
+        public string nomefoto3 { get; set; }
+        public string extensaofoto3 { get; set; }
+        public string caminhofoto4 { get; set; }
+        public string nomefoto4 { get; set; }
+        public string extensaofoto4 { get; set; }
+        public string caminhofoto5 { get; set; }
+        public string nomefoto5 { get; set; }
+        public string extensaofoto5 { get; set; }
+
         public UsuarioEntity UsuarioPublicacao { get; set; }
+        public DateTime datapublicacao { get; set; }
+
+        public string descricao { get; set; }
         public DateTime dataInclusao { get; set; }
         public UsuarioEntity UsuarioInclusao { get; set; }
         public DateTime dataAtualizacao { get; set; }

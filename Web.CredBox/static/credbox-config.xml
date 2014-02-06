@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sitemap>
+  <url nome="Home" src="/home" role="todos">
+    <url nome="Como Funciona" src="/como-funciona" role="todos">
+      <url nome="Mecanica do Programa" src="/como-funciona/mecanica" role="todos" />
+      <url nome="Como se Cadastrar" src="/como-funciona/comosecadastrar" role="todos" />
+      <url nome="Posto Premmiado" src="/como-funciona/postopremmiado" role="todos" />
+      <url nome="Postos Participantes" src="/como-funciona/postosparticipantes" role="todos" />
+      <url nome="Regulamento" src="/como-funciona/regulamento" role="todos" />
+      <url nome="Simulador" src="/como-funciona/simulador" role="todos" />
+    </url>
+    <url nome="Resgate seus Pontos" src="/resgate-seus-pontos" role="todos">
+      <url nome="Como Resgatar" src="/resgate-seus-pontos/comoresgatar" role="todos" />
+      <url nome="Loja Premmia" src="/resgate-seus-pontos/lojapremmia" role="todos" />
+      <url nome="Registrar Pontos" src="/resgate-seus-pontos/registrarpontos/" role="todos" />
+      <url nome="Premmia Viagens" src="/premmia-viagens" role="todos" />
+    </url>
+    <url nome="Minha Conta" src="/minha-conta" role="todos">
+      <url nome="Entrar" src="/minha-conta/entrar" role="todos" />
+      <url nome="Cadastro" src="/cadastro" role="todos" />
+      <url nome="Cadastro - Etapa 1" src="/minha-conta/cadastro/passo-1" role="todos" />
+      <url nome="Cadastro - Etapa 2" src="/minha-conta/cadastro/passo-2" role="todos" />
+      <url nome="Cadastro - Etapa 3" src="/minha-conta/cadastro/passo-3" role="todos" />
+      <url nome="Alterar Cadastro" src="/minha-conta/" role="logado" />
+      <url nome="Registrar Pontos" src="/minha-conta/extrato" role="logado" />
+    </url>
+    <url nome="Dúvidas" src="/duvidas" role="todos" />
+    <url nome="Fale Conosco" src="/fale-conosco" role="todos" />
+    <!--<url nome="Promoção você merece sempre mais" src="/promovocemerecesempremais/" role="todos">
+      <url nome="Prêmios" src="/promovocemerecesempremais/premios"  role="todos" />
+      <url nome="Como Participar da Promoção" src="/promovocemerecesempremais/comoparticipar"  role="todos" />
+      <url nome="Postos e lojas participantes" src="/promovocemerecesempremais/postoslojasparticipantes"  role="todos" />
+      <url nome="Regulamento" src="/promovocemerecesempremais/regulamento"  role="todos">
+        <url nome="Prêmio Instantâneo" src="/promovocemerecesempremais/regulamento/premioinstantaneo"  role="todos" />
+        <url nome="Sorteio" src="/promovocemerecesempremais/regulamento/sorteio"  role="todos" />
+      </url>
+    </url>-->
+
+    <!-- Início: Promoção Torcida Verde Amarelo-->
+    <url nome="Torcida verde amarelo" src="/torcidaverdeamarelo/" role="todos">
+      <url nome="Home" src="/torcidaverdeamarelo/home"  role="todos" />
+      <url nome="Como Participar" src="/torcidaverdeamarelo/comoparticipar"  role="todos" />
+      <url nome="Prêmios" src="/torcidaverdeamarelo/premios"  role="todos" />
+      <url nome="Prêmios" src="/torcidaverdeamarelo/carro"  role="todos" />
+      <url nome="Prêmios" src="/torcidaverdeamarelo/tv"  role="todos" />
+      <url nome="Postos e lojas participantes" src="/torcidaverdeamarelo/postolojasparticipantes"  role="todos" />
+      <url nome="Regulamento Sorteio" src="/torcidaverdeamarelo/regra/regulamento"  role="todos"/>
+      <url nome="Tire Suas Dúvidas" src="/torcidaverdeamarelo/tiresuasduvidas"  role="todos"/>
+      <url nome="Entre em Contato" src="/torcidaverdeamarelo/faleconosco"  role="todos"/>
+      <url nome="Extrato" src="/torcidaverdeamarelo/extrato/extrato"  role="logado"/>
+    </url>
+    <!-- Fim: Promoção Torcida Verde Amarelo-->
+
+
+    <url nome="Promoções" src="/promocoes/" role="todos">
+      <!--<url nome="Gonzaga de pai para filho" src="/promocao/gonzaga-de-pai-para-filho" role="todos" />
+      <url nome="Formula-1" src="/promocao/formula-1" role="todos" />
+      <url nome="Bike Show" src="/promocao/bike-show" role="todos" />
+      <url nome="Carnaval" src="/promocao/carnaval-sapucai" role="todos" />-->
+      <url nome="Mostra de Teatro" src="/promocao/mostra-de-teatro" role="todos" />
+      <url nome="Engenhão" src="/promocao/engenhao" role="todos" />
+      <url nome="Fórmula Truck" src="/promocao/formula-truck" role="todos" />
+      <url nome="Fórmula Truck - Camarote VIP" src="/promocao/formula-truck/caruaru-camarote" role="todos" />
+      <url nome="Fórmula Truck - Arquibancada" src="/promocao/formula-truck/caruaru-arquibancada" role="todos" />
+      <url nome="Fórmula Truck - Camarote VIP" src="/promocao/formula-truck/goiania-camarote" role="todos" />
+      <url nome="Fórmula Truck - Arquibancada" src="/promocao/formula-truck/goiania-arquibancada" role="todos" />
+      <url nome="Fórmula Truck - Camarote VIP" src="/promocao/formula-truck/saopaulo" role="todos" />
+    </url>
+    <!--<url nome="Experiência Premmia" src="/experienciapremmia/" role="todos">
+      <url nome="Copa Petrobras de Marcas" src="/experienciapremmia/eventos/copapetrobrasdemarcas" role="todos" SemEstoque="" />
+      <url nome="Moto 1000 GP" src="/experienciapremmia/Moto1000GP" role="todos" SemEstoque="" />
+    </url>-->
+  </url>
+  <vouchers>
+    <voucher parceiro="Puket" grupo="51" tipo="271" html="voucher_puket_01.html" produto="10% de desconto nas compras em todo o site" tipovoucher="parceria" descricaovoucher="10% de desconto nas compras em todo o site" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+    <voucher parceiro="Puket" grupo="51" tipo="272" html="voucher_puket_02.html" produto="R$ 30,00 de desconto nas compras no site acima de R$200,00" tipovoucher="parceria" descricaovoucher="R$ 30,00 de desconto nas compras no site acima de R$200,00" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+
+
+    <voucher parceiro="Azul" grupo="9" tipo="1" html="voucher_azul.html" produto="Voucher de R$ 50,00 Azul" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Azul" grupo="9" tipo="2" html="voucher_azul.html" produto="Voucher de R$ 100,00 Azul" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Formula 1" grupo="1" tipo="5" html="voucher_f1_3.html" produto="Ingresso Formula 1" tipovoucher="promocao" descricaovoucher="Ingresso Formula 1" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Cinemark" grupo="2" tipo="6" html="voucher_gonzagadepaiprafilho2.html" produto="Cinemark" tipovoucher="promocao" descricaovoucher="Ingresso Cinemark" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Dafiti" grupo="3" tipo="7" html="voucher_dafiti_20.html" produto="20% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Dafiti" grupo="3" tipo="8" html="voucher_dafiti_55.html" produto="R$ 55,00 DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Dafiti" grupo="3" tipo="63" html="voucher_dafiti_63.html" produto="15% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Dafiti" grupo="3" tipo="64" html="voucher_dafiti_64.html" produto="R$ 20,00 DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Dafiti" grupo="3" tipo="257" html="voucher_dafiti_257.html" produto="20% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Abril" grupo="4" tipo="9" html="voucher_abril.html" produto="UM ANO DE ASSINATURA COM ATÉ 45% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+    <voucher parceiro="Abril" grupo="4" tipo="10" html="voucher_abril2.html" produto="DOIS ANOS DE ASSINATURA COM ATÉ 45% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+    <voucher parceiro="Abril" grupo="4" tipo="15" html="voucher_abril3.html" produto="UM ANO DE ASSINATURA COM ATÉ 55% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+    <voucher parceiro="Abril" grupo="4" tipo="16" html="voucher_abril4.html" produto="DOIS ANOS DE ASSINATURA COM ATÉ 55% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+    <voucher parceiro="Abril" grupo="4" tipo="95" html="voucher_abril_95.html" produto="UM ANO DE ASSINATURA IMPRESSA COM ATE 45%" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+    <voucher parceiro="Abril" grupo="4" tipo="96" html="voucher_abril_96.html" produto="DOIS ANOS DE ASSINATURA IMPRESSA COM ATE 45%" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="'br /'O brinde esgotou no momento da sua confirmação, porém o beneficio descrito acima foi resgatado com sucesso." />
+
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="11" html="voucher_rollingstone_20.html" produto="20% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="12" html="voucher_rollingstone_35.html" produto="35% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="97" html="voucher_rollingstone_97.html" produto="DE 49% DE DESCONTO ASSINATURA 2 ANOS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="98" html="voucher_rollingstone_98.html" produto="DE 49% DE DESCONTO ASSINATURA 2 ANOS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="166" html="voucher_rollingstone_166.html" produto="DE 40% DE DESCONTO ASSINATURA 1 ANO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="167" html="voucher_rollingstone_167.html" produto="DE 40% DE DESCONTO ASSINATURA 2 ANOS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="185" html="voucher_rollingstone_185.html" produto="DE 20% DE DESCONTO + INGRESSO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="248" html="voucher_rollingstone_248.html" produto="DE 49% DE DESCONTO ASSINATURA 1 ANO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="249" html="voucher_rollingstone_249.html" produto="DE 49% DE DESCONTO ASSINATURA 2 ANOS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="298" html="voucher_rollingstone_298.html" produto="DE 40% DE DESCONTO ASSINATURA 1 ANO + Especial John Lennon" tipovoucher="parceria" descricaovoucher="DE 40% DE DESCONTO ASSINATURA 1 ANO + Especial John Lennon" texto=""   SemEstoque="" />
+    <voucher parceiro="Rolling Stone" grupo="5" tipo="299" html="voucher_rollingstone_299.html" produto="DE 40% DE DESCONTO ASSINATURA 2 ANOS + Especial John Lennon" tipovoucher="parceria" descricaovoucher="DE 40% DE DESCONTO ASSINATURA 2 ANOS + Especial John Lennon" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Webmotors" grupo="6" tipo="13" html="voucher_webmotors_20.html" produto="20% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Webmotors" grupo="6" tipo="14" html="voucher_webmotors_30.html" produto="30% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Webmotors" grupo="6" tipo="69" html="voucher_webmotors_50.html" produto="50% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Webmotors" grupo="6" tipo="125" html="voucher_webmotors_125.html" produto="50% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Webmotors" grupo="6" tipo="245" html="voucher_webmotors_245.html" produto="50% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Bike Show" grupo="7" tipo="17" html="voucher_bikeshow.html" produto="INGRESSO BIKE SHOW" tipovoucher="promocao" descricaovoucher="Ingresso Bike Show" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Carnaval" grupo="10" tipo="21" html="voucher_carnaval_10_1.html" produto="INGRESSO Carnaval" tipovoucher="promocao" descricaovoucher="Ingresso Carnaval" texto=""   SemEstoque="" />
+    <voucher parceiro="Carnaval" grupo="10" tipo="22" html="voucher_carnaval_10_2.html" produto="INGRESSO Carnaval" tipovoucher="promocao" descricaovoucher="Ingresso Carnaval" texto=""   SemEstoque="" />
+    <voucher parceiro="Carnaval" grupo="10" tipo="23" html="voucher_carnaval_11_1.html" produto="INGRESSO Carnaval" tipovoucher="promocao" descricaovoucher="Ingresso Carnaval" texto=""   SemEstoque="" />
+    <voucher parceiro="Carnaval" grupo="10" tipo="24" html="voucher_carnaval_11_2.html" produto="INGRESSO Carnaval" tipovoucher="promocao" descricaovoucher="Ingresso Carnaval" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Sem Parar" grupo="8" tipo="18" html="voucher_sem_parar_4.html" produto="100% de desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Sem Parar" grupo="8" tipo="19" html="voucher_sem_parar_5.html" produto="6 meses de isenção" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Sem Parar" grupo="8" tipo="20" html="voucher_sem_parar_6.html" produto="50% de desconto + 3 meses isenção" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto=""   SemEstoque="" />
+
+    <voucher parceiro="Flores Online" grupo="11" tipo="25" html="voucher_flores_1.html" produto="R$15 de desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto=""   SemEstoque="" />
+    <voucher parceiro="Flores Online" grupo="11" tipo="26" html="voucher_flores_2.html" produto="25% de desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="27" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Antes da Coisa Toda Começar '/b'.'br /' Dia: 'b'27/02/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="28" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Enfim nós '/b'.'br /' Dia: 'b'13/03/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="29" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Pequeno poema infinito '/b'.'br /' Dia: 'b'20/03/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="30" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Corte seco'/b'.'br /' Dia: 'b'27/03/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="31" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Besouro Cordão de ouro '/b'.'br /' Dia: 'b'03/04/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="32" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' A Carpa '/b'.'br /' Dia: 'b'10/04/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="33" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Sade em Sodoma'/b'.'br /' Dia: 'b'17/04/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="34" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Açaí &amp; Dedos '/b'.'br /' Dia: 'b'01/05/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="35" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' O Capitão e a Sereia '/b'.'br /' Dia: 'b'15/05/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+    <voucher parceiro="Mostra de Teatro" grupo="12" tipo="36" html="voucher_mostra_teatro.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="A peça que você vai assistir é:'br /''b' Tartaruga de Darwin '/b'.'br /' Dia: 'b'29/05/2013'/b'. 'br /'Horário: 'b'19h00'/b'. 'br /'Endereço: 'b'SESC Ginástico - Av. Graça Aranha, 187 - Centro, Rio de Janeiro / RJ'/b'.'br /'"  SemEstoque="" />
+
+    <voucher parceiro="Engenhão" grupo="13" tipo="44" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Botafogo	x Nova Iguaçu'br /''b'Dia'/b': 13/04/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="45" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Flamengo X Fluminense'br /''b'Dia'/b': 14/04/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="46" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Botafogo X Olaria'br /''b'Dia'/b': 07/04/13'br /''b'Horário'/b': 16h00'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="47" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Flamengo x Boavista'br /''b'Dia'/b': 23/03/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="48" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Botafogo x Quissamã'br /''b'Dia'/b': 16/03/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="49" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Fluminense x Audax Rio'br /''b'Dia'/b': 17/03/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="50" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Fluminense	x	Macaé'br /''b'Dia'/b': 27/03/13'br /''b'Horário'/b': 19h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="51" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Botafogo	x	Friburguense'br /''b'Dia'/0b': 28/03/13'br /''b'Horário'/b': 19h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="52" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Fluminense	x	Boavista'br /''b'Dia'/b': 30/03/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+    <voucher parceiro="Engenhão" grupo="13" tipo="53" html="voucher_mostra_engenhao.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="O jogo que você vai assistir no 'br /'Camarote Petrobras é Vasco X Botafogo'br /''b'Dia'/b': 31/03/13'br /''b'Horário'/b': 18h30'br /''b'Local'/b': Estádio Olímpico João Havelange - Engenhão'br /''b'Endereço'/b': Rua Arquias Cordeiro, 'br /'Engenho de Dentro - Rio de Janeiro / RJ.'br /''b'Acesso ao camarote pelo estacionamento Norte 1 localizado na rua das Oficinas.'/b'"  SemEstoque="" />
+
+    <voucher parceiro="Smiles" grupo="14" tipo="57" html="voucher_smiles.html" produto="Milhas" tipovoucher="parceria" descricaovoucher="Vale Milhas" texto=""  SemEstoque="" />
+    <voucher parceiro="Smiles" grupo="59" tipo="321" html="voucher_smiles_sp_3600.html" produto="Milhas" tipovoucher="parceria" descricaovoucher="Vale Milhas" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Azul" grupo="46" tipo="239" html="voucher_azul5000.html" produto="Pontos TudoAzul" tipovoucher="parceria" descricaovoucher="Pontos TudoAzul" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="58" html="voucher_truck.html" produto="Caruaru-PE-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é Etapa Caruaru (PE) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="59" html="voucher_truck_vip.html" produto="Caruaru-PE-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é Etapa Caruaru (PE) '/b''br /'" SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="61" html="voucher_truck_GO.html" produto="Goiânia-GO-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é Goiânia (GO) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="62" html="voucher_truck_vip_GO.html" produto="Goiânia-GO-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é Goiânia (GO) '/b''br /'" SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="70" html="voucher_truck_SP.html" produto="São Paulo-SP-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é São Paulo (SP) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="71" html="voucher_truck_vip_SP.html" produto="São Paulo-SP-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é São Paulo (SP) '/b''br /'" SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="100" html="voucher_truck_PR.html" produto="Cascavel-PR-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é Cascavel (PR) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="101" html="voucher_truck_vip_PR.html" produto="Cascavel-PR-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é Cascavel (PR) '/b''br /'" SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="213" html="voucher_truck_RS.html" produto="Guaporé-RS-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é Guaporé (RS) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="214" html="voucher_truck_vip_RS.html" produto="Guaporé-RS-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é Guaporé (RS) '/b''br /'" SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="250" html="voucher_truck_PR_250.html" produto="Curitiba-PR-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é Curitiba (PR) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="251" html="voucher_truck_vip_PR_251.html" produto="Curitiba-PR-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é Curitiba (PR) '/b''br /'" SemEstoque="" />
+
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="294" html="voucher_truck_DF.html" produto="Brasília-DF-Arquibancada" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para ARQUIBANCADA.'br /''br /' A etapa que você vai assistir é Brasília (DF) '/b''br /'"  SemEstoque="" />
+    <voucher parceiro="Fórmula Truck" grupo="15" tipo="295" html="voucher_truck_vip_DF.html" produto="Brasília-DF-Camarote" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Você garantiu seu lugar na Fórmula Truck. Este voucher dá direito a 2 (dois) ingressos para o CAMAROTE VIP PETROBRAS.'br /''br /' A etapa que você vai assistir é Brasília (DF) '/b''br /'" SemEstoque="" />
+
+    <voucher parceiro="UniCirco" grupo="16" tipo="60" html="voucher_unicirco.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="UniCirco" grupo="16" tipo="74" html="voucher_unicirco_06.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="UniCirco" grupo="16" tipo="102" html="voucher_unicirco_07.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="UniCirco" grupo="16" tipo="152" html="voucher_unicirco_08.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="UniCirco" grupo="16" tipo="180" html="voucher_unicirco_09.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="UniCirco" grupo="16" tipo="244" html="voucher_unicirco_10.html" produto="1 Ingresso mês de Outubro" tipovoucher="promocao" descricaovoucher="1 Ingresso mês de Outubro" texto="" SemEstoque="" />
+    <voucher parceiro="UniCirco" grupo="16" tipo="267" html="voucher_unicirco_11.html" produto="1 Ingresso mês de Novembro" tipovoucher="promocao" descricaovoucher="1 Ingresso mês de Novembro" texto="" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="65" html="voucher_DeborahColker.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 16/05/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Cidade das Artes - Av. Ayrton Senna, s/n, Barra da Tijuca" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="66" html="voucher_DeborahColker.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 17/05/13'br /''b'Horário'/b': 21h30'br /''b'Local'/b': Cidade das Artes - Av. Ayrton Senna, s/n, Barra da Tijuca" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="67" html="voucher_DeborahColker.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 18/05/13'br /''b'Horário'/b': 21h30'br /''b'Local'/b': Cidade das Artes - Av. Ayrton Senna, s/n, Barra da Tijuca" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="68" html="voucher_DeborahColker.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 19/05/13'br /''b'Horário'/b': 18h'br /''b'Local'/b': Cidade das Artes - Av. Ayrton Senna, s/n, Barra da Tijuca" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="108" html="voucher_DeborahColker_SE_02.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 02/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Tobias Barreto - Avenida Presidente Tancredo Neves, 2209 - Grageru, Aracajú – SE" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="109" html="voucher_DeborahColker_SE_04.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 04/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Tobias Barreto - Avenida Presidente Tancredo Neves, 2209 - Grageru, Aracajú – SE" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="110" html="voucher_DeborahColker_SE_06.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 06/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Tobias Barreto - Avenida Presidente Tancredo Neves, 2209 - Grageru, Aracajú – SE" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="111" html="voucher_DeborahColker_SE_07.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 07/07/13'br /''b'Horário'/b': 17h'br /''b'Local'/b': Teatro Tobias Barreto - Avenida Presidente Tancredo Neves, 2209 - Grageru, Aracajú – SE" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="103" html="voucher_DeborahColker_AL_11.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 11/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Gustavo Leite - Centro de Convenções de Maceió - Rua Celso Piatti, s/n, Maceió - AL " SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="104" html="voucher_DeborahColker_AL_13.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 13/07/13'br /''b'Horário'/b': 19h'br /''b'Local'/b': Teatro Gustavo Leite - Centro de Convenções de Maceió - Rua Celso Piatti, s/n, Maceió - AL " SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="105" html="voucher_DeborahColker_AL_15.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 15/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Gustavo Leite - Centro de Convenções de Maceió - Rua Celso Piatti, s/n, Maceió - AL " SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="112" html="voucher_DeborahColker_MG_19.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 19/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Municipal de Uberlândia - Avenida Rondon Pacheco, Uberlândia - MG" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="113" html="voucher_DeborahColker_MG_20.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 20/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Municipal de Uberlândia - Avenida Rondon Pacheco, Uberlândia - MG" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="114" html="voucher_DeborahColker_MG_22.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 22/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Municipal de Uberlândia - Avenida Rondon Pacheco, Uberlândia - MG" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="115" html="voucher_DeborahColker_MG_23.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 23/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Municipal de Uberlândia - Avenida Rondon Pacheco, Uberlândia - MG" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="116" html="voucher_DeborahColker_MG_25.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 25/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Municipal de Uberlândia - Avenida Rondon Pacheco, Uberlândia - MG" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="117" html="voucher_DeborahColker_MG_26.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 26/07/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Municipal de Uberlândia - Avenida Rondon Pacheco, Uberlândia - MG" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="156" html="voucher_DeborahColker_BA_10.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 10/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Castro Alves - Praça Dois de Julho, s/n, Campo Grande, Salvador - BA" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="157" html="voucher_DeborahColker_BA_14.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 14/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Castro Alves - Praça Dois de Julho, s/n, Campo Grande, Salvador - BA" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="158" html="voucher_DeborahColker_BA_15.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 15/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Castro Alves - Praça Dois de Julho, s/n, Campo Grande, Salvador - BA" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="159" html="voucher_DeborahColker_BA_17.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 17/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Castro Alves - Praça Dois de Julho, s/n, Campo Grande, Salvador - BA" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="160" html="voucher_DeborahColker_BA_18.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 18/08/13'br /''b'Horário'/b': 20h'br /''b'Local'/b': Teatro Castro Alves - Praça Dois de Julho, s/n, Campo Grande, Salvador - BA" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="173" html="voucher_DeborahColker_PE_24.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 24/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Guararapes - End.: Centro de Convenções de Pernambuco, Complexo de Salgadinho, s/n, Olinda " SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="174" html="voucher_DeborahColker_PE_25.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 25/08/13'br /''b'Horário'/b': 20h'br /''b'Local'/b': Teatro Guararapes - End.: Centro de Convenções de Pernambuco, Complexo de Salgadinho, s/n, Olinda " SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="175" html="voucher_DeborahColker_PE_27.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 27/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Guararapes - End.: Centro de Convenções de Pernambuco, Complexo de Salgadinho, s/n, Olinda" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="176" html="voucher_DeborahColker_PE_28.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 28/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Guararapes - End.: Centro de Convenções de Pernambuco, Complexo de Salgadinho, s/n, Olinda" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="177" html="voucher_DeborahColker_PE_30.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 30/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Guararapes - End.: Centro de Convenções de Pernambuco, Complexo de Salgadinho, s/n, Olinda" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="178" html="voucher_DeborahColker_PE_31.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 31/08/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro Guararapes - End.: Centro de Convenções de Pernambuco, Complexo de Salgadinho, s/n, Olinda" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="188" html="voucher_DeborahColker_BH_07.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 07/09/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Grande Teatro SESC Palladium - End.: Rua Rio de Janeiro 1046 - Centro - BH" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="189" html="voucher_DeborahColker_BH_08.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 08/09/13'br /''b'Horário'/b': 18h'br /''b'Local'/b': Grande Teatro SESC Palladium - End.: Rua Rio de Janeiro 1046 - Centro - BH" SemEstoque="" />
+
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="240" html="voucher_DeborahColker_RJ_240.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 17/10/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro João Caetano End.: Praça Tiradentes - Centro, RJ" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="241" html="voucher_DeborahColker_RJ_241.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 18/10/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro João Caetano End.: Praça Tiradentes - Centro, RJ" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="242" html="voucher_DeborahColker_RJ_242.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 19/10/13'br /''b'Horário'/b': 21h'br /''b'Local'/b': Teatro João Caetano End.: Praça Tiradentes - Centro, RJ" SemEstoque="" />
+    <voucher parceiro="Deborah Colker" grupo="17" tipo="243" html="voucher_DeborahColker_RJ_243.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia'/b': 20/10/13'br /''b'Horário'/b': 18h'br /''b'Local'/b': Teatro João Caetano End.: Praça Tiradentes - Centro, RJ" SemEstoque="" />
+
+    <voucher parceiro="MPB e Jazz" grupo="19" tipo="73" html="voucher_mpbejazz.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="São João de Caruaru" grupo="20" tipo="75" html="voucher_saojoao_1.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 15/06/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+    <voucher parceiro="São João de Caruaru" grupo="20" tipo="76" html="voucher_saojoao_2.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 22/06/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+
+    <voucher parceiro="O Casamento" grupo="21" tipo="77" html="voucher_ocasamento_1.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 14/06/2013'br /''b'Horário:'/b' a partir das 21h30'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="78" html="voucher_ocasamento_2.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 15/06/2013'br /''b'Horário:'/b' a partir das 21h30'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="79" html="voucher_ocasamento_3.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 16/06/2013'br /''b'Horário:'/b' a partir das 18h'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="80" html="voucher_ocasamento_4.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 21/06/2013'br /''b'Horário:'/b' a partir das 21h30'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="81" html="voucher_ocasamento_5.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 22/06/2013'br /''b'Horário:'/b' a partir das 21h30'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="82" html="voucher_ocasamento_6.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 23/06/2013'br /''b'Horário:'/b' a partir das 18h'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="83" html="voucher_ocasamento_7.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 28/06/2013'br /''b'Horário:'/b' a partir das 21h30'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="84" html="voucher_ocasamento_8.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 29/06/2013'br /''b'Horário:'/b' a partir das 21h30'br /'" SemEstoque="" />
+    <voucher parceiro="O Casamento" grupo="21" tipo="85" html="voucher_ocasamento_9.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 30/06/2013'br /''b'Horário:'/b' a partir das 18h'br /'" SemEstoque="" />
+
+    <voucher parceiro="OPS" grupo="22" tipo="86" html="voucher_ops_1.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 22/06/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+    <voucher parceiro="OPS" grupo="22" tipo="87" html="voucher_ops_2.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 28/06/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+    <voucher parceiro="OPS" grupo="22" tipo="153" html="voucher_ops_3.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 09/08/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+    <voucher parceiro="OPS" grupo="22" tipo="154" html="voucher_ops_4.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="'b'Dia:'/b' 24/08/2013'br /''b'Horário:'/b' a partir das 16h'br /'" SemEstoque="" />
+
+    <voucher parceiro="OPS" grupo="22" tipo="246" html="voucher_ops_246.html" produto="OPS - 11/10" tipovoucher="promocao" descricaovoucher="OPS - 11/10" texto="'b'Dia:'/b' 11/10/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+    <voucher parceiro="OPS" grupo="22" tipo="269" html="voucher_ops_269.html" produto="OPS - 09/11" tipovoucher="promocao" descricaovoucher="OPS - 09/11" texto="'b'Dia:'/b' 09/11/2013'br /''b'Horário:'/b' a partir das 16h'br /'" SemEstoque="" />
+    <voucher parceiro="OPS" grupo="22" tipo="270" html="voucher_ops_270.html" produto="OPS - 22/11" tipovoucher="promocao" descricaovoucher="OPS - 22/11" texto="'b'Dia:'/b' 22/11/2013'br /''b'Horário:'/b' a partir das 20h'br /'" SemEstoque="" />
+
+
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="72" html="voucher_motomilgp_pr.html" produto="Curitiba (PR)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="88" html="voucher_motomilgp_sp.html" produto="São Paulo (SP)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="150" html="voucher_motomilgp_df.html" produto="Brasilia (DF)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="171" html="voucher_motomilgp_pr2.html" produto="Cascavel (PR)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="224" html="voucher_motomilgp_sp2.html" produto="São Paulo (SP)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="262" html="voucher_motomilgp_rs.html" produto="Santa Cruz do Sul (RS)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="305" html="voucher_motomilgp_ms.html" produto="Campo Grande (MS)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Moto 1000 GP" grupo="18" tipo="319" html="voucher_motomilgp_pr3.html" produto="Cascavel (PR)" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="Água de Cheiro" grupo="23" tipo="91" html="voucher_agua_91.html" produto="15% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="HC Pneus" grupo="24" tipo="92" html="voucher_ops_2.html" produto="33% DE DESCONTO EM SERVICOS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+    <voucher parceiro="HC Pneus" grupo="24" tipo="93" html="voucher_ops_2.html" produto="27% DE DESCONTO EM PECAS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+    <voucher parceiro="HC Pneus" grupo="24" tipo="94" html="voucher_ops_2.html" produto="37% DE DESCONTO EM PNEUS" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="Odeon" grupo="25" tipo="99" html="voucher_odeon_8.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Odeon" grupo="25" tipo="179" html="voucher_odeon_9.html" produto="Ingresso" tipovoucher="promocao" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="Beleza de Web" grupo="27" tipo="121" html="voucher_blz_121.html" produto="R$15 DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+    <voucher parceiro="Beleza da Web" grupo="27" tipo="122" html="voucher_blz_122.html" produto="R$20 DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+    <voucher parceiro="Beleza na Web" grupo="27" tipo="123" html="voucher_blz_123.html" produto="R$30 DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="Parceira Panini" grupo="26" tipo="120" html="voucher_monica_120.html" produto="40% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+    <voucher parceiro="Parceira Panini" grupo="26" tipo="119" html="voucher_marvel_119.html" produto="15% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+    <voucher parceiro="Parceira Panini" grupo="26" tipo="118" html="voucher_comics_118.html" produto="10% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="Marcyn" grupo="28" tipo="124" html="voucher_marcyn_124.html" produto="15% DE DESCONTO" tipovoucher="parceria" descricaovoucher="Vale desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="Copa Petrobras de Marcas" grupo="29" tipo="126" html="voucher_copapetrobras.html" produto=" Par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Interlagos'br /''b'Endereço:'/b' Av. Senador Teotônio Vilela nº 261 – Interlagos'br /''b'Data:'/b' 21 de julho de 2013'br /''b'Abertura dos portões:'/b' 07h00" SemEstoque="" />
+    <voucher parceiro="Copa Petrobras de Marcas" grupo="29" tipo="172" html="voucher_copapetrobras-pr.html" produto=" Par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Curitiba'br /''b'Endereço:'/b'Av. Iraí, 16, Weissópolis, Pinhais - PR'br /''b'Data:'/b' 25 de agosto de 2013" SemEstoque="" />
+    <voucher parceiro="Copa Petrobras de Marcas" grupo="29" tipo="238" html="voucher_copapetrobras-df.html" produto=" Par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo Internacional Nelson Piquet 'br /''b'Endereço:'/b'Via Srpn Autodromo Internacional Nelson Piquet, S/N - Asa Norte Brasília - DF'br /''b'Data:'/b' 29 de setembro de 2013" SemEstoque="" />
+    <voucher parceiro="Copa Petrobras de Marcas" grupo="29" tipo="268" html="voucher_copapetrobras-taruma.html" produto=" Par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo Internacional de Tarumã 'br /''b'Endereço:'/b'Estr. Cap. Gentil Machado de Godoy nº 100 Tarumã - Viamão - RS'br /''b'Data:'/b' 27 de outubro de 2013" SemEstoque="" />
+    <voucher parceiro="Copa Petrobras de Marcas" grupo="29" tipo="306" html="voucher_copapetrobras-cascavel.html" produto=" Par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo Internacional de Cascavel - Zilmar Beux 'br /''b'Endereço: '/b'Rod BR 277/Km 392 - Cascavel - Paraná 'br /''b'Data:'/b' 17 de novembro de 2013" SemEstoque="" />
+    <voucher parceiro="Copa Petrobras de Marcas" grupo="29" tipo="320" html="voucher_copapetrobras-curitiba.html" produto=" Par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Curitiba'br /''b'Endereço:'/b'Av. Iraí, 16, Weissópolis, Pinhais - PR'br /''b'Data:'/b' 01 de dezembro de 2013" SemEstoque="" />
+
+    <voucher parceiro="Fortal" grupo="30" tipo="127" html="voucher_fortal_25.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Interlagos'br /''b'Endereço:'/b' Av. Senador Teotônio Vilela nº 261 – Interlagos'br /''b'Data:'/b' 21 de julho de 2013'br /''b'Abertura dos portões:'/b' 07h00" SemEstoque="" />
+    <voucher parceiro="Fortal" grupo="30" tipo="128" html="voucher_fortal_26.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Interlagos'br /''b'Endereço:'/b' Av. Senador Teotônio Vilela nº 261 – Interlagos'br /''b'Data:'/b' 21 de julho de 2013'br /''b'Abertura dos portões:'/b' 07h00" SemEstoque="" />
+    <voucher parceiro="Fortal" grupo="30" tipo="129" html="voucher_fortal_27.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Interlagos'br /''b'Endereço:'/b' Av. Senador Teotônio Vilela nº 261 – Interlagos'br /''b'Data:'/b' 21 de julho de 2013'br /''b'Abertura dos portões:'/b' 07h00" SemEstoque="" />
+    <voucher parceiro="Fortal" grupo="30" tipo="130" html="voucher_fortal_28.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="'b'Local:'/b' Autódromo de Interlagos'br /''b'Endereço:'/b' Av. Senador Teotônio Vilela nº 261 – Interlagos'br /''b'Data:'/b' 21 de julho de 2013'br /''b'Abertura dos portões:'/b' 07h00" SemEstoque="" />
+
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="131" html="voucher_ftb_131.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="132" html="voucher_ftb_132.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="133" html="voucher_ftb_133.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="134" html="voucher_ftb_134.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="135" html="voucher_ftb_135.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="136" html="voucher_ftb_136.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="137" html="voucher_ftb_137.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="138" html="voucher_ftb_138.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="139" html="voucher_ftb_139.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="140" html="voucher_ftb_140.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="141" html="voucher_ftb_141.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="142" html="voucher_ftb_142.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="143" html="voucher_ftb_143.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="144" html="voucher_ftb_144.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="145" html="voucher_ftb_145.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="146" html="voucher_ftb_146.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="147" html="voucher_ftb_147.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="148" html="voucher_ftb_148.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="149" html="voucher_ftb_149.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="Casa Cor" grupo="32" tipo="151" html="voucher_casacor_151.html" produto="par de Ingressos" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="162" html="voucher_ftb_162.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="163" html="voucher_ftb_163.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="164" html="voucher_ftb_164.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="165" html="voucher_ftb_165.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="33" tipo="168" html="voucher_ppdc_168.html" produto="alo dolly - 08-08 - 21h" tipovoucher="promoção" descricaovoucher="alo dolly - 08-08 - 21h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="33" tipo="169" html="voucher_ppdc_169.html" produto="alo dolly - 09-08 - 21h" tipovoucher="promoção" descricaovoucher="alo dolly - 09-08 - 21h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="33" tipo="170" html="voucher_ppdc_170.html" produto="alo dolly - 10-08 - 18h" tipovoucher="promoção" descricaovoucher="alo dolly - 10-08 - 18h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="36" tipo="183" html="voucher_ppdc_183.html" produto="os mamutes - 07-09 - 21h" tipovoucher="promoção" descricaovoucher="os mamutes - 07-09 - 21h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="36" tipo="184" html="voucher_ppdc_184.html" produto="os mamutes - 08-09 - 21h" tipovoucher="promoção" descricaovoucher="os mamutes - 08-09 - 21h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="48" tipo="252" html="voucher_ppdc_252.html" produto="Algumas Aventuras das 20.000 Léguas Submarinas - 12/10 - 18h" tipovoucher="promoção" descricaovoucher="Algumas Aventuras das 20.000 Léguas Submarinas - 12/10 - 18h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="48" tipo="253" html="voucher_ppdc_253.html" produto="Algumas Aventuras das 20.000 Léguas Submarinas - 13/10 - 18h" tipovoucher="promoção" descricaovoucher="Algumas Aventuras das 20.000 Léguas Submarinas - 13/10 - 18h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="49" tipo="254" html="voucher_ppdc_254.html" produto="A Santa Joana dos Matadouros - 17/10 - 19h30" tipovoucher="promoção" descricaovoucher="A Santa Joana dos Matadouros - 17/10 - 19h30" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="49" tipo="255" html="voucher_ppdc_255.html" produto="A Santa Joana dos Matadouros - 18/10 - 19h30" tipovoucher="promoção" descricaovoucher="A Santa Joana dos Matadouros - 18/10 - 19h30" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="49" tipo="256" html="voucher_ppdc_256.html" produto="A Santa Joana dos Matadouros - 19/10 - 19h30" tipovoucher="promoção" descricaovoucher="A Santa Joana dos Matadouros - 19/10 - 19h30" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="44" tipo="229" html="voucher_ppdc_229.html" produto="Mulheres Alteradas - 28/09 - 19h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 28/09 - 19h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="230" html="voucher_ppdc_230.html" produto="Mulheres Alteradas - 28/09 - 21h30'" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 28/09 - 21h30'" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="231" html="voucher_ppdc_231.html" produto="Mulheres Alteradas - 29/09 - 20h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 29/09 - 20h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="44" tipo="232" html="voucher_ppdc_232.html" produto="Mulheres Alteradas - 21/09 - 17h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 21/09 - 17h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="233" html="voucher_ppdc_233.html" produto="Mulheres Alteradas - 21/09 - 20h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 21/09 - 20h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="234" html="voucher_ppdc_234.html" produto="Mulheres Alteradas - 22/09 - 20h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 22/09 - 20h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="44" tipo="235" html="voucher_ppdc_235.html" produto="Mulheres Alteradas - 26/09 - 20h30" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 26/09 - 20h30" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="236" html="voucher_ppdc_236.html" produto="Mulheres Alteradas - 27/09 - 19h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 27/09 - 19h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="237" html="voucher_ppdc_237.html" produto="Mulheres Alteradas - 27/09 - 21h30" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 27/09 - 21h30" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="44" tipo="264" html="voucher_ppdc_264.html" produto="Mulheres Alteradas - 19/10 - 19h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 19/10 - 19h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="265" html="voucher_ppdc_265.html" produto="Mulheres Alteradas - 19/10 - 21h30" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 19/10 - 21h30" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="44" tipo="266" html="voucher_ppdc_266.html" produto="Mulheres Alteradas - 20/10 - 19h" tipovoucher="promoção" descricaovoucher="Mulheres Alteradas - 20/10 - 19h " texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="43" tipo="258" html="voucher_ppdc_258.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 18-10 - 20h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 18-10 - 20h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="43" tipo="259" html="voucher_ppdc_259.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 19-10 - 20h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 19-10 - 20h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="43" tipo="260" html="voucher_ppdc_260.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 21-10 - 20h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 21-10 - 20h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="43" tipo="261" html="voucher_ppdc_261.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 22-10 - 20h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 22-10 - 20h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="43" tipo="225" html="voucher_ppdc_225.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 21-09 - 21h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 21-09 - 21h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="43" tipo="226" html="voucher_ppdc_226.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 22-09 - 20h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 22-09 - 20h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="43" tipo="227" html="voucher_ppdc_227.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 28-09 - 21h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 28-09 - 21h" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="43" tipo="228" html="voucher_ppdc_228.html" produto="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 29-09 - 20h" tipovoucher="promoção" descricaovoucher="A Arte e a Maneira de Abordar seu Chefe para Pedir um Aumento - 29-09 - 20h" texto="" SemEstoque="" />
+
+    <voucher parceiro="PPDC" grupo="57" tipo="307" html="voucher_ppdc_307.html" produto="Namíbia, Não! Dia 23-11" tipovoucher="promoção" descricaovoucher="Namíbia, Não! Dia 23-11" texto="" SemEstoque="" />
+    <voucher parceiro="PPDC" grupo="57" tipo="308" html="voucher_ppdc_308.html" produto="Namíbia, Não! Dia 24-11" tipovoucher="promoção" descricaovoucher="Namíbia, Não! Dia 24-11" texto="" SemEstoque="" />
+
+
+    <voucher parceiro="Nice" grupo="34" tipo="181" html="voucher_nice_181.html" produto="Desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto="" SemEstoque="" />
+    <voucher parceiro="Nice" grupo="35" tipo="182" html="voucher_nice_182.html" produto="Desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="eÓtica" grupo="37" tipo="186" html="voucher_eotica_186.html" produto="Desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto="" SemEstoque="" />
+    <voucher parceiro="eÓtica" grupo="37" tipo="187" html="voucher_eotica_187.html" produto="Desconto" tipovoucher="parceria" descricaovoucher="Vale Desconto" texto="" SemEstoque="" />
+
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="190" html="voucher_ftb_190.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="191" html="voucher_ftb_191.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="192" html="voucher_ftb_192.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="193" html="voucher_ftb_193.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="194" html="voucher_ftb_194.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="195" html="voucher_ftb_195.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="196" html="voucher_ftb_196.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="197" html="voucher_ftb_197.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="198" html="voucher_ftb_198.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="199" html="voucher_ftb_199.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="200" html="voucher_ftb_200.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="201" html="voucher_ftb_201.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="202" html="voucher_ftb_202.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="203" html="voucher_ftb_203.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="204" html="voucher_ftb_204.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="205" html="voucher_ftb_205.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="206" html="voucher_ftb_206.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="207" html="voucher_ftb_207.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="208" html="voucher_ftb_208.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="209" html="voucher_ftb_209.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="210" html="voucher_ftb_210.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="211" html="voucher_ftb_211.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="212" html="voucher_ftb_212.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="219" html="voucher_ftb_219.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="220" html="voucher_ftb_220.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="Festival Teatro Brasileiro" grupo="31" tipo="221" html="voucher_ftb_221.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="SuperCarros Petrobras Premmia" grupo="38" tipo="215" html="voucher_sp_215.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="SuperCarros Petrobras Premmia" grupo="39" tipo="216" html="voucher_sp_216.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="SuperCarros Petrobras Premmia" grupo="40" tipo="217" html="voucher_sp_217.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+    <voucher parceiro="SuperCarros Petrobras Premmia" grupo="41" tipo="218" html="voucher_sp_218.html" produto="Um Ingresso" tipovoucher="promoção" descricaovoucher="Vale Ingresso" texto="" SemEstoque="" />
+
+    <voucher parceiro="cartacapital" grupo="42" tipo="222" html="voucher_cartacapital_222.html" produto="28% de desconto na assinatura anual de CartaCapital + 3 meses grátis" tipovoucher="parceria" descricaovoucher="28% de desconto na assinatura anual de CartaCapital + 3 meses grátis" texto="" SemEstoque="" />
+    <voucher parceiro="cartacapital" grupo="42" tipo="223" html="voucher_cartacapital_223.html" produto="35% de desconto na assinatura bianual de CartaCapital + 6 meses grátis" tipovoucher="parceria" descricaovoucher="35% de desconto na assinatura bianual de CartaCapital + 6 meses grátis" texto="" SemEstoque="" />
+
+    <voucher parceiro="Festival do Rio" grupo="47" tipo="247" html="voucher_festivaldorio_247.html" produto="UM KIT PARA FESTIVAL DO RIO" tipovoucher="promocao" descricaovoucher="UM KIT PARA FESTIVAL DO RIO" texto="" SemEstoque="" />
+
+    <voucher parceiro="Mostra São Paulo" grupo="50" tipo="263" html="voucher_mostrasp_263.html" produto="2 Ingressos Mostra São Paulo" tipovoucher="promocao" descricaovoucher="2 Ingressos Mostra São Paulo" texto="" SemEstoque="" />
+
+    <voucher parceiro="Cinemas" grupo="52" tipo="273" html="voucher_cinemas_uci.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="274" html="voucher_cinemas_kinoplex.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="275" html="voucher_cinemas_Cinemark.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="276" html="voucher_cinemas_Cinepolis.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="277" html="voucher_cinemas_moviecom.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+
+
+    <voucher parceiro="Cinemas" grupo="52" tipo="278" html="voucher_cinemas_cinearaujo_aracatuba.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="279" html="voucher_cinemas_cinearaujo_botucatu.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="280" html="voucher_cinemas_cinearaujo_camposdosgoytacazes.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="281" html="voucher_cinemas_cinearaujo_dourado.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="282" html="voucher_cinemas_cinearaujo_duquedecaxias.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="283" html="voucher_cinemas_cinearaujo_itu.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="284" html="voucher_cinemas_cinearaujo_maringa.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="285" html="voucher_cinemas_cinearaujo_maua.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="286" html="voucher_cinemas_cinearaujo_Piracicaba.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="287" html="voucher_cinemas_cinearaujo_pontagrossa.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="288" html="voucher_cinemas_cinearaujo_portovelho.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="289" html="voucher_cinemas_cinearaujo_riobranco.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="290" html="voucher_cinemas_cinearaujo_SaoJosedoRioPreto.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="291" html="voucher_cinemas_cinearaujo_serra.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="292" html="voucher_cinemas_cinearaujo_TaboaodaSerra.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+    <voucher parceiro="Cinemas" grupo="52" tipo="293" html="voucher_cinemas_cinearaujo_TaboaodaSerra.html" produto="2 Ingressos Cinemas" tipovoucher="promocao" descricaovoucher="2 Ingressos Cinemas" texto="" SemEstoque="" />
+
+    <voucher parceiro="Formula 1" grupo="53" tipo="297" html="voucher_formula_1_individual.html" produto="1 ingresso individual" tipovoucher="promoção" descricaovoucher="1 ingresso individual" texto=""  SemEstoque="" />
+    <voucher parceiro="Formula 1" grupo="53" tipo="296" html="voucher_formula_1_duplo.html" produto="1 ingresso duplo" tipovoucher="promoção" descricaovoucher="1 ingresso duplo" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Trip" grupo="55" tipo="300" html="voucher_Trip_300.html" produto="40% DE DESCONTO ASSINATURA 1 ANO TRIP" tipovoucher="parceria" descricaovoucher="40% DE DESCONTO ASSINATURA 1 ANO TRIP" texto=""  SemEstoque="" />
+    <voucher parceiro="Trip" grupo="55" tipo="301" html="voucher_Trip_301.html" produto="40% DE DESCONTO ASSINATURA 2 ANOS TRIP" tipovoucher="parceria" descricaovoucher="40% DE DESCONTO ASSINATURA 2 ANOS TRIP" texto=""  SemEstoque="" />
+    <voucher parceiro="Trip" grupo="55" tipo="302" html="voucher_Trip_302.html" produto="40% DE DESCONTO ASSINATURA 1 ANO TPM" tipovoucher="parceria" descricaovoucher="40% DE DESCONTO ASSINATURA 1 ANO TRIP" texto=""  SemEstoque="" />
+    <voucher parceiro="Trip" grupo="55" tipo="303" html="voucher_Trip_303.html" produto="40% DE DESCONTO ASSINATURA 2 ANOS TPM" tipovoucher="parceria" descricaovoucher="40% DE DESCONTO ASSINATURA 2 ANOS TRIP" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Grupo Corpo" grupo="56" tipo="304" html="voucher_grupocorpo_304.html" produto="2 ingressos para 08/11, às 21h" tipovoucher="promocao" descricaovoucher="2 ingressos para 08/11, às 21h" texto=""  SemEstoque="" />
+    <voucher parceiro="Grupo Corpo" grupo="56" tipo="309" html="voucher_grupocorpo_309.html" produto="2 ingressos para 09/11, às 21h" tipovoucher="promocao" descricaovoucher="2 ingressos para 09/11, às 21h" texto=""  SemEstoque="" />
+    <voucher parceiro="Grupo Corpo" grupo="56" tipo="310" html="voucher_grupocorpo_310.html" produto="2 ingressos para 10/11, às 19h" tipovoucher="promocao" descricaovoucher="2 ingressos para 10/11, às 19h" texto=""  SemEstoque="" />
+    <voucher parceiro="Grupo Corpo" grupo="56" tipo="317" html="voucher_grupocorpo_317.html" produto="2 ingressos para 20/11, às 21h" tipovoucher="promocao" descricaovoucher="2 ingressos para 20/11, às 21h" texto=""  SemEstoque="" />
+    <voucher parceiro="Grupo Corpo" grupo="56" tipo="318" html="voucher_grupocorpo_318.html" produto="2 ingressos para 28/11, às 21h" tipovoucher="promocao" descricaovoucher="2 ingressos para 28/11, às 21h" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Vozes do Brasil" grupo="58" tipo="311" html="voucher_vozesdobrasil_311.html" produto="Vozes do Brasil 22/11" tipovoucher="promocao" descricaovoucher="Vozes do Brasil 22/11" texto=""  SemEstoque="" />
+    <voucher parceiro="Vozes do Brasil" grupo="58" tipo="312" html="voucher_vozesdobrasil_312.html" produto="Vozes do Brasil 23/11" tipovoucher="promocao" descricaovoucher="Vozes do Brasil 23/11" texto=""  SemEstoque="" />
+    <voucher parceiro="Vozes do Brasil" grupo="58" tipo="313" html="voucher_vozesdobrasil_313.html" produto="Vozes do Brasil 29/11" tipovoucher="promocao" descricaovoucher="Vozes do Brasil 29/11" texto=""  SemEstoque="" />
+    <voucher parceiro="Vozes do Brasil" grupo="58" tipo="314" html="voucher_vozesdobrasil_314.html" produto="Vozes do Brasil 30/11" tipovoucher="promocao" descricaovoucher="Vozes do Brasil 30/11" texto=""  SemEstoque="" />
+    <voucher parceiro="Vozes do Brasil" grupo="58" tipo="315" html="voucher_vozesdobrasil_315.html" produto="Vozes do Brasil 06/12" tipovoucher="promocao" descricaovoucher="Vozes do Brasil 06/12" texto=""  SemEstoque="" />
+    <voucher parceiro="Vozes do Brasil" grupo="58" tipo="316" html="voucher_vozesdobrasil_316.html" produto="Vozes do Brasil 07/12" tipovoucher="promocao" descricaovoucher="Vozes do Brasil 07/12" texto=""  SemEstoque="" />
+
+    <voucher parceiro="Puket - Semana Premmiada" grupo="60" tipo="322" html="voucher_semanapremmiada_322.html" produto="DESCONTO DE R$50 PARA COMPRAS ACIMA DE R$200" tipovoucher="parceria" descricaovoucher="DESCONTO DE R$50 PARA COMPRAS ACIMA DE R$200" texto=""  SemEstoque="" />
+    <voucher parceiro="EÓtica - Semana Premmiada" grupo="61" tipo="323" html="voucher_semanapremmiada_323.html" produto="DESCONTO DE R$50 PARA COMPRAS ACIMA DE R$250" tipovoucher="parceria" descricaovoucher="DESCONTO DE R$50 PARA COMPRAS ACIMA DE R$250" texto=""  SemEstoque="" />
+    <voucher parceiro="Flores Online - Semana Premmiada" grupo="62" tipo="324" html="voucher_semanapremmiada_324.html" produto="30% DE DESCONTO EM TODO SITE" tipovoucher="parceria" descricaovoucher="30% DE DESCONTO EM TODO SITE" texto=""  SemEstoque="" />
+    <voucher parceiro="WebMotors - Semana Premmiada" grupo="63" tipo="325" html="voucher_semanapremmiada_325.html" produto="OFERTA 50% DESCONTO CATEGORIA ATÉ VENDER" tipovoucher="parceria" descricaovoucher="OFERTA 50% DESCONTO CATEGORIA ATÉ VENDER" texto=""  SemEstoque="" />
+    <voucher parceiro="NicePhotos - Semana Premmiada" grupo="64" tipo="326" html="voucher_semanapremmiada_326.html" produto="OFERTAS POR R$1,00" tipovoucher="parceria" descricaovoucher="OFERTAS POR R$1,00" texto=""  SemEstoque="" />
+    <voucher parceiro="Carta Capital - Semana Premmiada" grupo="65" tipo="327" html="voucher_semanapremmiada_327.html" produto="60% DESCONTO NA ASSINATURA ANUAL" tipovoucher="parceria" descricaovoucher="60% DESCONTO NA ASSINATURA ANUAL" texto=""  SemEstoque="" />
+
+  </vouchers>
+</sitemap>

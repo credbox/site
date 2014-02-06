@@ -43,6 +43,7 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_emailnotificacao", usuario.emailNotificacao));
                     command.Parameters.Add(new MySqlParameter("p_imobiliaria", usuario.imobiliaria));
                     command.Parameters.Add(new MySqlParameter("p_ativo", usuario.ativo));
+                    command.Parameters.Add(new MySqlParameter("p_administrar", usuario.Administrar));
                     command.Parameters.Add(new MySqlParameter("p_idUsuarioInclusao", usuario.UsuarioInclusao.id));
 
 
@@ -98,6 +99,7 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_emailnotificacao", usuario.emailNotificacao));
                     command.Parameters.Add(new MySqlParameter("p_imobiliaria", usuario.imobiliaria));
                     command.Parameters.Add(new MySqlParameter("p_ativo", usuario.ativo));
+                    command.Parameters.Add(new MySqlParameter("p_administrar", usuario.Administrar));
 
                     try
                     {
@@ -136,22 +138,25 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            usuarios.Add(new UsuarioEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                Imobiliaria = new ImobiliariaEntity { nome = reader["nomeImobiliaria"].ToString() },
-                                nome = reader["nomeUsuario"].ToString(),
-                                email = reader["email"].ToString(),
-                                login = reader["login"].ToString(),
-                                imobiliaria = GetAsBoolean(reader, "imobiliaria"),
-                                emailNotificacao = GetAsBoolean(reader, "emailnotificacao"),
-                                ativo = GetAsBoolean(reader, "ativo"),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeInclusao"].ToString() },
-                            });
+                                usuarios.Add(new UsuarioEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    Imobiliaria = new ImobiliariaEntity { nome = reader["nomeImobiliaria"].ToString() },
+                                    nome = reader["nomeUsuario"].ToString(),
+                                    email = reader["email"].ToString(),
+                                    login = reader["login"].ToString(),
+                                    imobiliaria = GetAsBoolean(reader, "imobiliaria"),
+                                    emailNotificacao = GetAsBoolean(reader, "emailnotificacao"),
+                                    ativo = GetAsBoolean(reader, "ativo"),
+                                    Administrar = GetAsBoolean(reader, "administrar"),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { nome = reader["nomeInclusao"].ToString() },
+                                });
+                            }
                         }
                         return usuarios;
                     }
@@ -179,27 +184,28 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_id", id));
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            usuario = new UsuarioEntity
+                            if (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                Imobiliaria = new ImobiliariaEntity { id = GetAsInt(reader, "idimobiliaria") },
-                                nome = reader["nome"].ToString(),
-                                email = reader["email"].ToString(),
-                                login = reader["login"].ToString(),
-                                senha = reader["senha"].ToString(),
-                                imobiliaria = GetAsBoolean(reader, "imobiliaria"),
-                                emailNotificacao = GetAsBoolean(reader, "emailnotificacao"),
-                                ativo = GetAsBoolean(reader, "ativo"),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
+                                usuario = new UsuarioEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    Imobiliaria = new ImobiliariaEntity { id = GetAsInt(reader, "idimobiliaria") },
+                                    nome = reader["nome"].ToString(),
+                                    email = reader["email"].ToString(),
+                                    login = reader["login"].ToString(),
+                                    senha = reader["senha"].ToString(),
+                                    imobiliaria = GetAsBoolean(reader, "imobiliaria"),
+                                    emailNotificacao = GetAsBoolean(reader, "emailnotificacao"),
+                                    ativo = GetAsBoolean(reader, "ativo"),
+                                    Administrar = GetAsBoolean(reader, "administrar"),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
 
-                            };
+                                };
+                            }
                         }
-
-
                         return usuario;
                     }
                     catch (Exception ex)

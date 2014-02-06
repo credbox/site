@@ -37,9 +37,9 @@ namespace Web.CredBox.Areas.Admin.Controllers
             return View();
         }
 
-        public JsonResult Save(int idImobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao)
+        public JsonResult Save(int idImobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao, bool administrar)
         {
-            var usuario = new UsuarioEntity { nome = nome, email = email, login = login, senha = senha.Encrypt(), imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao };
+            var usuario = new UsuarioEntity { nome = nome, email = email, login = login, senha = senha.Encrypt(), imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao, Administrar = administrar };
             if (idImobiliaria > 0)
                 usuario.Imobiliaria = new ImobiliariaEntity { id = idImobiliaria };
             usuario.UsuarioInclusao = new UsuarioEntity { id = 1 };
@@ -58,9 +58,9 @@ namespace Web.CredBox.Areas.Admin.Controllers
             }
         }
 
-        public JsonResult Update(int idusuario, int idImobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao)
+        public JsonResult Update(int idusuario, int idImobiliaria, string nome, string email, string login, string senha, bool imobiliaria, bool ativo, bool emailNotificacao, bool administrar)
         {
-            var usuario = new UsuarioEntity { id = idusuario, nome = nome, email = email, login = login, imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao };
+            var usuario = new UsuarioEntity { id = idusuario, nome = nome, email = email, login = login, imobiliaria = imobiliaria, ativo = ativo, emailNotificacao = emailNotificacao, Administrar = administrar };
 
             if (!string.IsNullOrEmpty(senha))
                 usuario.senha = senha.Encrypt();

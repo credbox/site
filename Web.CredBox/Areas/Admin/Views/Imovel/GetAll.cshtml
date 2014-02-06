@@ -1,0 +1,100 @@
+﻿@model IList<Web.CredBox.Model.Entity.ImovelEntity>
+@{
+    Layout = null;
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Categoria
+                </th>
+
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Cidade
+                </th>
+                <th>
+                    Publicado
+                </th>
+                <th>
+                    Vendido
+                </th>
+                <th>
+                    Inclusão
+                </th>
+                <th>
+                    Usuário Inclusão
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.nome</td>
+                    <td class="center">@item.Categoria.nome</td>
+                    <td class="center">@item.Tipo.nome</td>
+                    <td class="center">@item.Estado.sigla</td>
+                    <td class="center">@item.Cidade.nome</td>
+                    @if (@item.publicar)
+                    {
+
+                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.publicar)</span> </td>
+                    }
+                    else
+                    {
+                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.publicar)</span> </td>
+                    }
+
+                    @if (@item.vendido)
+                    {
+
+                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.publicar)</span> </td>
+                    }
+                    else
+                    {
+                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.publicar)</span> </td>
+                    }
+                    <td class="center">@item.dataInclusao.ToString("dd/MM/yyyy")</td>
+                    <td class="center">@item.UsuarioInclusao.nome</td>
+                    <td class="center">
+                        <a class="btn btn-success" href="@Url.Action("Edit", "Imovel", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
+                            <i class="icon-edit icon-white"></i>
+                            Editar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function () {
+            $('#divBusca').show();
+            $('#alertMessage').hide();
+        });
+    </script>
+}
+else
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#divBusca').hide();
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Nenhum imóvel encontrada.</li>');
+        });
+    </script>
+
+}

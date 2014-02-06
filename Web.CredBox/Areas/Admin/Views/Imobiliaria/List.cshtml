@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Credbox";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 
@@ -7,7 +7,8 @@
     $(document).ready(function () {
 
         $('#alertMessage').hide('show');
-        $('#ddlCidade').append('<option value="">Selecione</option>');
+        $('#ddlEstado').append('<option selected="selected" value="0">Selecione</option>');
+        $('#ddlCidade').append('<option value="0">Selecione</option>');
 
         $('#ddlEstado').change(function () {
             var idEstado = $('#ddlEstado').val();
@@ -23,33 +24,44 @@
             loadSearchImobiliaria();
         });
 
+        $('#alertMessage').hide();
+        $('#divBusca').hide('show');
+
     });
 
     function LoadCidade(idEstado) {
-        $('#pleaseWaitDialog').show();
-        $.ajax({
-            type: "GET",
-            data: GetValueEstado(),
-            url: '@Url.Action("GetCidades", "Imobiliaria")',
-            error: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                $('#pleaseWaitDialog').hide();
-            },
-            success: function (data) {
-                ZerarCidade();
-                $('#ddlCidade').append('<option value="0">Selecione</option>');
-                $.each(data, function (i, cidade) {
-                    $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
-                });
-                $('#pleaseWaitDialog').hide();
-            }
-        });
+        $('#pleaseWaitDialog').modal('show');
+        if (idEstado > 0) {
+            $.ajax({
+                type: "GET",
+                data: GetValueEstado(),
+                url: '@Url.Action("GetCidades", "Imobiliaria")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').modal('hide');
+                },
+                success: function (data) {
+                    ZerarCidade();
+                    $('#ddlCidade').append('<option value="0">Selecione</option>');
+                    $.each(data, function (i, cidade) {
+                        $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                    });
+                    $('#pleaseWaitDialog').modal('hide');
+                }
+            });
+        }
+        else {
+            ZerarCidade();
+            $('#ddlCidade').append('<option value="0">Selecione</option>');
+            $('#pleaseWaitDialog').modal('hide');
+        }
     }
 
 
     function loadSearchImobiliaria() {
-        $('#pleaseWaitDialog').show();
+        $('#pleaseWaitDialog').modal('show');
+
 
         $.ajax({
             type: "POST",
@@ -58,17 +70,18 @@
             error: function () {
                 $('#alertMessage').show('show');
                 $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                $('#pleaseWaitDialog').hide();
+                $('#pleaseWaitDialog').modal('hide');
             },
             success: function (data) {
                 if (data == null) {
-                    $('#alertMessage').show('show');
+                    $('#alertMessage').show();
                     $('#message').html('<li>Este serviço está temporariamente indisponível. Tente novamente mais tarde.</li>');
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
                 else {
+                    $('#divBusca').show();
                     $("#divResult").html(data);
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
             }
         });
@@ -97,60 +110,98 @@
     }
 </script>
 
-<fieldset>
+<h2>Imobiliária</h2>
 
-    <div class="control-group">
-
-        <div class="controls-row">
-            <label for="ddlEstado">Estado</label>
-            @Html.DropDownList("ddlEstado", new SelectList((System.Collections.IEnumerable)ViewData["Estados"], "Value", "Text"))
-        </div>
-        <div class="controls-row">
-            <label for="ddlCidade">Cidade</label>
-            <select id="ddlCidade" name="ddlCidade"></select>
-        </div>
-
-
-        <div class="controls-row">
-            <label for="txtNome">nome</label>
-
-            <input type="text" placeholder="Nome" id="txtNome" />
-        </div>
-        <div class="controls-row">
-            <label for="chkAtivo">Ativo</label>
-
-            <input type="checkbox" class="checkbox" id="chkAtivo" />
+<div class="box span10">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="icon-edit"></i> Buscar</h2>
+        <div class="box-icon">
+            @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+            @*<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>*@
+            @*<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>*@
         </div>
     </div>
+    <div class="box-content">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="ddlEstado">Estado</label>
+                    <div class="controls">
+                        <select class="input-xlarge" id="ddlEstado">
+                            @foreach (var item in @ViewBag.Estados)
+                            {
+                                <option value="@item.id">@item.nome</option>
+                            }
+                        </select>
 
+                    </div>
+                </div>
 
-    <div class="form-actions">
-        <button type="button" id="btnBuscar" class="btn-primary">Buscar</button>
-        <button type="button" id="btnNovo" class="btn-primary">Novo</button>
+                <div class="control-group">
+                    <label class="control-label" for="ddlCidade">Cidade</label>
+                    <div class="controls">
+                        <select class="input-xlarge" id="ddlCidade" name="ddlCidade"></select>
+
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtNome">Nome</label>
+                    <div class="controls">
+                        <input class="input-xlarge" id="txtNome" placeholder="Nome" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="chkAtivo">Ativo</label>
+                    <div class="controls">
+                        <input type="checkbox" class="checkbox" id="chkAtivo" />
+                    </div>
+                </div>
+
+                <div class="form-actions">
+
+                    <button type="button" class="btn btn-primary" id="btnBuscar"><i class="icon icon-white icon-search"></i> Buscar</button>
+                    <button type="button" class="btn" id="btnNovo"><i class="icon icon-page"></i> Novo</button>
+
+                </div>
+
+                <div class="row-fluid sortable" id="divBusca">
+                    <div class="box span12">
+                        <div class="box-header well" data-original-title>
+                            <h2>Resultado </h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content" id="divResult">
+                        </div>
+                    </div><!--/span-->
+                </div><!--/row-->
+
+                <div class="modal fade" id="pleaseWaitDialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Processando...</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="alert alert-error" id="alertMessage">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Atenção</h4>
+                    <ul id="message"></ul>
+                </div>
+            </fieldset>
+        </form>
+
     </div>
-    <div class="celarfix"></div>
-
-    <hr />
-
-
-    <div class="control-group" id="divResult">
-
-
-    </div>
-
-    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-header">
-            <h1>Processando...</h1>
-        </div>
-        <div class="modal-body">
-            <div class="progress progress-striped active">
-                <div class=" bar " style="width: 100%;"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="alert alert-success" id="alertMessage">
-        <h4>Atenção</h4>
-        <ul id="message"></ul>
-    </div>
-</fieldset>
+</div>

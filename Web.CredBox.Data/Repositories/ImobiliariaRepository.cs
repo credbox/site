@@ -128,28 +128,30 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            imobiliarias.Add(new ImobiliariaEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                Estado = new EstadoEntity { sigla = reader["sigla"].ToString() },
-                                Cidade = new CidadeEntity { nome = reader["nomeCidade"].ToString() },
-                                nome = reader["nome"].ToString(),
-                                endereco = reader["endereco"].ToString(),
-                                numero = GetAsInt(reader, "numero"),
-                                cep = reader["cep"].ToString(),
-                                bairro = reader["bairro"].ToString(),
-                                complemento = reader["complemento"].ToString(),
-                                contato = reader["contato"].ToString(),
-                                telefoneContato = reader["telefoneContato"].ToString(),
-                                celularContato = reader["celularContato"].ToString(),
-                                emailContato = reader["emailContato"].ToString(),
-                                ativo = GetAsBoolean(reader, "ativo"),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
-                            });
+                                imobiliarias.Add(new ImobiliariaEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    Estado = new EstadoEntity { sigla = reader["sigla"].ToString() },
+                                    Cidade = new CidadeEntity { nome = reader["nomeCidade"].ToString() },
+                                    nome = reader["nome"].ToString(),
+                                    endereco = reader["endereco"].ToString(),
+                                    numero = GetAsInt(reader, "numero"),
+                                    cep = reader["cep"].ToString(),
+                                    bairro = reader["bairro"].ToString(),
+                                    complemento = reader["complemento"].ToString(),
+                                    contato = reader["contato"].ToString(),
+                                    telefoneContato = reader["telefoneContato"].ToString(),
+                                    celularContato = reader["celularContato"].ToString(),
+                                    emailContato = reader["emailContato"].ToString(),
+                                    ativo = GetAsBoolean(reader, "ativo"),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
+                                });
+                            }
                         }
 
 
@@ -178,32 +180,32 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_id", id));
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            imobiliaria = new ImobiliariaEntity
+                            if (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                Estado = new EstadoEntity { id = GetAsInt(reader, "idestado") },
-                                Cidade = new CidadeEntity { id = GetAsInt(reader, "idcidade") },
-                                nome = reader["nome"].ToString(),
-                                endereco = reader["endereco"].ToString(),
-                                numero = GetAsInt(reader, "numero"),
-                                cep = reader["cep"].ToString(),
-                                bairro = reader["bairro"].ToString(),
-                                complemento = reader["complemento"].ToString(),
-                                contato = reader["contato"].ToString(),
-                                telefoneContato = reader["telefoneContato"].ToString(),
-                                celularContato = reader["celularContato"].ToString(),
-                                emailContato = reader["emailContato"].ToString(),
-                                ativo = GetAsBoolean(reader, "ativo"),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
+                                imobiliaria = new ImobiliariaEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    Estado = new EstadoEntity { id = GetAsInt(reader, "idestado") },
+                                    Cidade = new CidadeEntity { id = GetAsInt(reader, "idcidade") },
+                                    nome = reader["nome"].ToString(),
+                                    endereco = reader["endereco"].ToString(),
+                                    numero = GetAsInt(reader, "numero"),
+                                    cep = reader["cep"].ToString(),
+                                    bairro = reader["bairro"].ToString(),
+                                    complemento = reader["complemento"].ToString(),
+                                    contato = reader["contato"].ToString(),
+                                    telefoneContato = reader["telefoneContato"].ToString(),
+                                    celularContato = reader["celularContato"].ToString(),
+                                    emailContato = reader["emailContato"].ToString(),
+                                    ativo = GetAsBoolean(reader, "ativo"),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
 
-                            };
+                                };
+                            }
                         }
-
-
                         return imobiliaria;
                     }
                     catch (Exception ex)

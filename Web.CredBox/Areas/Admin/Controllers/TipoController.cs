@@ -44,9 +44,9 @@ namespace Web.CredBox.Areas.Admin.Controllers
                 var tipo = new TipoEntity { nome = nome, UsuarioInclusao = new UsuarioEntity { id = 1 } };
                 var retorno = ProjectDomain.TipoBusiness.Add(tipo);
                 if (retorno)
-                    return ViewBag.Message = "Salvo com sucesso.";
+                    return Json("Salvo com sucesso.", JsonRequestBehavior.AllowGet);
                 else
-                    return ViewBag.Message = "Erro ao tentar inserir o tipo.";
+                    return Json("Erro ao tentar inserir o tipo.", JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

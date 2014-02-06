@@ -91,19 +91,19 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            categorias.Add(new CategoriaEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                nome = reader["nome"].ToString(),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
-                            });
+                                categorias.Add(new CategoriaEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    nome = reader["nome"].ToString(),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
+                                });
+                            }
                         }
-
-
                         return categorias;
                     }
                     catch (Exception ex)
@@ -130,20 +130,20 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_id", id));
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            categoria = new CategoriaEntity
+                            if (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                nome = reader["nome"].ToString(),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
+                                categoria = new CategoriaEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    nome = reader["nome"].ToString(),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
 
-                            };
+                                };
+                            }
                         }
-
-
                         return categoria;
                     }
                     catch (Exception ex)

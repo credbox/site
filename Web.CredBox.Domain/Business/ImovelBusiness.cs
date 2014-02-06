@@ -10,7 +10,7 @@ using Web.CredBox.Model.Entity;
 
 namespace Web.CredBox.Domain.Business
 {
-    public class ImovelBusiness:BaseBusiness
+    public class ImovelBusiness : BaseBusiness
     {
         /// <summary>
         /// Evento de log
@@ -27,7 +27,7 @@ namespace Web.CredBox.Domain.Business
             _repository = repository;
         }
 
-        public bool Add(ImovelEntity imovel)
+        public int Add(ImovelEntity imovel)
         {
             try
             {
@@ -56,6 +56,21 @@ namespace Web.CredBox.Domain.Business
             }
         }
 
+        public bool AddImages(ImovelEntity imovel)
+        {
+            try
+            {
+                return _repository.AddImages(imovel);
+            }
+            catch (Exception ex)
+            {
+                if (Logging != null)
+                    Logging.Invoke(this, new LogEventArgs("ImovelBusiness", "Erro ao tentar inserir as imagens do imovel", ex));
+
+                throw new Exception();
+            }
+        }
+
         public ImovelEntity GetById(int id)
         {
             try
@@ -72,11 +87,11 @@ namespace Web.CredBox.Domain.Business
         }
 
 
-        public IList<ImovelEntity> GetAll()
+        public IList<ImovelEntity> GetAll(int idimobiliaria, bool publicar, bool vendido, string nome, string codigoimobiliaria, int idCategoria, int idTipo, int idEstado, int idCidade)
         {
             try
             {
-                return _repository.GetAll();
+                return _repository.GetAll(idimobiliaria, publicar, vendido, nome, codigoimobiliaria, idCategoria, idTipo, idEstado, idCidade);
             }
             catch (Exception ex)
             {

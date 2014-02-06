@@ -1,6 +1,581 @@
-﻿@{
-    ViewBag.Title = "Add";
+﻿@model Web.CredBox.Areas.Admin.Models.ImovelUpload
+@{
+    ViewBag.Title = "Credbox";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 
-<h2>Add</h2>
+<script>
+    $(document).ready(function () {
+        $('#ddlImobiliaria').append('<option value="0" selected="selected">Selecione</option>');
+        $('#ddlCategoria').append('<option value="0" selected="selected">Selecione</option>');
+        $('#ddlTipo').append('<option value="0" selected="selected">Selecione</option>');
+        $('#ddlEstado').append('<option value="0" selected="selected">Selecione</option>');
+        $('#ddlCidade').append('<option value="0">Selecione</option>');
+        $('#alertMessage').hide('show');
+
+
+        $('#ddlEstado').change(function () {
+            var idEstado = $('#ddlEstado').val();
+            ZerarCidade();
+            LoadCidade(idEstado);
+        });
+
+        $('.btnVoltar').click(function () {
+            document.location.href = '@Url.Action("List","Imovel")';
+        });
+
+        $('#btnAddImovel').click(function () {
+            Add();
+        });
+    });
+
+
+    function LoadCidade(idEstado) {
+        $('#pleaseWaitDialog').modal('show');
+        if (idEstado > 0) {
+            $.ajax({
+                type: "GET",
+                data: GetValueEstado(),
+                url: '@Url.Action("GetCidades", "Imobiliaria")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').modal('hide');
+                },
+                success: function (data) {
+                    ZerarCidade();
+                    $('#ddlCidade').append('<option value="0">Selecione</option>');
+                    $.each(data, function (i, cidade) {
+                        $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                    });
+                    $('#pleaseWaitDialog').modal('hide');
+                }
+            });
+        }
+        else {
+            ZerarCidade();
+            $('#ddlCidade').append('<option value="0">Selecione</option>');
+            $('#pleaseWaitDialog').modal('hide');
+        }
+    }
+
+    function Add() {
+        $('#pleaseWaitDialog').modal('show');
+        var errorMessage = GetValidation();
+        if (errorMessage == '') {
+            $.ajax({
+                type: "GET",
+                enctype: 'multipart/form-data',
+                data: GetValue(),
+                url: '@Url.Action("Save", "Imovel")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').modal('hide');
+                },
+                success: function (data) {
+                    if (data.id > 0) {
+                        $('#liImovel').removeClass('active');
+                        $('#imovel').removeClass('active');
+                        $('#liImagens').addClass('active');
+                        $('#images').addClass('active');
+                        $('#idImovel').val(data.id);
+                    }
+
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>' + data.message + '</li>');
+                    $('#pleaseWaitDialog').modal('hide');
+                }
+            });
+        }
+        else {
+            $('#alertMessage').show('show');
+            $('#message').html(errorMessage);
+            $('#pleaseWaitDialog').modal('hide');
+        }
+
+
+    }
+
+
+    function ZerarCidade() {
+        $("#ddlCidade").empty();
+    }
+
+    function GetValueEstado() {
+        var idEstado = $('#ddlEstado').val();
+        return { idEstado: idEstado };
+    }
+
+    function GetValidation() {
+        var errorMessage = '';
+
+        if ($('#ddlImobiliaria').val() == '0') {
+            errorMessage = '<li>O campo imobiliária é obrigatório.</li>';
+        }
+
+        if ($('#ddlCategoria').val() == '0') {
+            if (errorMessage != '') {
+                errorMessage = errorMessage + '<li>O campo categoria é obrigatório.</li>';
+            }
+            else {
+                errorMessage = '<li>O campo categoria é obrigatório.</li>';
+            }
+        }
+
+        if ($('#ddlTipo').val() == '0') {
+            if (errorMessage != '') {
+                errorMessage = errorMessage + '<li>O campo tipo é obrigatório.</li>';
+            }
+            else {
+                errorMessage = '<li>O campo tipo é obrigatório.</li>';
+            }
+        }
+
+        if ($('#ddlEstado').val() == '0') {
+            if (errorMessage != '') {
+                errorMessage = errorMessage + '<li>O campo estado é obrigatório.</li>';
+            }
+            else {
+                errorMessage = '<li>O campo estado é obrigatório.</li>';
+            }
+        }
+
+        if ($('#ddlCidade').val() == '0') {
+            if (errorMessage != '') {
+                errorMessage = errorMessage + '<li>O campo cidade é obrigatório.</li>';
+            }
+            else {
+                errorMessage = '<li>O campo cidade é obrigatório.</li>';
+            }
+        }
+
+        if ($('#txtNome').val() == '') {
+            if (errorMessage != '') {
+                errorMessage = errorMessage + '<li>O campo nome é obrigatório.</li>';
+            }
+            else {
+                errorMessage = '<li>O campo nome é obrigatório.</li>';
+            }
+        }
+
+        if ($('#txtValor').val() == '') {
+            if (errorMessage != '') {
+                errorMessage = errorMessage + '<li>O campo valor é obrigatório.</li>';
+            }
+            else {
+                errorMessage = '<li>O campo valor é obrigatório.</li>';
+            }
+        }
+
+        return errorMessage;
+
+    }
+
+    function GetValue() {
+        var idimobiliaria = $('#ddlImobiliaria').val();
+        var idcategoria = $('#ddlCategoria').val();
+        var idtipo = $('#ddlTipo').val();
+        var idestado = $('#ddlEstado').val();
+        var idcidade = $('#ddlCidade').val();
+        var nome = $('#txtNome').val();
+        var bairro = $('#txtBairro').val();
+        var endereco = $('#txtEndereco').val();
+        var numero = 0;
+        if ($('#txtNumero').val() != '') {
+            numero = $('#txtNumero').val();
+        }
+
+        var complemento = $('#txtComplemento').val();
+        var cep = $('#txtCep').val();
+        var codigoimobiliaria = $('#txtCodigoImobiliaria').val();
+
+        var vagagaragem = 0;
+        if ($('#txtVagaGaragem').val() != '') {
+            vagagaragem = $('#txtVagaGaragem').val();
+        }
+
+        var quantidadesuite = 0;
+        if ($('#txtQuantidadeSuite').val() != '') {
+            quantidadesuite = $('#txtQuantidadeSuite').val();
+        }
+
+        var quantidadequarto = 0;
+        if ($('#txtQuantidadeQuarto').val() != '') {
+            quantidadequarto = $('#txtQuantidadeQuarto').val();
+        }
+
+        var areaterreno = 0;
+        if ($('#txtAreaTerreno').val() != '') {
+            areaterreno = $('#txtAreaTerreno').val();
+        }
+
+        var areaconstruida = 0;
+        if ($('#txtAreaConstruida').val() != '') {
+            areaconstruida = $('#txtAreaConstruida').val();
+        }
+
+        var aceitafinanciamento = $('#chkFinanciamento').is(':checked');
+        var valor = $('#txtValor').val();
+        //var publicar = $('#chkPublicar').is(':checked');
+        //var vendido = $('#chkVendido').is(':checked');
+        //var destaque = $('#chkDestaque').is(':checked');
+        var descricao = $('#txtDescricao').val();
+        return { idimobiliaria: idimobiliaria, idcategoria: idcategoria, idtipo: idtipo, idestado: idestado, idcidade: idcidade, nome: nome, bairro: bairro, endereco: endereco, numero: numero, complemento: complemento, cep: cep, codigoimobiliaria: codigoimobiliaria, vagagaragem: vagagaragem, quantidadesuite: quantidadesuite, quantidadequarto: quantidadequarto, areaterreno: areaterreno, areaconstruida: areaconstruida, aceitafinanciamento: aceitafinanciamento, valor: valor, descricao: descricao };
+    }
+
+</script>
+
+<h2>Imóvel</h2>
+
+<div class="box span10">
+    <div class="box-header well">
+        <h2><i class="icon-edit"></i> Novo</h2>
+        <div class="box-icon">
+            @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+            @*<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>*@
+
+        </div>
+    </div>
+    <div class="box-content">
+        <ul class="nav nav-tabs" id="myTab">
+            <li id="liImovel" class="active"><a href="#imovel">Imóvel</a></li>
+            <li id="liImagens"><a href="#images">Imagens</a></li>
+            <li><a href="#admin">Publicação</a></li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active" id="imovel">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="ddlImobiliaria">Imobiliária</label>
+                            <div class="controls">
+                                <select id="ddlImobiliaria">
+                                    @foreach (var item in @ViewBag.Imobiliarias)
+                                    {
+                                        <option value="@item.id">@item.nome</option>
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="ddlCategoria">Categoria</label>
+                            <div class="controls">
+                                <select id="ddlCategoria">
+                                    @foreach (var item in @ViewBag.Categorias)
+                                    {
+                                        <option value="@item.id">@item.nome</option>
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="ddlTipo">Tipo</label>
+                            <div class="controls">
+                                <select id="ddlTipo">
+                                    @foreach (var item in @ViewBag.Tipos)
+                                    {
+                                        <option value="@item.id">@item.nome</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtNome">Nome</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtNome" placeholder="Nome" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="ddlEstado">Estado</label>
+                            <div class="controls">
+                                <select id="ddlEstado">
+                                    @foreach (var item in @ViewBag.Estados)
+                                    {
+                                        <option value="@item.id">@item.sigla</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="ddlCidade">Cidade</label>
+                            <div class="controls">
+                                <select class="dropdown" id="ddlCidade"></select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtEndereco">Endereço</label>
+                            <div class="controls">
+                                <input class="text" id="txtEndereco" placeholder="Endereço" type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtCep">Cep</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtCep" placeholder="Cep" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtNumero">Número</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtNumero" placeholder="Número" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtBairro">Bairro</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtBairro" placeholder="Bairro" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtComplemento">Complemento</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtComplemento" placeholder="Complemento" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtCodigoImobiliaria">Código Imobiliária</label>
+                            <div class="controls">
+                                <input class="text" id="txtCodigoImobiliaria" placeholder="Código Imobiliária" type="text">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtVagaGaragem" class="control-label">Vaga de Garagem</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtVagaGaragem" placeholder="Quantidade de vagas" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtQuantidadeQuarto" class="control-label">Quantidade Quarto</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtQuantidadeQuarto" placeholder="Quantidade de quarto" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtQuantidadeSuite" class="control-label">Quantidade Suíte</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtQuantidadeSuite" placeholder="Quantidade Suíte" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtAreaTerreno" class="control-label">Área do Terreno</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtAreaTerreno" placeholder="Tamanho do terreno" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtAreaConstruida" class="control-label">Área Construída</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtAreaConstruida" placeholder="Área Construída" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtValor" class="control-label">Valor</label>
+                            <div class="controls">
+                                <input type="text" class="text" id="txtValor" placeholder="Valor" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="chkFinanciamento" class="control-label">Aceita Financiamento?</label>
+                            <div class="controls">
+                                <input type="checkbox" id="chkFinanciamento" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="txtDescricao" class="control-label">Descrição</label>
+                            <div class="controls">
+                                <textarea id="txtDescricao" class="autogrow" style="height: 47px;" placeholder="Descrição do imóvel"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" id="btnAddImovel"><i class="icon icon-white icon-save"></i> Salvar</button>
+                            <button type="button" class="btn btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+
+            <div class="tab-pane" id="images">
+                <form action="Upload" method="post" enctype="multipart/form-data" class="form-class">
+                    @Html.HiddenFor(m => m.idImovel)
+                    <fieldset>
+                        <div class="control-group">
+                            <label for="foto1" class="control-label">Foto 1</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.foto1, new { type = "file", accept = "image/*", multiple = "multiple" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="foto2" class="control-label">Foto 2</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.foto2, new { type = "file", accept = "image/*", multiple = "multiple" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="foto3" class="control-label">Foto 3</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.foto3, new { type = "file", accept = "image/*", multiple = "multiple" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="foto4" class="control-label">Foto 4</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.foto4, new { type = "file", accept = "image/*", multiple = "multiple" })
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="foto5" class="control-label">Foto 5</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.foto5, new { type = "file", accept = "image/*", multiple = "multiple" })
+                            </div>
+                        </div>
+
+
+                        <div class="box-header well" data-original-title="">
+                            <h2><i class="icon-picture"></i> Gallery</h2>
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+
+                            @if (ViewBag.Resultado != null || ViewBag.Resultado != false)
+                            {
+                                if (ViewBag.Images != null)
+                                {
+                                    <ul class="thumbnails gallery">
+                                        <li style="display: none;" id="image-1" class="thumbnail">
+                                            <a class="cboxElement" style="background:url(@Url.Content(string.Format("~/{0}{1}", ViewBag.Images.caminhofoto1, ViewBag.Images.nomefoto1)))" title="Sample Image 1" href="@Url.Content("~/img/gallery/1.jpg")"><img style="display: block;" class="grayscale" src="@Url.Content(" ~ />img/gallery/thumbs/1.jpg")" alt="Sample Image 1"></a>
+                                        </li>
+                                        @*<li id="image-2" class="thumbnail">
+                                                <a class="cboxElement" style="background:url(@Url.Content(" ~ />img/gallery/thumbs/2.jpg)")" title="Sample Image 2" href="@Url.Content("~/img/gallery/2.jpg")"><img style="display: block;" class="grayscale" src="@Url.Content(" ~ />img/gallery/thumbs/2.jpg")" alt="Sample Image 2"></a>
+                                            </li>
+                                            <li id="image-3" class="thumbnail">
+                                                <a class="cboxElement" style="background: url(@Url.Content(" ~ />img/gallery/thumbs/3.jpg)")" title="Sample Image 3" href="@Url.Content("~/img/gallery/3.jpg")"><img style="display: block;" class="grayscale" src="@Url.Content(" ~ />img/gallery/thumbs/3.jpg")" alt="Sample Image 3"></a>
+                                            </li>*@
+                                    </ul>
+
+                                }
+
+
+
+
+                            }
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="btnAddImages"><i class="icon icon-white icon-save"></i> Salvar</button>
+                            <button type="button" class="btn btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+
+            <div class="tab-pane" id="admin">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label for="chkDestaque" class="control-label">Destque?</label>
+                            <div class="controls">
+                                <input type="checkbox" id="chkDestaque" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="chkPublicar" class="control-label">Publicar?</label>
+                            <div class="controls">
+                                <label class="radio">
+                                    <input name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">
+                                    Sim
+                                </label>
+                                <div class="clearfix"></div>
+                                <label class="radio">
+                                    <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
+                                    Não
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label for="chkVendido" class="control-label">Vendido?</label>
+                            <div class="controls">
+                                <input type="checkbox" class="checkbox" id="chkVendido" />
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" id="btnAddAdmin"><i class="icon icon-white icon-save"></i> Salvar</button>
+                            <button type="button" class="btn btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="box-content">
+        <fieldset>
+            <div class="modal fade" id="pleaseWaitDialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Processando...</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="progress progress-striped">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            @if (ViewBag.Resultado != null && ViewBag.Resultado)
+            {
+                <div class="alert alert-error" id="alertMessage" style="display:block;">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Atenção</h4>
+                    <ul id="message"><li>Imagens adiconadas com sucesso.</li></ul>
+                </div>
+            }
+
+
+            <div class="alert alert-error" id="alertMessage">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <h4>Atenção</h4>
+                <ul id="message"></ul>
+            </div>
+        </fieldset>
+    </div>
+</div>

@@ -9,7 +9,7 @@ using Web.CredBox.Model.Entity;
 
 namespace Web.CredBox.Data.Repositories
 {
-    public class CidadeRepository:GenericData, ICidade
+    public class CidadeRepository : GenericData, ICidade
     {
         public IList<CidadeEntity> GetByIdEstado(int id)
         {
@@ -28,15 +28,17 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            cidades.Add(new CidadeEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                IdEstado = new EstadoEntity {id = GetAsInt(reader,"idestado")},
-                                nome = reader["nome"].ToString()
-                            });
+                                cidades.Add(new CidadeEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    IdEstado = new EstadoEntity { id = GetAsInt(reader, "idestado") },
+                                    nome = reader["nome"].ToString()
+                                });
+                            }
                         }
 
 

@@ -15,7 +15,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            ViewData["Estados"] = this.Estados(0);
+            ViewBag.Estados = this.ProjectDomain.EstadoBusiness.GetAll();
             return View();
         }
 
@@ -26,7 +26,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
             {
                 var idImobiliaria = int.Parse(id.Decrypt());
                 var imobiliaria = ProjectDomain.ImobiliariaBusiness.GetById(idImobiliaria);
-                ViewBag.Estados = this.Estados(imobiliaria.Estado.id);
+                ViewBag.Estados = ProjectDomain.EstadoBusiness.GetAll();
                 ViewBag.Cidades = ProjectDomain.CidadeBusiness.GetByIdEstado(imobiliaria.Estado.id);
                 return View(imobiliaria);
             }
@@ -38,7 +38,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-            ViewData["Estados"] = this.Estados(0);
+            ViewData["Estados"] = ProjectDomain.EstadoBusiness.GetAll();
             return View();
         }
 
@@ -121,7 +121,9 @@ namespace Web.CredBox.Areas.Admin.Controllers
                 var imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(idEstado, idCidade, nome, status);
 
                 if (imobiliarias.Count() > 0)
+
                     return View(imobiliarias);
+
                 else
                     return View(imobiliarias = null);
             }
@@ -132,29 +134,6 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         }
 
-        private IList<SelectListItem> Estados(int id)
-        {
-            var list = ProjectDomain.EstadoBusiness.GetAll();
-            var estados = new List<SelectListItem>();
-            estados.Add(new SelectListItem { Value = "0", Text = "Selecione" });
-            foreach (var item in list)
-            {
-                estados.Add(new SelectListItem { Text = item.sigla, Value = item.id.ToString() });
-            }
-            return estados;
-        }
-
-        private IList<SelectListItem> Cidades(int idEstado, int id)
-        {
-            var list = ProjectDomain.CidadeBusiness.GetByIdEstado(idEstado);
-            var cidades = new List<SelectListItem>();
-            cidades.Add(new SelectListItem { Value = "0", Text = "Selecione" });
-            foreach (var item in list)
-            {
-                cidades.Add(new SelectListItem { Text = item.nome, Value = item.id.ToString() });
-            }
-            return cidades;
-        }
         public ActionResult GetCidades(int idEstado)
         {
             try

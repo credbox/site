@@ -9,10 +9,12 @@ namespace Web.CredBox.Data.Provider
 {
     public interface IImovel : IRepository<ImovelEntity>
     {
-        bool Add(ImovelEntity imovel);
+        int Add(ImovelEntity imovel);
         bool Edit(ImovelEntity imovel);
-        IList<ImovelEntity> GetAll();
+        IList<ImovelEntity> GetAll(int idimobiliaria, bool publicar, bool vendido, string nome, string codigoimobiliaria, int idCategoria, int idTipo, int idEstado, int idCidade);
         ImovelEntity GetById(int id);
         IList<ImovelEntity> GetAllDestaque();
+
+        bool AddImages(ImovelEntity imovel);
     }
 }

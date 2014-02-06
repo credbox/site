@@ -98,25 +98,25 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            faleConoscos.Add(new FaleConoscoEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                Imovel = new ImovelEntity { id = GetAsInt(reader, "idimovel") },
-                                Assunto = new AssuntoEntity { nome = reader["assunto"].ToString() },
-                                nome = reader["nome"].ToString(),
-                                email = reader["email"].ToString(),
-                                telefone = reader["telefone"].ToString(),
-                                celular = reader["celular"].ToString(),
-                                descricao = reader["descricao"].ToString(),
-                                ativo = GetAsBoolean(reader, "ativo"),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao")
-                            });
+                                faleConoscos.Add(new FaleConoscoEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    Imovel = new ImovelEntity { id = GetAsInt(reader, "idimovel") },
+                                    Assunto = new AssuntoEntity { nome = reader["assunto"].ToString() },
+                                    nome = reader["nome"].ToString(),
+                                    email = reader["email"].ToString(),
+                                    telefone = reader["telefone"].ToString(),
+                                    celular = reader["celular"].ToString(),
+                                    descricao = reader["descricao"].ToString(),
+                                    ativo = GetAsBoolean(reader, "ativo"),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao")
+                                });
+                            }
                         }
-
-
                         return faleConoscos;
                     }
                     catch (Exception ex)
@@ -143,25 +143,26 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_id", id));
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            faleConosco = new FaleConoscoEntity
+                            if (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                Imovel = new ImovelEntity { id = GetAsInt(reader, "idimovel") },
-                                Assunto = new AssuntoEntity { id = GetAsInt(reader, "assunto") },
-                                nome = reader["nome"].ToString(),
-                                email = reader["email"].ToString(),
-                                telefone = reader["telefone"].ToString(),
-                                celular = reader["celular"].ToString(),
-                                descricao = reader["descricao"].ToString(),
-                                ativo = GetAsBoolean(reader, "ativo"),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao")
-                            };
+                                faleConosco = new FaleConoscoEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    Imovel = new ImovelEntity { id = GetAsInt(reader, "idimovel") },
+                                    Assunto = new AssuntoEntity { id = GetAsInt(reader, "assunto") },
+                                    nome = reader["nome"].ToString(),
+                                    email = reader["email"].ToString(),
+                                    telefone = reader["telefone"].ToString(),
+                                    celular = reader["celular"].ToString(),
+                                    descricao = reader["descricao"].ToString(),
+                                    ativo = GetAsBoolean(reader, "ativo"),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao")
+                                };
+                            }
+
                         }
-
-
                         return faleConosco;
                     }
                     catch (Exception ex)

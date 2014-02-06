@@ -91,18 +91,19 @@ namespace Web.CredBox.Data.Repositories
 
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            tipos.Add(new TipoEntity
+                            while (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                nome = reader["nome"].ToString(),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
-                            });
+                                tipos.Add(new TipoEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    nome = reader["nome"].ToString(),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { nome = reader["nomeUsuario"].ToString() },
+                                });
+                            }
                         }
-
 
                         return tipos;
                     }
@@ -130,17 +131,19 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_id", id));
                     try
                     {
-                        var reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (var reader = command.ExecuteReader())
                         {
-                            tipo = new TipoEntity
+                            if (reader.Read())
                             {
-                                id = GetAsInt(reader, "id"),
-                                nome = reader["nome"].ToString(),
-                                dataInclusao = GetAsDateTime(reader, "dataInclusao"),
-                                UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
+                                tipo = new TipoEntity
+                                {
+                                    id = GetAsInt(reader, "id"),
+                                    nome = reader["nome"].ToString(),
+                                    dataInclusao = GetAsDateTime(reader, "dataInclusao"),
+                                    UsuarioInclusao = new UsuarioEntity { id = GetAsInt(reader, "idUsuarioInclusao") },
 
-                            };
+                                };
+                            }
                         }
                         return tipo;
                     }

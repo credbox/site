@@ -1,9 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "Credbox";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 <script>
-    $(document).ready(function () {
+    $(document).ready(function ()
+    {
         $('#btnAdd').click(function () {
             Add();
         });
@@ -11,6 +12,10 @@
         $('#btnVoltar').click(function () {
             window.location.href = '@Url.Action("List","Imobiliaria")';
         });
+
+        $('#alertMessage').hide('show');
+        $('#ddlEstado').append('<option value="0" selected="selected">Selecione</option>');
+        $('#ddlCidade').append('<option value="0">Selecione</option>');
 
         $("#txtContatoTelefone").mask("(99) 9999-9999?9");
         $("#txtContatoCelular").mask("(99) 9999-9999?9");
@@ -48,11 +53,6 @@
         });
 
 
-
-
-        $('#alertMessage').hide('show');
-        $('#ddlCidade').append('<option value="0">Selecione</option>');
-
         $('#ddlEstado').change(function () {
             var idEstado = $('#ddlEstado').val();
             ZerarCidade();
@@ -62,30 +62,41 @@
     });
 
     function LoadCidade(idEstado) {
-        $('#pleaseWaitDialog').show();
-        $.ajax({
-            type: "GET",
-            data: GetValueEstado(),
-            url: '@Url.Action("GetCidades", "Imobiliaria")',
-            error: function (data) {
-                $('#alertMessage').show('show');
-                $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                $('#pleaseWaitDialog').hide();
-            },
-            success: function (data) {
-                ZerarCidade();
-                $('#ddlCidade').append('<option value="">Selecione</option>');
-                $.each(data, function (i, cidade) {
-                    $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
-                });
-                $('#pleaseWaitDialog').hide();
-            }
-        });
+        $('#pleaseWaitDialog').modal('show');
+        if (idEstado > 0)
+        {
+            $.ajax({
+                type: "GET",
+                data: GetValueEstado(),
+                url: '@Url.Action("GetCidades", "Imobiliaria")',
+                error: function (data) {
+                    $('#alertMessage').show('show');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').modal('hide');
+                },
+                success: function (data) {
+                    ZerarCidade();
+                    $('#ddlCidade').append('<option value="">Selecione</option>');
+                    $.each(data, function (i, cidade) {
+                        $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                    });
+                    $('#pleaseWaitDialog').modal('hide');
+                }
+            });
+        }
+        else
+        {
+            ZerarCidade();
+            $('#ddlCidade').append('<option value="0">Selecione</option>');
+            $('#alertMessage').show('show');
+            $('#message').html('<li>Escolha uma opção diferente de Selecione.</li>');
+            $('#pleaseWaitDialog').model('hide');
+        }
     }
 
 
     function Add() {
-        $('#pleaseWaitDialog').show();
+        $('#pleaseWaitDialog').modal('show');
         var erroMessage = GetValidation();
         if (erroMessage == '') {
             $.ajax({
@@ -95,20 +106,20 @@
                 error: function (data) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 },
                 success: function (data) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>' + data + '</li>');
                     clearControl();
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
             });
         }
         else {
             $('#alertMessage').show('show');
             $('#message').html(erroMessage);
-            $('#pleaseWaitDialog').hide();
+            $('#pleaseWaitDialog').modal('hide');
         }
     }
 
@@ -194,110 +205,148 @@
     }
 </script>
 
-<h2>Add</h2>
+<h2>Imobiliária</h2>
+<div class="box span10">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="icon-edit"></i> Nova</h2>
+        <div class="box-icon">
+            @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+            @*<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>*@
+            @*<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>*@
+        </div>
+    </div>
+    <div class="box-content">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="ddlEstado">Estado</label>
+                    <div class="controls">
+                        <select id="ddlEstado">
+                            @foreach (var item in @ViewBag.Estados)
+                            {
+                                <option value="@item.id">@item.nome</option>
+                            }
+                        </select>
 
-<fieldset>
+                    </div>
+                </div>
 
-    <div class="control-group">
-        <label class="control-label" for="ddlEstado">Estado</label>
-        <div class="controls">
-            @Html.DropDownList("ddlEstado", new SelectList((System.Collections.IEnumerable)ViewData["Estados"], "Value", "Text"))
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="ddlCidade">Cidade</label>
-        <div class="controls">
-            <select id="ddlCidade" name="ddlCidade"></select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtNome">Nome</label>
-        <div class="controls">
-            <input type="text" id="txtNome" placeholder="Nome" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtEndereco">Endereço</label>
-        <div class="controls">
-            <input type="text" id="txtEndereco" placeholder="Endereço" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtCep">Cep</label>
-        <div class="controls">
-            <input type="text" id="txtCep" placeholder="Cep" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtNumero">Número</label>
-        <div class="controls">
-            <input type="text" id="txtNumero" placeholder="Número" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtBairro">Bairro</label>
-        <div class="controls">
-            <input type="text" id="txtBairro" placeholder="Bairro" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtComplemento">Complemento</label>
-        <div class="controls">
-            <input type="text" id="txtComplemento" placeholder="Complemento" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContato">Contato</label>
-        <div class="controls">
-            <input type="text" id="txtContato" placeholder="Contato" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContatoTelefone">Telefone</label>
-        <div class="controls">
-            <input type="text" id="txtContatoTelefone" placeholder="Telefone" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContatoCelular">Celular</label>
-        <div class="controls">
-            <input type="text" id="txtContatoCelular" placeholder="Celular" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContatoEmail">E-mail</label>
-        <div class="controls">
-            <input type="text" id="txtContatoEmail" placeholder="E-mail" />
-        </div>
-    </div>
+                <div class="control-group">
+                    <label class="control-label" for="ddlCidade">Cidade</label>
+                    <div class="controls">
+                        <select id="ddlCidade" name="ddlCidade"></select>
 
-    <div class="control-group">
-        <label class="control-label" for="chkAtivo">Ativo</label>
-        <div class="controls">
-            <input type="checkbox" id="chkAtivo" />
-        </div>
-    </div>
+                    </div>
+                </div>
 
-    <h2>Contatos</h2>
-    <hr />
+                <div class="control-group">
+                    <label class="control-label" for="txtNome">Nome</label>
+                    <div class="controls">
+                        <input class="text" id="txtNome" placeholder="Nome" type="text">
+                    </div>
+                </div>
 
-    <div class="form-actions">
-        <button type="button" id="btnAdd" class="btn-primary btn-small">Salvar</button>
-        <button type="button" id="btnVoltar" class="btn-primary btn-small">Voltar</button>
+                <div class="control-group">
+                    <label class="control-label" for="txtEndereco">Endereço</label>
+                    <div class="controls">
+                        <input class="text" id="txtEndereco" placeholder="Endereço" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtCep">Cep</label>
+                    <div class="controls">
+                        <input class="text" id="txtCep" placeholder="Cep" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtNumero">Número</label>
+                    <div class="controls">
+                        <input class="text" id="txtNumero" placeholder="Número" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtBairro">Bairro</label>
+                    <div class="controls">
+                        <input class="text" id="txtBairro" placeholder="Bairro" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtComplemento">Complemento</label>
+                    <div class="controls">
+                        <input class="text" id="txtComplemento" placeholder="Complemento" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContato">Contato</label>
+                    <div class="controls">
+                        <input class="text" id="txtContato" placeholder="Contato" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContatoTelefone">Telefone</label>
+                    <div class="controls">
+                        <input class="text" id="txtContatoTelefone" placeholder="Telefone" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContatoCelular">Celular</label>
+                    <div class="controls">
+                        <input class="text" id="txtContatoCelular" placeholder="Celular" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContatoEmail">E-mail</label>
+                    <div class="controls">
+                        <input class="text" id="txtContatoEmail" placeholder="E-mail" type="text">
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="chkAtivo">Ativo</label>
+                    <div class="controls">
+                        <input class="checkbox" id="chkAtivo" type="checkbox" />
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary" id="btnAdd"><i class="icon icon-white icon-save"></i> Salvar</button>
+                    <button type="button" class="btn" id="btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+                </div>
+
+
+
+                <div class="modal fade" id="pleaseWaitDialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Processando...</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="alert alert-error" id="alertMessage">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Atenção</h4>
+                    <ul id="message"></ul>
+                </div>
+            </fieldset>
+        </form>
 
     </div>
-    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-header">
-            <h1>Processando...</h1>
-        </div>
-        <div class="modal-body">
-            <div class="progress progress-striped active">
-                <div class=" bar " style="width: 100%;"></div>
-            </div>
-        </div>
-    </div>
-    <div class="alert alert-success" id="alertMessage">
-        <h4>Atenção</h4>
-        <ul id="message"> </ul>
-    </div>
-</fieldset>
+</div>

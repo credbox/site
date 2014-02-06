@@ -73,22 +73,14 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         }
 
-        [HttpPost]
+
         public ActionResult GetAll(string nome)
         {
-            try
-            {
-                var assuntos = ProjectDomain.AssuntoBusiness.GetAll(nome);
-                if (assuntos.Count() > 0)
-                    return View(assuntos);
-                else
-                    return View(assuntos = null);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
+            var assuntos = ProjectDomain.AssuntoBusiness.GetAll(nome);
+            if (assuntos.Count() > 0)
+                return View(assuntos);
+            else
+                return View(assuntos = null);
         }
 
     }

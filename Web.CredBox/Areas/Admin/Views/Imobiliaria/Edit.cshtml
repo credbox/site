@@ -1,19 +1,22 @@
 ﻿@model Web.CredBox.Model.Entity.ImobiliariaEntity
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Credbox";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
-
 <script>
     $(document).ready(function () {
         $('#btnEdit').click(function () {
-            var idimobiliaria = $('#btnEdit').attr("imobiliaria");
-            Edit(idimobiliaria);
+            var idImobiliaria = $('#btnEdit').attr("imobiliaria");
+            Update(idImobiliaria);
         });
 
         $('#btnVoltar').click(function () {
             window.location.href = '@Url.Action("List","Imobiliaria")';
         });
+
+        $('#alertMessage').hide('show');
+        $('#ddlEstado').append('<option value="0">Selecione</option>');
+        $('#ddlCidade').append('<option value="0">Selecione</option>');
 
         $("#txtContatoTelefone").mask("(99) 9999-9999?9");
         $("#txtContatoCelular").mask("(99) 9999-9999?9");
@@ -23,14 +26,12 @@
             var email = $("#txtContatoEmail").val();
             if (email != "") {
                 var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-                if (filtro.test(email) == false)
-                {
+                if (filtro.test(email) == false) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>Este endereço de email não é válido.</li>');
                 }
             }
         });
-
 
         $("#txtNumero").keydown(function (event) {
             if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
@@ -53,10 +54,6 @@
         });
 
 
-        $('#alertMessage').hide('show');
-        $('#ddlEstado').append('<option value="0">Selecione</option>');
-        $('#ddlCidade').append('<option value="0">Selecione</option>');
-
         $('#ddlEstado').change(function () {
             var idEstado = $('#ddlEstado').val();
             ZerarCidade();
@@ -65,10 +62,8 @@
 
     });
 
-
-
     function LoadCidade(idEstado) {
-        $('#pleaseWaitDialog').show();
+        $('#pleaseWaitDialog').modal('show');
         if (idEstado > 0) {
             $.ajax({
                 type: "GET",
@@ -76,7 +71,8 @@
                 url: '@Url.Action("GetCidades", "Imobiliaria")',
                 error: function (data) {
                     $('#alertMessage').show('show');
-                    $('#message').html('Não foi possível processar sua solicitação. Tente novamente mais tarde.');
+                    $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
+                    $('#pleaseWaitDialog').modal('hide');
                 },
                 success: function (data) {
                     ZerarCidade();
@@ -84,43 +80,45 @@
                     $.each(data, function (i, cidade) {
                         $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
                     });
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
             });
         }
         else {
+            ZerarCidade();
             $('#ddlCidade').append('<option value="0">Selecione</option>');
             $('#alertMessage').show('show');
             $('#message').html('<li>Escolha uma opção diferente de Selecione.</li>');
-            $('#pleaseWaitDialog').hide();
+            $('#pleaseWaitDialog').model('hide');
         }
     }
 
-    function Edit(idimobiliaria) {
-        $('#pleaseWaitDialog').show();
+
+    function Update(idImobiliaria) {
+        $('#pleaseWaitDialog').modal('show');
         var erroMessage = GetValidation();
         if (erroMessage == '') {
             $.ajax({
                 type: "GET",
-                data: GetValue(idimobiliaria),
+                data: GetValue(idImobiliaria),
                 url: '@Url.Action("Update", "Imobiliaria")',
                 error: function (data) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>Não foi possível processar sua solicitação. Tente novamente mais tarde.</li>');
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 },
                 success: function (data) {
                     $('#alertMessage').show('show');
                     $('#message').html('<li>' + data + '</li>');
                     clearControl();
-                    $('#pleaseWaitDialog').hide();
+                    $('#pleaseWaitDialog').modal('hide');
                 }
             });
         }
         else {
             $('#alertMessage').show('show');
             $('#message').html(erroMessage);
-            $('#pleaseWaitDialog').hide();
+            $('#pleaseWaitDialog').modal('hide');
         }
     }
 
@@ -157,7 +155,6 @@
             }
         }
 
-
         var email = $("#txtContatoEmail").val();
         if (email != "") {
             var filtro = /^([\w-]+(?:\.[\w-]+)*)@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -174,8 +171,8 @@
     }
 
     function GetValue(idImobiliaria) {
-        var idImobiliaria = idImobiliaria;
         var idEstado = $('#ddlEstado').val();
+
         var idCidade = $('#ddlCidade').val();
         var nome = $('#txtNome').val();
         var endereco = $('#txtEndereco').val();
@@ -188,12 +185,16 @@
         var emailContato = $('#txtContatoEmail').val();
         var complemento = $('#txtComplemento').val();
         var ativo = $('#chkAtivo').is(':checked');
-        return { idImobiliaria: idImobiliaria, idEstado: idEstado, idCidade: idCidade, nome: nome, endereco: endereco, cep: cep, numero: numero, bairro: bairro, contato: contato, telefoneContato: telefoneContato, celularContato: celularContato, emailContato: emailContato, emailContato: emailContato, ativo: ativo };
+        return {
+            idImobiliaria: idImobiliaria, idEstado: idEstado, idCidade: idCidade, nome: nome, endereco: endereco, cep: cep, numero: numero, bairro: bairro, contato: contato,
+            telefoneContato: telefoneContato, celularContato: celularContato, emailContato: emailContato, complemento: complemento, ativo: ativo
+        };
     }
 
     function clearControl() {
         $('#ddlEstado').val('0');
-        $('#ddlCidade').val('0');
+        ZerarCidade();
+        $('#ddlCidade').append('<option value="0">Selecione</option>');
         $('#txtNome').val('');
         $('#txtEndereco').val('');
         $('#txtCep').val('');
@@ -204,122 +205,175 @@
         $('#txtContatoCelular').val('');
         $('#txtContatoEmail').val('');
         $('#txtComplemento').val('');
+        $('#chkAtivo').attr('checked', false);
     }
-
-
 </script>
+<h2>Imobiliária</h2>
 
-<h2>Edit</h2>
-<fieldset>
 
-    <div class="control-group">
-        <label class="control-label" for="ddlEstado">Estado</label>
-        <div class="controls">
-            @Html.DropDownListFor(m => m.Estado.id, new SelectList((System.Collections.IEnumerable)ViewData["Estados"], "Value", "Text"), new { id = "ddlEstado" })
+<div class="box span10">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="icon-edit"></i> Editar</h2>
+        <div class="box-icon">
+            @*<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>*@
+            @*<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>*@
+            @*<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>*@
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="ddlCidade">Cidade</label>
-        <div class="controls">
-            <select id="ddlCidade">
-                @foreach (var item in @ViewBag.Cidades)
-                {
-                    if (@Model.Cidade.id == @item.id)
-                    {
-                        <option selected="selected" value="@item.id">@item.nome</option>
-                    }
-                    else
-                    {
-                        <option value="@item.id">@item.nome</option>
-                    }
-                }
-            </select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtNome">nome</label>
-        <div class="controls">
-            <input type="text" id="txtNome" value="@Model.nome" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtEndereco">Endereco</label>
-        <div class="controls">
-            <input type="text" id="txtEndereco" value="@Model.endereco" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtCep">Cep</label>
-        <div class="controls">
-            <input type="text" id="txtCep" value="@Model.cep" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtNumero">Número</label>
-        <div class="controls">
-            <input type="text" id="txtNumero" value="@Model.numero" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtBairro">Bairro</label>
-        <div class="controls">
-            <input type="text" id="txtBairro" value="@Model.bairro" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtComplemento">Complemento</label>
-        <div class="controls">
-            <input type="text" id="txtComplemento" value="@Model.complemento" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContato">Contato</label>
-        <div class="controls">
-            <input type="text" id="txtContato" value="@Model.contato" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContatoTelefone">Telefone</label>
-        <div class="controls">
-            <input type="text" id="txtContatoTelefone" value="@Model.telefoneContato" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContatoCelular">Celular</label>
-        <div class="controls">
-            <input type="text" id="txtContatoCelular" value="@Model.celularContato" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="txtContatoEmail">E-mail</label>
-        <div class="controls">
-            <input type="text" id="txtContatoEmail" value="@Model.emailContato" />
-        </div>
-    </div>
+    <div class="box-content">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="ddlEstado">Estado</label>
+                    <div class="controls">
+                        <select id="ddlEstado">
 
-    <div class="control-group">
-        <label class="control-label" for="chkAtivo">Ativo</label>
-        <div class="controls">
-            <input type="checkbox" id="chkAtivo" checked="@Model.ativo" />
-        </div>
-    </div>
+                            @foreach (var item in @ViewBag.Estados)
+                            {
+                                if (@item.id == @Model.Estado.id)
+                                {
+                                    <option selected="selected" value="@item.id">@item.nome</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id">@item.nome</option>
+                                }
+                            }
 
-    <div class="form-actions">
-        <button type="button" id="btnEdit" imobiliaria="@Model.id" class=" btn-primary btn-small">Salvar</button>
-        <button type="button" id="btnVoltar" class=" btn-primary btn-small">Voltar</button>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="ddlCidade">Cidade</label>
+                    <div class="controls">
+                        <select id="ddlCidade" name="ddlCidade">
+                            @foreach (var item in @ViewBag.Cidades)
+                            {
+                                if (@item.id == @Model.Cidade.id)
+                                {
+                                    <option selected="selected" value="@item.id">@item.nome</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id">@item.nome</option>
+                                }
+                            }
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtNome">Nome</label>
+                    <div class="controls">
+                        <input class="text" id="txtNome" value="@Model.nome" placeholder="Nome" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtEndereco">Endereço</label>
+                    <div class="controls">
+                        <input class="text" id="txtEndereco" value="@Model.endereco" placeholder="Endereço" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtCep">Cep</label>
+                    <div class="controls">
+                        <input class="text" id="txtCep" value="@Model.cep" placeholder="Cep" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtNumero">Número</label>
+                    <div class="controls">
+                        <input class="text" id="txtNumero" value="@Model.numero" placeholder="Número" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtBairro">Bairro</label>
+                    <div class="controls">
+                        <input class="text" id="txtBairro" value="@Model.bairro" placeholder="Bairro" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtComplemento">Complemento</label>
+                    <div class="controls">
+                        <input class="text" id="txtComplemento" value="@Model.complemento" placeholder="Complemento" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContato">Contato</label>
+                    <div class="controls">
+                        <input class="text" id="txtContato" value="@Model.contato" placeholder="Contato" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContatoTelefone">Telefone</label>
+                    <div class="controls">
+                        <input class="text" id="txtContatoTelefone" value="@Model.telefoneContato" placeholder="Telefone" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContatoCelular">Celular</label>
+                    <div class="controls">
+                        <input class="text" id="txtContatoCelular" value="@Model.celularContato" placeholder="Celular" type="text">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="txtContatoEmail">E-mail</label>
+                    <div class="controls">
+                        <input class="text" id="txtContatoEmail" value="@Model.emailContato" placeholder="E-mail" type="text">
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="chkAtivo">Ativo</label>
+                    <div class="controls">
+                        <input class="checkbox" id="chkAtivo" checked="@Model.ativo" type="checkbox" />
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary" imobiliaria="@Model.id" id="btnEdit"><i class="icon icon-white icon-save"></i> Salvar</button>
+                    <button type="button" class="btn" id="btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
+
+                </div>
+
+
+
+                <div class="modal fade" id="pleaseWaitDialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Processando...</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <div class="alert alert-error" id="alertMessage">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Atenção</h4>
+                    <ul id="message"></ul>
+                </div>
+            </fieldset>
+        </form>
+
     </div>
-    <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-        <div class="modal-header">
-            <h1>Processando...</h1>
-        </div>
-        <div class="modal-body">
-            <div class="progress progress-striped active">
-                <div class=" bar " style="width: 100%;"></div>
-            </div>
-        </div>
-    </div>
-    <div class="alert alert-success" id="alertMessage">
-        <h4>Atenção</h4>
-        <ul id="message"> </ul>
-    </div>
-</fieldset>
+</div>

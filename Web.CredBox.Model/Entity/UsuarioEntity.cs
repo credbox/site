@@ -25,6 +25,8 @@ namespace Web.CredBox.Model.Entity
         public bool ativo { get; set; }
         [Required]
         public bool emailNotificacao { get; set; }
+
+        public bool Administrar { get; set; }
         public DateTime dataInclusao { get; set; }
         public UsuarioEntity UsuarioInclusao { get; set; }
     }

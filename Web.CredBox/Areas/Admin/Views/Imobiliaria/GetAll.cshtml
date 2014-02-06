@@ -58,30 +58,26 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @item.nome
-                    </td>
-                    <td>
-                        @item.Estado.sigla
-                    </td>
-                    <td>
-                        @item.Cidade.nome
-                    </td>
+                    <td>@item.nome</td>
+                    <td class="center">@item.Estado.sigla</td>
+                    <td class="center">@item.Cidade.nome</td>
+                    <td class="center">@item.contato</td>
+                    @if (@item.ativo)
+                    {
+                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.ativo)</span> </td>
+                    }
+                    else
+                    {
+                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.ativo)</span> </td>
+                    }
 
-                    <td>
-                        @item.contato
-                    </td>
-                    <td>
-                        @Web.CredBox.Util.ConvertValue.BoolToString(@item.ativo)
-                    </td>
-                    <td>
-                        @item.dataInclusao.ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
-                        @item.UsuarioInclusao.nome
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Edit", "Imobiliaria", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })" class="btn-primary btn-small">Editar</a>
+                    <td class="center">@item.dataInclusao.ToString("dd/MM/yyyy")</td>
+                    <td class="center">@item.UsuarioInclusao.nome</td>
+                    <td class="center">
+                        <a class="btn btn-success" href="@Url.Action("Edit", "Imobiliaria", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
+                            <i class="icon-edit icon-white"></i>
+                            Editar
+                        </a>
                     </td>
                 </tr>
             }
@@ -90,6 +86,7 @@
     <script>
 
         $(document).ready(function () {
+            $('#divBusca').show();
             $('#alertMessage').hide();
         });
     </script>
@@ -99,6 +96,7 @@ else
     <script>
 
         $(document).ready(function () {
+            $('#divBusca').hide();
             $('#alertMessage').show('show');
             $('#message').html('<li>Nenhuma imobiliária encontrada.</li>');
         });
