@@ -23,7 +23,7 @@
     <div class="header">
         <div class="max-width">
             <a class="logo" href="@Url.Action("Index","Default")"><img src="@Url.Content("~/Content/Images/logo-credbox.png")" /></a>
-            <a href="btn-restrict" class="btn-painelcontrole"></a>
+            <a href="javascript:void(0)" class="btn-painelcontrole"></a>
             <a href="chat"></a>
             <form class="code-search">
                 <label>
@@ -61,6 +61,36 @@
         </div>
         
     </div>
-
+    <div class="modal-interessei2"></div>
+    <div class="modal-restrito">
+        <div class="amount-modal">
+            <div class="title-modal">
+                Identifique-se
+            </div>
+            <div class="content-modal">
+                <form id="login">
+                    <label>E-mail<br /><input type="text" /></label>
+                    <label>Senha<br /><input type="password" /></label>
+                    <button class="float-l">Esqueci a Senha</button><button class="float-r">Acessar</button>
+                </form><div class="clear"></div>
+                <form id="lembrasenha" style="display:none;">
+                    <p>Preencha o campo abaixo.</p>
+                    <label>E-mail<br /><input type="text" /></label>
+                    <button class="float-l">Voltar</button><button class="float-r">Enviar Email</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    jQuery(document).ready(function () {
+        $(".btn-painelcontrole").click(function () {
+            $(".modal-restrito, .modal-interessei2").show();
+        });
+
+        $(".modal-interessei2").click(function () {
+            $(".modal-restrito, .modal-interessei2").hide();
+        });
+    });
+</script>
 </html>

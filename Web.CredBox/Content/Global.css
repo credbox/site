@@ -817,7 +817,7 @@ div.line-bottom span.metragrem
     z-index:1000;
 }
 
-.modal-interessei
+.modal-interessei, .modal-restrito
 {
     display:none;
     z-index:1001;
@@ -842,7 +842,7 @@ div.line-bottom span.metragrem
 
 }
 
-div.modal-interessei div.amount-modal div.title-modal
+div.modal-interessei div.amount-modal div.title-modal, div.modal-restrito div.amount-modal div.title-modal
 {
     margin:0;
     cursor:default;
