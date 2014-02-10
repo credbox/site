@@ -65,18 +65,19 @@
     <div class="modal-restrito">
         <div class="amount-modal">
             <div class="title-modal">
-                Identifique-se
+                Identifique-se <span class="glyphicon glyphicon-remove-circle float-r"></span>
             </div>
             <div class="content-modal">
                 <form id="login">
                     <label>E-mail<br /><input type="text" /></label>
                     <label>Senha<br /><input type="password" /></label>
-                    <button class="float-l">Esqueci a Senha</button><button class="float-r">Acessar</button>
+                    <a href="javascript:void(0)" class="float-l" id="forgetpass">Esqueci a Senha</a><button class="float-r">Acessar</button>
                 </form><div class="clear"></div>
-                <form id="lembrasenha" style="display:none;">
+                <form id="lembrarsenha" style="display:none;">
                     <p>Preencha o campo abaixo.</p>
                     <label>E-mail<br /><input type="text" /></label>
-                    <button class="float-l">Voltar</button><button class="float-r">Enviar Email</button>
+                    <a href="javascript:void(0)" class="float-l" id="backlogin">Voltar</a><button class="float-r">Enviar Email</button>
+                    <div class="clear"></div>
                 </form>
             </div>
         </div>
@@ -91,6 +92,23 @@
         $(".modal-interessei2").click(function () {
             $(".modal-restrito, .modal-interessei2").hide();
         });
+
+        $('#forgetpass').click(function () {
+           
+            $('#login').hide();
+            $('#lembrarsenha').show();
+           
+        });
+
+        $('#backlogin').click(function () {
+            $('#lembrarsenha').hide();
+                $('#login').show();            
+        });
+        $(".modal-restrito .glyphicon-remove-circle").click(function () {
+            $(".modal-restrito, .modal-interessei2").hide();
+        });
+        
+        
     });
 </script>
 </html>

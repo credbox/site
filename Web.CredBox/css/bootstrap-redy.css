@@ -4455,3 +4455,15 @@ i[class^="icon-"] {
 .invisible {
   visibility: hidden;
 }
+
+
+
+html body div.container-fluid div.row-fluid div.span2 div.well ul.nav li a.ajax-link
+{
+
+}
+
+html body div.container-fluid div.row-fluid div#content.span10 div.box div.box-content form.form-horizontal fieldset div.control-group div.controls input#txtNome.input-xlarge
+{
+    /*padding:16px;*/
+}
