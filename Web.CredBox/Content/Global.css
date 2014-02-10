@@ -191,7 +191,7 @@ body {
 }
 
 
-.header-default.header-seuimovel {
+.header-default.header-seuimovel, .content .institucional {
   background-image: url("../content/images/fundo-header-generic.png");
   background-position: center center;
   background-repeat: no-repeat;
@@ -199,6 +199,19 @@ body {
   height: auto;
   width: 100%;
 }
+
+ .content .institucional
+{
+    border-bottom:0;
+    min-height:100px;
+    margin-top:25px;
+    padding-top: 50px;
+}
+
+    .content .institucional h1, .content .institucional h2
+    {
+        margin:0;
+    }
 
 .search-default
 {

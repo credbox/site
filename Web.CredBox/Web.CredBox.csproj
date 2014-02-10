@@ -145,7 +145,10 @@
     <Compile Include="Areas\Admin\Controllers\UsuarioController.cs" />
     <Compile Include="Areas\Admin\Models\ImovelUpload.cs" />
     <Compile Include="BaseController.cs" />
+    <Compile Include="Controllers\ContatoController.cs" />
+    <Compile Include="Controllers\CredboxController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DivulgarController.cs" />
     <Compile Include="Controllers\SeuImovelController.cs" />
     <Compile Include="Credbox.cs" />
     <Compile Include="Global.asax.cs">
@@ -413,7 +416,22 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="static\credbox-config.xml" />
+    <Content Include="static\css\areas\admin\bootstrap-responsive.css" />
+    <Content Include="static\css\areas\admin\bootstrap-responsive.min.css" />
+    <Content Include="static\css\areas\admin\bootstrap-theme.css" />
+    <Content Include="static\css\areas\admin\bootstrap-theme.min.css" />
+    <Content Include="static\css\areas\admin\bootstrap.css" />
+    <Content Include="static\css\areas\admin\bootstrap.min.css" />
+    <Content Include="static\css\areas\admin\style.css" />
+    <Content Include="static\fonts\admin\glyphicons-halflings-regular.svg" />
+    <Content Include="static\images\areas\admin\error.png" />
+    <Content Include="static\images\areas\admin\glyphicons-halflings-white.png" />
+    <Content Include="static\images\areas\admin\glyphicons-halflings.png" />
+    <Content Include="static\images\areas\admin\valid.png" />
     <Content Include="static\img\breadcrumb-arrow.png" />
+    <Content Include="static\script\areas\admin\bootstrap.js" />
+    <Content Include="static\script\areas\admin\bootstrap.min.js" />
+    <Content Include="static\script\areas\admin\jquery.maskedinput.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -537,6 +555,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Home\Home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contato\Index.cshtml" />
+    <Content Include="Views\Credbox\Index.cshtml" />
+    <Content Include="Views\Divulgar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="static\fonts\admin\glyphicons-halflings-regular.eot" />
+    <Content Include="static\fonts\admin\glyphicons-halflings-regular.ttf" />
+    <Content Include="static\fonts\admin\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

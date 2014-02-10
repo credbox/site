@@ -142,11 +142,11 @@ body {
   text-shadow:0 -1px 1px rgba(0, 0, 0, 0.2)
 }
 a {
-  color: #CC3364;
+  color: #E91D24;
   text-decoration: none;
 }
 a:hover {
-  color: #CC0041;
+  color: #E91D24;
   text-decoration: underline;
 }
 .row {
@@ -333,6 +333,7 @@ a:hover {
 .container-fluid {
   padding-right: 20px;
   padding-left: 20px;
+
   *zoom: 1;
 }
 .container-fluid:before,
@@ -365,7 +366,7 @@ h6 {
   margin: 0;
   font-family: 'Karla', sans-serif;
   font-weight: bold;
-  color: #CC0041;
+  color: #E91D24;
   text-rendering: optimizelegibility;
 }
 h1 small,
@@ -3091,7 +3092,7 @@ input[type="submit"].btn.btn-mini {
   line-height: 1;
   color: #ffffff;
   background-color: #CC3364;
-  border: 1px solid #CC0041;
+  border: 1px solid #E91D24;
   -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
   -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
   box-shadow: inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15);
@@ -4206,7 +4207,7 @@ a.badge:hover {
   font-family: 'Karla', sans-serif;
 }
 .navbar .navbar-inner {
-  background-color: #CC0041;
+  background-color: rgb(164,30,33);
 }
 .navbar-inner{
  background: rgb(164,30,33); /* Old browsers */
