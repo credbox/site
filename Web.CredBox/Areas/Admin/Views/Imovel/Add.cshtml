@@ -48,10 +48,19 @@
                 },
                 success: function (data) {
                     ZerarCidade();
+                    $('#ddlCidade').removeAttr('data-rel');
                     $('#ddlCidade').append('<option value="0">Selecione</option>');
+                    var contador = 1;
                     $.each(data, function (i, cidade) {
                         $('#ddlCidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+
+                        var idLi = 'ddlEstado_chzn_o_' + contador;
+                        $('.chzn-results').append('<li id="' + idLi + '"' + 'class="active-result" style=' + ' ' + '>' + cidade.nome + '</li>')
+                        contador += 1;
+
                     });
+
+                    $('#ddlCidade').attr('data-rel', 'chosen');
                     $('#pleaseWaitDialog').modal('hide');
                 }
             });
@@ -246,7 +255,6 @@
         <ul class="nav nav-tabs" id="myTab">
             <li id="liImovel" class="active"><a href="#imovel">Imóvel</a></li>
             <li id="liImagens"><a href="#images">Imagens</a></li>
-            <li><a href="#admin">Publicação</a></li>
         </ul>
 
         <div id="myTabContent" class="tab-content">
@@ -256,12 +264,14 @@
                         <div class="control-group">
                             <label class="control-label" for="ddlImobiliaria">Imobiliária</label>
                             <div class="controls">
-                                <select id="ddlImobiliaria">
+
+                                <select id="ddlImobiliaria" data-rel="chosen">
                                     @foreach (var item in @ViewBag.Imobiliarias)
                                     {
                                         <option value="@item.id">@item.nome</option>
                                     }
                                 </select>
+
 
                             </div>
                         </div>
@@ -269,7 +279,7 @@
                         <div class="control-group">
                             <label class="control-label" for="ddlCategoria">Categoria</label>
                             <div class="controls">
-                                <select id="ddlCategoria">
+                                <select id="ddlCategoria" data-rel="chosen">
                                     @foreach (var item in @ViewBag.Categorias)
                                     {
                                         <option value="@item.id">@item.nome</option>
@@ -282,7 +292,7 @@
                         <div class="control-group">
                             <label class="control-label" for="ddlTipo">Tipo</label>
                             <div class="controls">
-                                <select id="ddlTipo">
+                                <select id="ddlTipo" data-rel="chosen">
                                     @foreach (var item in @ViewBag.Tipos)
                                     {
                                         <option value="@item.id">@item.nome</option>
@@ -301,7 +311,7 @@
                         <div class="control-group">
                             <label class="control-label" for="ddlEstado">Estado</label>
                             <div class="controls">
-                                <select id="ddlEstado">
+                                <select id="ddlEstado" data-rel="chosen">
                                     @foreach (var item in @ViewBag.Estados)
                                     {
                                         <option value="@item.id">@item.sigla</option>
@@ -313,7 +323,7 @@
                         <div class="control-group">
                             <label class="control-label" for="ddlCidade">Cidade</label>
                             <div class="controls">
-                                <select class="dropdown" id="ddlCidade"></select>
+                                <select id="ddlCidade" data-rel="chosen"></select>
                             </div>
                         </div>
 
@@ -462,85 +472,59 @@
                                 @Html.TextBoxFor(model => model.foto5, new { type = "file", accept = "image/*", multiple = "multiple" })
                             </div>
                         </div>
-
-
-                        <div class="box-header well" data-original-title="">
-                            <h2><i class="icon-picture"></i> Gallery</h2>
-                            <div class="box-icon">
-                                <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-                                <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-                                <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-                            </div>
-                        </div>
-                        <div class="box-content">
-
-                            @if (ViewBag.Resultado != null || ViewBag.Resultado != false)
+                        @if (@ViewBag.Resultado != null || @ViewBag.Resultado != false)
+                        {
+                            if (ViewBag.Images != null)
                             {
-                                if (ViewBag.Images != null)
-                                {
+                                <div class="box-header well" data-original-title="">
+                                    <h2><i class="icon-picture"></i> Galeria</h2>
+                                    <div class="box-icon">
+                                        <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                                    </div>
+                                </div>
+                                <div class="box-content">
                                     <ul class="thumbnails gallery">
-                                        <li style="display: none;" id="image-1" class="thumbnail">
-                                            <a class="cboxElement" style="background:url(@Url.Content(string.Format("~/{0}{1}", ViewBag.Images.caminhofoto1, ViewBag.Images.nomefoto1)))" title="Sample Image 1" href="@Url.Content("~/img/gallery/1.jpg")"><img style="display: block;" class="grayscale" src="@Url.Content(" ~ />img/gallery/thumbs/1.jpg")" alt="Sample Image 1"></a>
-                                        </li>
-                                        @*<li id="image-2" class="thumbnail">
-                                                <a class="cboxElement" style="background:url(@Url.Content(" ~ />img/gallery/thumbs/2.jpg)")" title="Sample Image 2" href="@Url.Content("~/img/gallery/2.jpg")"><img style="display: block;" class="grayscale" src="@Url.Content(" ~ />img/gallery/thumbs/2.jpg")" alt="Sample Image 2"></a>
+
+                                        @if (!string.IsNullOrEmpty(ViewBag.Images.caminhofoto1))
+                                        {
+                                            <li id="image-1" class="thumbnail">
+                                                <a class="cboxElement" style="background:url(@Url.Content(string.Concat(@ViewBag.Images.caminhofoto1, @ViewBag.Images.nomefoto1)))" title="Imagem 1" href="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto1, @ViewBag.Images.nomefoto1))"><img style="display: block;" class="grayscale" src="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto1, @ViewBag.Images.nomefoto1))" alt="Imagem 1"></a>
                                             </li>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(ViewBag.Images.caminhofoto2))
+                                        {
+                                            <li id="image-2" class="thumbnail">
+                                                <a class="cboxElement" style="background:url(@Url.Content(string.Concat(@ViewBag.Images.caminhofoto2, @ViewBag.Images.nomefoto2)))" title="Imagem 2" href="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto2, @ViewBag.Images.nomefoto2))"><img style="display: block;" class="grayscale" src="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto2, @ViewBag.Images.nomefoto2))" alt="Imagem 2"></a>
+                                            </li>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(ViewBag.Images.caminhofoto3))
+                                        {
                                             <li id="image-3" class="thumbnail">
-                                                <a class="cboxElement" style="background: url(@Url.Content(" ~ />img/gallery/thumbs/3.jpg)")" title="Sample Image 3" href="@Url.Content("~/img/gallery/3.jpg")"><img style="display: block;" class="grayscale" src="@Url.Content(" ~ />img/gallery/thumbs/3.jpg")" alt="Sample Image 3"></a>
-                                            </li>*@
+                                                <a class="cboxElement" style="background:url(@Url.Content(string.Concat(@ViewBag.Images.caminhofoto3, @ViewBag.Images.nomefoto3)))" title="Imagem 3" href="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto3, @ViewBag.Images.nomefoto3))"><img style="display: block;" class="grayscale" src="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto3, @ViewBag.Images.nomefoto3))" alt="Imagem 3"></a>
+                                            </li>
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(ViewBag.Images.caminhofoto4))
+                                        {
+                                            <li id="image-4" class="thumbnail">
+                                                <a class="cboxElement" style="background:url(@Url.Content(string.Concat(@ViewBag.Images.caminhofoto4, @ViewBag.Images.nomefoto4)))" title="Imagem 4" href="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto4, @ViewBag.Images.nomefoto4))"><img style="display: block;" class="grayscale" src="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto4, @ViewBag.Images.nomefoto4))" alt="Imagem 4"></a>
+                                            </li>
+                                        }
+                                        @if (!string.IsNullOrEmpty(ViewBag.Images.caminhofoto5))
+                                        {
+                                            <li id="image-5" class="thumbnail">
+                                                <a class="cboxElement" style="background:url(@Url.Content(string.Concat(@ViewBag.Images.caminhofoto5, @ViewBag.Images.nomefoto5)))" title="Imagem 5" href="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto5, @ViewBag.Images.nomefoto5))"><img style="display: block;" class="grayscale" src="@Url.Content(string.Concat(@ViewBag.Images.caminhofoto5, @ViewBag.Images.nomefoto5))" alt="Imagem 5"></a>
+                                            </li>
+                                        }
                                     </ul>
-
-                                }
-
-
-
-
+                                </div>
                             }
-                        </div>
+                        }
 
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary" id="btnAddImages"><i class="icon icon-white icon-save"></i> Salvar</button>
-                            <button type="button" class="btn btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-
-
-            <div class="tab-pane" id="admin">
-                <form class="form-horizontal">
-                    <fieldset>
-                        <div class="control-group">
-                            <label for="chkDestaque" class="control-label">Destque?</label>
-                            <div class="controls">
-                                <input type="checkbox" id="chkDestaque" />
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label for="chkPublicar" class="control-label">Publicar?</label>
-                            <div class="controls">
-                                <label class="radio">
-                                    <input name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">
-                                    Sim
-                                </label>
-                                <div class="clearfix"></div>
-                                <label class="radio">
-                                    <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
-                                    Não
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label for="chkVendido" class="control-label">Vendido?</label>
-                            <div class="controls">
-                                <input type="checkbox" class="checkbox" id="chkVendido" />
-                            </div>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-primary" id="btnAddAdmin"><i class="icon icon-white icon-save"></i> Salvar</button>
                             <button type="button" class="btn btnVoltar"><i class="icon icon-undo"></i> Voltar</button>
                         </div>
                     </fieldset>
@@ -558,28 +542,42 @@
                             <h4 class="modal-title">Processando...</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="progress progress-striped">
-                                <div class="progress-bar" style="width: 100%"></div>
+                            <div class="center">
+                                <img title="img/ajax-loaders/ajax-loader-7.gif" src="@Url.Content("~/img/ajax-loaders/ajax-loader-7.gif")">
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-            @if (ViewBag.Resultado != null && ViewBag.Resultado)
+            @if (@ViewBag.Resultado != null)
             {
-                <div class="alert alert-error" id="alertMessage" style="display:block;">
+                if (@ViewBag.Resultado)
+                {
+                    <div class="alert alert-error" id="alertMessage">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h4>Atenção</h4>
+                        <ul id="message"> <li>@ViewBag.Message</li></ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-error" id="alertMessage">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h4>Atenção</h4>
+                        <ul id="message"></ul>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="alert alert-error" id="alertMessage">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <h4>Atenção</h4>
-                    <ul id="message"><li>Imagens adiconadas com sucesso.</li></ul>
+                    <ul id="message"></ul>
                 </div>
             }
 
-
-            <div class="alert alert-error" id="alertMessage">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <h4>Atenção</h4>
-                <ul id="message"></ul>
-            </div>
         </fieldset>
     </div>
 </div>

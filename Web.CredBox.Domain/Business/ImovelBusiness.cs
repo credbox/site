@@ -115,6 +115,19 @@ namespace Web.CredBox.Domain.Business
             }
         }
 
+        public bool Delete(int id)
+        {
+            try
+            {
+                return _repository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                if (Logging != null)
+                    Logging.Invoke(this, new LogEventArgs("ImovelBusiness", "Erro ao tentar deletar o imóvel", ex));
+                throw new Exception();
+            }
+        }
 
         /// <summary>
         /// Dispose

@@ -32,9 +32,33 @@ namespace Web.CredBox
                 }
 
                 var path = string.Format("{0}\\{1}_{2}\\", caminhoPadrao, "Imovel", idImovel);
-                Directory.CreateDirectory(path);
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
 
                 return path;
+            }
+
+            public static bool ExistePath(string path)
+            {
+                if (!Directory.Exists(path))
+                    return true;
+                else
+                    return false;
+            }
+
+            public static bool DeletePath(string path)
+            {
+                try
+                {
+                    Directory.Delete(path);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
     }

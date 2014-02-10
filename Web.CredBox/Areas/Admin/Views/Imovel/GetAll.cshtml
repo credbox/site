@@ -61,19 +61,32 @@
                     @if (@item.vendido)
                     {
 
-                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.publicar)</span> </td>
+                        <td class="center"><span class="label label-success">@Web.CredBox.Util.ConvertValue.BoolToString(@item.vendido)</span> </td>
                     }
                     else
                     {
-                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.publicar)</span> </td>
+                        <td class="center"><span class="label">@Web.CredBox.Util.ConvertValue.BoolToString(@item.vendido)</span> </td>
                     }
                     <td class="center">@item.dataInclusao.ToString("dd/MM/yyyy")</td>
                     <td class="center">@item.UsuarioInclusao.nome</td>
                     <td class="center">
-                        <a class="btn btn-success" href="@Url.Action("Edit", "Imovel", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
-                            <i class="icon-edit icon-white"></i>
-                            Editar
+                        <a class="btn btn-success" href="@Url.Action("Item", "Imovel", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
+                            <i class="icon-zoom-in icon-white"></i>
+                            Visualizar
                         </a>
+                        @if (!@item.publicar)
+                        {
+                            <a class="btn btn-info" href="@Url.Action("Edit", "Imovel", new { id = @Web.CredBox.StringExtension.Encrypt(@item.id.ToString()) })">
+                                <i class="icon-pencil icon-white"></i>
+                                Editar
+                            </a>
+
+
+                            @*<a class="btn btn-danger delete" id="btnDelete" href="#" imovel="@item.id">
+                                    <i class="icon-trash icon-white"></i>
+                                    Delete
+                                </a>*@
+                        }
                     </td>
                 </tr>
             }

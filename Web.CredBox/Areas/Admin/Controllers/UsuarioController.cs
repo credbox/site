@@ -11,7 +11,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
     {
         public ActionResult Add()
         {
-            ViewData["Imobiliarias"] = this.Imobiliarias();
+            ViewBag.Imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(0, 0, string.Empty, true);
             return View();
         }
 
@@ -33,7 +33,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            ViewData["Imobiliarias"] = this.Imobiliarias();
+            ViewBag.Imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(0, 0, string.Empty, true);
             return View();
         }
 
@@ -79,21 +79,6 @@ namespace Web.CredBox.Areas.Admin.Controllers
             {
                 throw ex;
             }
-        }
-
-        private List<SelectListItem> Imobiliarias()
-        {
-            var list = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(0, 0, string.Empty, true);
-            var imobiliarias = new List<SelectListItem>();
-
-            imobiliarias.Add(new SelectListItem { Text = "Selecione", Value = "0", Selected = true });
-            foreach (var imobiliaria in list)
-            {
-                var item = new SelectListItem { Text = imobiliaria.nome, Value = imobiliaria.id.ToString() };
-                imobiliarias.Add(item);
-            }
-
-            return imobiliarias;
         }
 
         [HttpPost]

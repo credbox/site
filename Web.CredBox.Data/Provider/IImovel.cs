@@ -14,7 +14,8 @@ namespace Web.CredBox.Data.Provider
         IList<ImovelEntity> GetAll(int idimobiliaria, bool publicar, bool vendido, string nome, string codigoimobiliaria, int idCategoria, int idTipo, int idEstado, int idCidade);
         ImovelEntity GetById(int id);
         IList<ImovelEntity> GetAllDestaque();
-
         bool AddImages(ImovelEntity imovel);
+
+        bool Delete(int id);
     }
 }

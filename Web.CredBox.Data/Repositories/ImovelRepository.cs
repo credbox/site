@@ -208,23 +208,14 @@ namespace Web.CredBox.Data.Repositories
                     command.Parameters.Add(new MySqlParameter("p_cep", imovel.cep));
                     command.Parameters.Add(new MySqlParameter("p_codigoimobiliaria", imovel.codigoImobiliaria));
                     command.Parameters.Add(new MySqlParameter("p_vagagaragem", imovel.vagagaragem));
-                    command.Parameters.Add(new MySqlParameter("p_quantidadesuite", imovel.quantidadeSuite));
-                    command.Parameters.Add(new MySqlParameter("p_quantidadequarto", imovel.quantidadeQuarto));
+                    command.Parameters.Add(new MySqlParameter("p_quatidadedesuite", imovel.quantidadeSuite));
+                    command.Parameters.Add(new MySqlParameter("p_quantidadedequarto", imovel.quantidadeQuarto));
                     command.Parameters.Add(new MySqlParameter("p_areaterreno", imovel.areaTerreno));
                     command.Parameters.Add(new MySqlParameter("p_areaconstruida", imovel.areaConstruida));
                     command.Parameters.Add(new MySqlParameter("p_aceitafinanciamento", imovel.aceitaFinanciamento));
                     command.Parameters.Add(new MySqlParameter("p_valor", imovel.valor));
-                    command.Parameters.Add(new MySqlParameter("p_publicar", imovel.publicar));
-                    command.Parameters.Add(new MySqlParameter("p_destaque", imovel.destaque));
-                    //command.Parameters.Add(new MySqlParameter("p_caminhofotodestaque", imovel.caminhoFotoDestaque));
-                    //command.Parameters.Add(new MySqlParameter("p_nomefotodestaque", imovel.nomeFotoDestaque));
-                    //command.Parameters.Add(new MySqlParameter("p_extensaofotodestaque", imovel.extensaoFotoDestaque));
-                    //command.Parameters.Add(new MySqlParameter("p_caminhofotoprincipal", imovel.caminhoFotoPrincipal));
-                    //command.Parameters.Add(new MySqlParameter("p_nomefotoprincipal", imovel.nomeFotoPrinciapl));
-                    //command.Parameters.Add(new MySqlParameter("p_extensaofotoprincipal", imovel.extensaoFotoPrincipal));
                     command.Parameters.Add(new MySqlParameter("p_descricao", imovel.descricao));
-                    command.Parameters.Add(new MySqlParameter("p_idUsuarioInclusao", imovel.UsuarioInclusao.id));
-
+                    command.Parameters.Add(new MySqlParameter("p_idusuarioatualizacao", imovel.UsuarioAtualizacao.id));
                     try
                     {
                         var value = bool.Parse(command.ExecuteNonQuery().ToString());
@@ -445,6 +436,36 @@ namespace Web.CredBox.Data.Repositories
         public IList<ImovelEntity> GetAllDestaque()
         {
             throw new NotImplementedException();
+        }
+
+
+        public bool Delete(int id)
+        {
+            using (var connection = base.GetConnection())
+            {
+                using (var command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "JP_IMOVELDELETE";
+                    command.Connection.Open();
+
+                    command.Parameters.Clear();
+                    command.Parameters.Add(new MySqlParameter("p_id", id));
+                    try
+                    {
+                        var retorno = command.ExecuteNonQuery();
+                        if (retorno > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
         }
     }
 }

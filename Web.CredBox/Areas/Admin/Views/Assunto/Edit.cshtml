@@ -13,7 +13,7 @@
             window.location.href = '@Url.Action("List","Assunto")';
         });
 
-        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("Edit","Assunto")">Assunto</a></li><li><span class="divider">/</span> Editar</li>');
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Assunto")">Assunto</a></li><li>Editar</li>');
 
         $('#alertMessage').hide('show');
 
@@ -96,8 +96,8 @@
                                 <h4 class="modal-title">Processando...</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="progress progress-striped">
-                                    <div class="progress-bar" style="width: 100%"></div>
+                                <div class="center">
+                                    <img title="img/ajax-loaders/ajax-loader-7.gif" src="@Url.Content("~/img/ajax-loaders/ajax-loader-7.gif")">
                                 </div>
                             </div>
                         </div><!-- /.modal-content -->

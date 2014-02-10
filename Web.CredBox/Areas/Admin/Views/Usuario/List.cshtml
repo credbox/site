@@ -4,9 +4,10 @@
 }
 <script>
     $(document).ready(function () {
-        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Usuario")">Usuário</a></li><li><span class="divider">/</span> Buscar</li>');
+        $('#breadcrumb').html('<a href="@Url.Action("Home","Home")">Home</a><li><span class="divider">/</span><a href="@Url.Action("List","Usuario")">Usuário</a></li><li>Buscar</li>');
+
         $('#alertMessage').hide('show');
-        $('#ddlCidade').append('<option value="">Selecione</option>');
+        $('#ddlImobiliaria').append('<option value="0" selected="selected">Selecione</option>');
 
         $('#btnNovo').click(function () {
             document.location.href = '@Url.Action("Add","Usuario")';
@@ -89,9 +90,7 @@
         return { nome: nome, email: email, login: login, idimobiliaria: idimobiliaria, ativo: ativo };
     }
 </script>
-
 <h2><span class="glyphicon glyphicon-user"></span> Usuário</h2>
-
 <div class="box span11">
     <div class="box-header well" data-original-title="">
         <h2><i class="icon-edit"></i> Buscar</h2>
@@ -110,42 +109,39 @@
                         <input class="input-xlarge focused" id="txtNome" placeholder="Nome" type="text">
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="txtEmail">E-mail</label>
                     <div class="controls">
                         <input class="input-xlarge focused" id="txtEmail" placeholder="E-mail" type="text">
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="txtLogin">Login</label>
                     <div class="controls">
                         <input class="input-xlarge focused" id="txtLogin" placeholder="Login" type="text">
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="ddlImobiliaria">Imobiliária</label>
                     <div class="controls">
-                        @Html.DropDownList("ddlImobiliaria", new SelectList((System.Collections.IEnumerable)ViewData["Imobiliarias"], "Value", "Text"))
+                        <select id="ddlImobiliaria" data-rel="chosen">
+                            @foreach (var item in ViewBag.Imobiliarias)
+                            {
+                                <option value="@item.id">@item.nome</option>
+                            }
+                        </select>
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="chkAtivo">Ativo</label>
                     <div class="controls">
                         <input type="checkbox" class="checkbox" id="chkAtivo" />
                     </div>
                 </div>
-
                 <div class="form-actions">
-
                     <button type="button" class="btn btn-primary" id="btnBuscar"><i class="icon icon-white icon-search"></i> Buscar</button>
                     <button type="button" class="btn" id="btnNovo"><i class="icon icon-page"></i> Novo</button>
-
                 </div>
-
                 <div class="row-fluid sortable" id="divBusca">
                     <div class="box span12">
                         <div class="box-header well" data-original-title>
@@ -155,11 +151,9 @@
                             </div>
                         </div>
                         <div class="box-content" id="divResult">
-
                         </div>
                     </div><!--/span-->
                 </div><!--/row-->
-
                 <div class="modal fade" id="pleaseWaitDialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -168,14 +162,13 @@
                                 <h4 class="modal-title">Processando...</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="progress progress-striped">
-                                    <div class="progress-bar" style="width: 100%"></div>
+                                <div class="center">
+                                    <img title="img/ajax-loaders/ajax-loader-7.gif" src="@Url.Content("~/img/ajax-loaders/ajax-loader-7.gif")">
                                 </div>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-
                 <div class="alert alert-error" id="alertMessage">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <h4>Atenção</h4>
@@ -183,6 +176,5 @@
                 </div>
             </fieldset>
         </form>
-
     </div>
 </div>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web.CredBox.Model.Entity;
 using System.IO;
+using System.Configuration;
 
 namespace Web.CredBox.Areas.Admin.Controllers
 {
@@ -16,6 +17,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
             ViewBag.Categorias = ProjectDomain.CategoriaBusiness.GetAll(string.Empty);
             ViewBag.Tipos = ProjectDomain.TipoBusiness.GetAll(string.Empty);
             ViewBag.Estados = ProjectDomain.EstadoBusiness.GetAll();
+            ViewBag.Resultado = false;
             return View();
         }
 
@@ -23,12 +25,15 @@ namespace Web.CredBox.Areas.Admin.Controllers
         {
             if (!string.IsNullOrEmpty(id))
             {
-                var model = ProjectDomain.ImovelBusiness.GetById(int.Parse(id.Decrypt()));
+                var imovel = ProjectDomain.ImovelBusiness.GetById(int.Parse(id.Decrypt()));
+                ViewBag.Imovel = imovel;
+                var model = new Web.CredBox.Areas.Admin.Models.ImovelUpload { idImovel = imovel.id };
+
                 ViewBag.Imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(0, 0, string.Empty, true);
                 ViewBag.Categorias = ProjectDomain.CategoriaBusiness.GetAll(string.Empty);
                 ViewBag.Tipos = ProjectDomain.TipoBusiness.GetAll(string.Empty);
                 ViewBag.Estados = ProjectDomain.EstadoBusiness.GetAll();
-                ViewBag.Cidades = ProjectDomain.CidadeBusiness.GetByIdEstado(model.Estado.id);
+                ViewBag.Cidades = ProjectDomain.CidadeBusiness.GetByIdEstado(imovel.Estado.id);
                 return View(model);
             }
             else
@@ -44,6 +49,47 @@ namespace Web.CredBox.Areas.Admin.Controllers
             ViewBag.Tipos = ProjectDomain.TipoBusiness.GetAll(string.Empty);
             ViewBag.Estados = ProjectDomain.EstadoBusiness.GetAll();
             return View();
+        }
+
+        public ActionResult Item(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var imovel = ProjectDomain.ImovelBusiness.GetById(int.Parse(id.Decrypt()));
+                ViewBag.Imobiliarias = ProjectDomain.ImobiliariaBusiness.GetAllByStatus(0, 0, string.Empty, true);
+                ViewBag.Categorias = ProjectDomain.CategoriaBusiness.GetAll(string.Empty);
+                ViewBag.Tipos = ProjectDomain.TipoBusiness.GetAll(string.Empty);
+                ViewBag.Estados = ProjectDomain.EstadoBusiness.GetAll();
+                ViewBag.Cidades = ProjectDomain.CidadeBusiness.GetByIdEstado(imovel.Estado.id);
+                return View(imovel);
+            }
+            else
+            {
+                return RedirectToAction("List", "Imovel");
+            }
+        }
+
+        public JsonResult Delete(int id)
+        {
+            bool deletado = false;
+            try
+            {
+                var imovel = ProjectDomain.ImovelBusiness.GetById(id);
+                var retorno = Util.PathFile.ExistePath(imovel.caminhofoto1);
+                if (retorno)
+                    deletado = Util.PathFile.DeletePath(imovel.caminhofoto1);
+
+                deletado = ProjectDomain.ImovelBusiness.Delete(id);
+
+                if (deletado)
+                    return Json("Imóvel excluído com sucesso.", JsonRequestBehavior.AllowGet);
+                else
+                    return Json("Erro ao tentar excluir o imóvel.", JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json("Erro ao tentar excluir o imóvel.", JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult GetAll(int idimobiliaria, bool publicar, bool vendido, string nome, string codigoimobiliaria, int idCategoria, int idTipo, int idEstado, int idCidade)
@@ -96,30 +142,70 @@ namespace Web.CredBox.Areas.Admin.Controllers
                 if (retorno > 0)
                 {
                     var model = new Admin.Models.ImovelUpload { idImovel = retorno };
+                    ViewBag.Resultado = true;
                     return Json(new { id = retorno, message = "Salvo com sucesso, inclua as imagens do imóvel." }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
+                    ViewBag.Resultado = true;
                     return Json(new { id = 0, message = "Erro ao tentar inserir o imóvel" }, JsonRequestBehavior.AllowGet);
                 }
             }
             catch
             {
+                ViewBag.Resultado = true;
                 return Json(new { id = 0, message = "Erro ao tentar inserir o imóvel" }, JsonRequestBehavior.AllowGet);
             }
         }
 
-        public JsonResult Update(int idimobiliaria, int idcategoria, int idtipo, int idestado, int idcidade, string nome, string bairro, string endereco, int numero, string complemento, string cep,
-            string codigoimobiliaria, int vagagaragem, int quantidadesuite, int quantidadequarto, decimal areaterreno, decimal areaconstruida, bool aceitafinanciamento, decimal valor, bool publicar,
-            bool vendido, bool destaque, string descricao)
+        public JsonResult Update(int id, int idimobiliaria, int idcategoria, int idtipo, int idestado, int idcidade, string nome, string bairro, string endereco, int numero, string complemento, string cep,
+            string codigoimobiliaria, int vagagaragem, int quantidadesuite, int quantidadequarto, decimal areaterreno, decimal areaconstruida, bool aceitafinanciamento, decimal valor, string descricao)
         {
+            var imovel = new ImovelEntity
+            {
+                id = id,
+                Imobiliaria = new ImobiliariaEntity { id = idimobiliaria },
+                Categoria = new CategoriaEntity { id = idcategoria },
+                Tipo = new TipoEntity { id = idtipo },
+                Estado = new EstadoEntity { id = idestado },
+                Cidade = new CidadeEntity { id = idcidade },
+                nome = nome,
+                bairro = bairro,
+                endereco = endereco,
+                numero = numero,
+                complemento = complemento,
+                cep = cep,
+                codigoImobiliaria = codigoimobiliaria,
+                vagagaragem = vagagaragem,
+                quantidadeSuite = quantidadesuite,
+                quantidadeQuarto = quantidadequarto,
+                areaTerreno = areaterreno,
+                areaConstruida = areaconstruida,
+                aceitaFinanciamento = aceitafinanciamento,
+                valor = valor,
+                UsuarioAtualizacao = new UsuarioEntity { id = 1 }
+            };
+
             try
             {
-                return Json("Salvo com sucesso", JsonRequestBehavior.AllowGet);
+                var retorno = ProjectDomain.ImovelBusiness.Edit(imovel);
+
+                if (retorno)
+                {
+                    var model = new Admin.Models.ImovelUpload { idImovel = id };
+                    ViewBag.Resultado = true;
+                    return Json(new { id = retorno, message = "Salvo com sucesso." }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    ViewBag.Resultado = true;
+                    return Json(new { id = 0, message = "Erro ao tentar atualizar o imóvel" }, JsonRequestBehavior.AllowGet);
+                }
             }
             catch
             {
-                return Json("Erro ao tentar atualizar o imóvel", JsonRequestBehavior.AllowGet);
+                ViewBag.Resultado = true;
+                return Json(new { id = 0, message = "Erro ao tentar atualizar o imóvel" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -128,7 +214,6 @@ namespace Web.CredBox.Areas.Admin.Controllers
         {
             try
             {
-
                 if (model.idImovel > 0)
                 {
                     var imovel = new ImovelEntity { id = model.idImovel };
@@ -137,7 +222,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(model.foto1.FileName))
                     {
                         var nome = string.Format("Imovel_{0}_1{1}", model.idImovel, Path.GetExtension(model.foto1.FileName));
-                        imovel.caminhofoto1 = path;
+                        imovel.caminhofoto1 = string.Format("{0}{1}", ConfigurationManager.AppSettings["PathUpload"], string.Format("{0}_{1}/", "Imovel", model.idImovel));
                         imovel.nomefoto1 = nome;
                         imovel.extensaofoto1 = Path.GetExtension(model.foto1.FileName);
                         model.foto1.SaveAs(string.Concat(path, model.foto1.FileName));
@@ -147,7 +232,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(model.foto2.FileName))
                     {
                         var nome = string.Format("Imovel_{0}_2{1}", model.idImovel, Path.GetExtension(model.foto2.FileName));
-                        imovel.caminhofoto2 = path;
+                        imovel.caminhofoto2 = string.Format("{0}{1}", ConfigurationManager.AppSettings["PathUpload"], string.Format("{0}_{1}/", "Imovel", model.idImovel));
                         imovel.nomefoto2 = nome;
                         imovel.extensaofoto2 = Path.GetExtension(model.foto2.FileName);
                         model.foto2.SaveAs(string.Concat(path, model.foto2.FileName));
@@ -157,7 +242,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(model.foto3.FileName))
                     {
                         var nome = string.Format("Imovel_{0}_3{1}", model.idImovel, Path.GetExtension(model.foto3.FileName));
-                        imovel.caminhofoto3 = path;
+                        imovel.caminhofoto3 = string.Format("{0}{1}", ConfigurationManager.AppSettings["PathUpload"], string.Format("{0}_{1}/", "Imovel", model.idImovel));
                         imovel.nomefoto3 = nome;
                         imovel.extensaofoto3 = Path.GetExtension(model.foto3.FileName);
                         model.foto3.SaveAs(string.Concat(path, model.foto3.FileName));
@@ -167,7 +252,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(model.foto4.FileName))
                     {
                         var nome = string.Format("Imovel_{0}_4{1}", model.idImovel, Path.GetExtension(model.foto4.FileName));
-                        imovel.caminhofoto4 = path;
+                        imovel.caminhofoto4 = string.Format("{0}{1}", ConfigurationManager.AppSettings["PathUpload"], string.Format("{0}_{1}/", "Imovel", model.idImovel));
                         imovel.nomefoto4 = nome;
                         imovel.extensaofoto4 = Path.GetExtension(model.foto4.FileName);
                         model.foto4.SaveAs(string.Concat(path, model.foto4.FileName));
@@ -177,7 +262,7 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(model.foto5.FileName))
                     {
                         var nome = string.Format("Imovel_{0}_5{1}", model.idImovel, Path.GetExtension(model.foto5.FileName));
-                        imovel.caminhofoto5 = path;
+                        imovel.caminhofoto5 = string.Format("{0}{1}", ConfigurationManager.AppSettings["PathUpload"], string.Format("{0}_{1}/", "Imovel", model.idImovel));
                         imovel.nomefoto5 = nome;
                         imovel.extensaofoto5 = Path.GetExtension(model.foto5.FileName);
                         model.foto5.SaveAs(string.Concat(path, model.foto5.FileName));
@@ -198,24 +283,28 @@ namespace Web.CredBox.Areas.Admin.Controllers
                     {
                         var modelImge = new Admin.Models.ImovelUpload { idImovel = imovel.id };
                         ViewBag.Resutlado = true;
+                        ViewBag.Message = "Imagens adicionadas com sucesso.";
                         return View("Add");
                     }
                     else
                     {
-                        ViewBag.Resutlado = false;
+                        ViewBag.Resutlado = true;
+                        ViewBag.Message = "Erro ao tentar adicionar as imagens.";
                         return View("Add");
                     }
                 }
                 else
                 {
-                    ViewBag.Resutlado = false;
+                    ViewBag.Resutlado = true;
+                    ViewBag.Message = "Erro ao tentar adicionar as imagens.";
                     return View("Add");
                 }
             }
 
             catch
             {
-                ViewBag.Resutlado = false;
+                ViewBag.Resutlado = true;
+                ViewBag.Message = "Erro ao tentar adicionar as imagens.";
                 return View("Add");
             }
 
